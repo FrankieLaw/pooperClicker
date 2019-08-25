@@ -20,47 +20,28 @@ const PooClickerData  	= new GameData( );
 function EndlessDungeon( ) {
 	ED_Stage_Setup( );
 
-	/*\
-	|*|=============================
-	|*| DOCUMENTATION CONTROLS
-	|*|=============================
-	\*/
-		document.getElementById( "devNoteToggle" ).addEventListener( "click", function( ) {
-			document.getElementById( "devNote" ).style.display = "block";
-		});
-
-		document.getElementById( "closeDevNote" ).addEventListener( "click", function( ) {
-			var devNote = document.getElementById( "devNote" );
-
-			devNote.scrollTop = 0;
-			devNote.style.display = "none";
-		});
-	/*\
-	|*|=============================
-	|*| END DOCUMENTTATION CONTROLS
-	|*|=============================
-	\*/
+/*\
+|*|=============================
+|*| DOCUMENTATION CONTROLS
+|*|=============================
+\*/ 
+	devNoteControlSetup( );
 	
-
-	PooClickerData.calcTotalMultiplier( );
-
-	/*\
-	|*|=============================
-	|*| TODO: TECH ICON CLONE\
-	|*| TODO: TECH TREE ELIGIBILITY
-	|*|=============================
-	\*/
-	// let test = document.getElementById( "tempTechIcon" ).cloneNode( true );
-
-	// test.id = "newId01";
-	// test.style.position = "absolute";
-	// test.style.left = "350px";
-
-	// let attachemnt = document.getElementById( "attachHere" );
-	// attachemnt.appendChild( test );
-	// console.log( test );
 }
 
+
+function devNoteControlSetup( ) {
+	document.getElementById( "devNoteToggle" ).addEventListener( "click", function( ) {
+		document.getElementById( "devNote" ).style.display = "block";
+	});
+
+	document.getElementById( "closeDevNote" ).addEventListener( "click", function( ) {
+		var devNote = document.getElementById( "devNote" );
+
+		devNote.scrollTop = 0;
+		devNote.style.display = "none";
+	});
+}
 
 
 /*\
@@ -287,7 +268,7 @@ function EndlessDungeon( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 15 },
 				"multiplier" : 1.00,
-				"cost"		 : 100000
+				"cost"		 : 150
 			},
 
 			5 : { 
@@ -295,7 +276,7 @@ function EndlessDungeon( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 25 },
 				"multiplier" : 1.00,
-				"cost"		 : 1500000
+				"cost"		 : 150
 			},
 
 			6 : { 
@@ -303,7 +284,7 @@ function EndlessDungeon( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 35 },
 				"multiplier" : 1.00,
-				"cost"		 : 150000000
+				"cost"		 : 150
 			}
 		};
 
@@ -313,9 +294,6 @@ function EndlessDungeon( ) {
 		function getTechMultiplier( id )    { return techTree[id]["multiplier"]; }
 		function getTechCost( id ) 			{ return techTree[id]["cost"]; }
 
-		function calcTotalMultiplier( ) {
-			console.warn( "EndlessDungeon @ Line 251" );
-		}
 
 		//This will check a single tech requirement based on ID
 		//The SessionStateTechId will know 
@@ -388,7 +366,6 @@ function EndlessDungeon( ) {
 			getTechRequirement  : getTechRequirement,
 			getTechMultiplier   : getTechMultiplier,
 			getTechCost         : getTechCost,
-			calcTotalMultiplier : calcTotalMultiplier,
 
 			isTechEligible 				 : isTechEligible,
 			getPurchasbleTechTreeUpgrade : getPurchasbleTechTreeUpgrade
