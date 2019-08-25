@@ -331,8 +331,12 @@ function ED_Stages( ) {
 						let upgradeList = SessionState.getUpgradeList( );
 
 						for( key in upgradeList ) {
-							document.getElementById( key + "Title" ).className = "label";
-							document.getElementById( key + "Cost" ).className  = "cost purchaseable";
+
+							//CHECK IF THE ELEMENT EXIST
+							if( document.getElementById( key + "Upgrade" ) ) {
+								document.getElementById( key + "Title" ).className = "label";
+								document.getElementById( key + "Cost" ).className  = "cost purchaseable";
+							}
 						}
 					}
 					
@@ -739,11 +743,9 @@ function ED_Stages( ) {
 				var tempTimer = new PooNumber( tempDiv );
 				tempTimer.start( );
 
-				SessionState.addPoo( 1 );
+				SessionState.addPoo( 1000000 );
 				SessionState.addClick( 1 );
 				SessionState.addPooSinceStart( 1 );
-
-				console.log( SessionState.getUpgradeList( ) );
 			}
 		} // END OF PAGE 4 - IN GAME SCREEN
 	}
