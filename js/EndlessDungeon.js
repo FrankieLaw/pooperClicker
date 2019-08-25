@@ -260,48 +260,48 @@ function EndlessDungeon( ) {
 			1 : { 
 				"owner"      : "Shovel",
 				"title"      : "Dig It",
-				"require"    : { "Shovel" : 25 }, 
+				"require"    : { "Shovel" : 15 }, 
 				"multiplier" : 1.00,
 				"cost"		 : 150
 			},
 
 
 			2 : { 
-				"owner"      : "Baby",
-				"title"      : "Yea Baby!",
-				"require"    : { "Baby" : 25 },
+				"owner"      : "Shovel",
+				"title"      : "Dig It 2",
+				"require"    : { "Shovel" : 25 },
 				"multiplier" : 1.00,
 				"cost"		 : 500
 			},
 
 			3 : { 
-				"owner"      : "Animal Farm",
-				"title"      : "Yea Baby!",
-				"require"    : { "Animal Farm" : 25 },
+				"owner"      : "Shovel",
+				"title"      : "Dig It 3",
+				"require"    : { "Shovel" : 35 },
 				"multiplier" : 1.00,
 				"cost"		 : 15000
 			},
 
 			4 : { 
-				"owner"      : "Toilet",
+				"owner"      : "Baby",
 				"title"      : "Yea Baby!",
-				"require"    : { "Animal Farm" : 25 },
+				"require"    : { "Baby" : 15 },
 				"multiplier" : 1.00,
 				"cost"		 : 100000
 			},
 
 			5 : { 
-				"owner"      : "Animal Farm",
+				"owner"      : "Baby",
 				"title"      : "Yea Baby!",
-				"require"    : { "Animal Farm" : 50 },
+				"require"    : { "Baby" : 25 },
 				"multiplier" : 1.00,
 				"cost"		 : 1500000
 			},
 
 			6 : { 
-				"owner"      : "Animal Farm",
+				"owner"      : "Baby",
 				"title"      : "Yea Baby!",
-				"require"    : { "Animal Farm" : 75 },
+				"require"    : { "Baby" : 35 },
 				"multiplier" : 1.00,
 				"cost"		 : 150000000
 			}

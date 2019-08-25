@@ -696,11 +696,13 @@ function ED_Stages( ) {
 					//ADD EVENTLISTENERS TO RESPONDE TO CLICKING
 					//ADD EVENTREGISTRY IF NEEDED TO REMOVE EVENTLISTENER
 					clone.addEventListener( "click", function( ) {
-						let id = (this.id).replace("tech", "" );
+						let id       = (this.id).replace("tech", "" );
+						let techCost = PooClickerData.getTechCost( id );
 
 						//MAKE SURE THAT THE TECH IS PURCHASEABLE
-						if( SessionState.getTotalPoo( ) >= PooClickerData.getTechCost( id ) ) {
+						if( SessionState.getTotalPoo( ) >= techCost ) {
 							SessionState.setTechPurchased( id );	//MARK TECHTREE PURCHASED (TRUE)
+							SessionState.subtractPoo( techCost );	//SUBTRACT THE COST FROM TOTAL POO POOL
 
 							SessionState.calcTechPPSBonus( );		//RECALCULATE ALL THE PPS BONUS
 
@@ -740,6 +742,8 @@ function ED_Stages( ) {
 				SessionState.addPoo( 1 );
 				SessionState.addClick( 1 );
 				SessionState.addPooSinceStart( 1 );
+
+				console.log( SessionState.getUpgradeList( ) );
 			}
 		} // END OF PAGE 4 - IN GAME SCREEN
 	}

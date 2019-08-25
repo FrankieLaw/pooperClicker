@@ -58,10 +58,10 @@ function AppSessionState( ) {
 		//   _playerState["Upgrades"]["Shovel"]["upgradeable"]
 		//==============================
 		"Upgrades" : {					
-			"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 0.0  },
-			"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  },
-			"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  },
-			"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  }
+			"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0  },
+			"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  },
+			"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  },
+			"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  }
 		},
 
 
@@ -129,10 +129,14 @@ function AppSessionState( ) {
 			}
 		}
 
-		//TRANSFER THE ACCUMULATIVE SUM ONTO SESSIONSTATE
+		//TRANSFER THE ACCUMULATIVE SUM into SessionState
 		for( var key in sum ) {
 			_playerState["Upgrades"][key]["multiplier"] = sum[key];
 		}
+
+		console.group("SuM");
+		console.log( sum );
+		console.log( _playerState["Upgrades"] );
 	}
 
 	function setMultiplerByName( name, value ) {
@@ -179,10 +183,10 @@ function AppSessionState( ) {
 				},
 
 				"Upgrades" : {
-					"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 0.0 },
-					"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0 },
-					"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0 },
-					"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0 }
+					"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0 },
+					"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
+					"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
+					"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 }
 				},
 
 				"TechTree" : {
