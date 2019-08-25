@@ -1,0 +1,229 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Pooper Clicker 2019 | Version 1.0 Demo</title>
+
+		<link href="css/pooper.css" rel="stylesheet" />
+		
+
+		<script type="text/javascript" src="js/App_SaveState.js"></script>
+
+		<script type="text/javascript" src="js/ED_Timer.js"></script>
+		<script type="text/javascript" src="js/ED_Stages.js"></script>
+		<script type="text/javascript" src="js/ED_AppSessionState.js"></script>
+		<script type="text/javascript" src="js/EndlessDungeon.js"></script>
+		
+
+		<script type="text/JavaScript">
+			window.onload = function( ) {
+				EndlessDungeon( );
+			}			
+		</script>
+	</head>
+
+	<body id="pooClickerBody">
+		<div class="navBar">
+			<ul>
+				<li>POOPER CLICKER &copy; 2019 </li>
+				<li id="devNoteToggle">- Development Note -</li>
+			</ul>
+		</div>
+
+		<div class="footer">
+			VERSION 1.0
+		</div>
+
+		<!--
+			Development Notes
+		-->
+		<div id="devNote" class="devNote">
+			<h1>
+				Development Note 
+			</h1>
+
+			<dl class="note">
+				<dt class="date">August 24, 2019</dt>
+				<dd class="definition">Started working on the Tech Tree.</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">August 18, 2019</dt>
+				<dd class="definition">Poopy issues happened, I took a break.</dd>
+				<dd class="definition">You can now buy and sell your upgrades</dd>
+				<dd class="definition">Allow to purchase 10x or 100x the upgrade if you have the poo...</dd>
+				<dd class="definition">Allow to sell 10x or 100x if you have the upgrades</dd>
+				<dd class="definition">Added more fun statistics :)</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">July 23, 2019</dt>
+				<dd class="definition">Added Poo per second.  No longer do we have to pick up shit.</dd>
+				<dd class="definition">Added more upgrades Baby!!  Get it? :P</dd>
+				<dd class="definition">Also added a bunch of statistical nerdy stuff.</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">July 20, 2019</dt>
+				<dd class="definition">Self Regulate Pop-Up Number whenever you dig up some poo</dd>
+				<dd class="definition">Added my first Poo upgrade!!  Da Shovel! Argh Shit~~ :P</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">July 14, 2019</dt>
+				<dd class="definition">This game is Awesome!</dd>
+				<dd class="definition">Background added</dd>
+				<dd class="definition">Game Data can be save and load from local storage</dd>
+				<dd class="definition">Clickable Poo</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">July 1, 2019</dt>
+				<dd class="definition">Life was kinda crappy</dd>
+				<dd class="definition">So I started making this game</dd>
+			</dl>
+
+			<div id="closeDevNote" class="closeDevNote">close</div>
+		</div>
+
+		<!-- Splash Screen -->
+		<div id="page1">
+			<div class="p1Container">
+				<div class="ED-btn"
+					id="p1-newGameBtn"
+					data-target="page4">
+					New Game
+				</div>
+
+				<div class="ED-btn"
+					id="p1-loadGameBtn" 
+					data-target="page2">
+					Load Game
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Load Game Screen -->
+		<div id="page2">
+			<div class="p2Container">
+				<div id="saveSlotContainer" class="slotConatiner">
+				</div>
+
+				<div class="ED-btn"
+					id="p2-backBtn"
+					data-target="page1">
+					Back
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Reconstruct In-Game Content -->
+		<div id="page4">
+			<div class="p4Container">
+				
+				<div id="pooArea" class="pooBlock">
+					<img id="pooClicker" class="shovelCursor" draggable="false" src="img/poo2.png"/>
+				</div>
+
+				<div id="scoreArea" class="ppsBlock">
+					<div id="totalPooDisplay" class="totalPooDisplay">0 Poops</div>
+					<div id="ppsDisplay" class="ppsDisplay">per second: 0</div>
+				</div>
+
+				
+
+
+
+				<div id="contentArea" class="statisticBlock">
+					<span id="statisticTabBtn" class="header">+ STATISTICS</span>
+					<div id="statisticTab" style="display:block;">
+						<div class="row">
+							<div class="label">Game Started:</div>
+							<div id="currentTime">...</div>
+						</div>
+
+						<div class="row">
+							<div class="label">Poop in Bank:</div>
+							<div id="totalPooCollected">0</div>
+						</div>
+
+						<div class="row">
+							<div class="label">Total Clicked:</div>
+							<div id="totalClicksMade">0</div>
+						</div>
+
+						<div class="row">
+							<div class="label">Total Poo Since Started:</div>
+							<div id="totalPooSinceStart">0</div>
+						</div>
+
+						<br/>
+						
+						<div class="row">
+							<div class="label">Total Upgrades Purchased:</div>
+							<div id="totalUpgrades">0</div>
+						</div>
+
+						<!-- updateStatistics( ) in ED_Stage.js -->
+					</div>
+
+					<span id="achievementTabBtn" class="header">+ ACHIEVEMENT</span>
+					<div id="achievementTab" style="display:block;">
+						You are inside the achievement Tab
+					</div>
+				</div>
+
+
+				<div id="Button" class="contentBtnBlock">
+					<div id="p4-saveBtn" class="ED-btn" data-target="page4">
+						Save
+					</div>
+
+					<div id="p4-endBtn" class="ED-btn" data-target="page1">
+						Save & Quit
+					</div>
+				</div>
+
+				
+				<div id="upgrades" class="upgradeBlock">
+
+
+					<!-- Upgrade Tab-->
+					<span id="upgradeTabBtn" class="header">+ UPGRADE</span>
+
+					<div id="upgradeTab" style="display:block;">
+						<div class="quantityBlock">
+							<div class="quantityOption">
+								<span id="buyBtn"  class="optionBtn active">Buy</span>
+								<span id="sellBtn" class="optionBtn">Sell</span>
+							</div>
+
+							<div class="quantityAmount">
+								<span id="1x"   class="quantityBtn active">1</span>
+								<span id="10x"  class="quantityBtn">10</span>
+								<span id="100x" class="quantityBtn">100</span>
+							</div>
+						</div>
+
+					
+						<!-- UpgradeList is a container -->
+						<div id="upgradeList" class="upgradeListContainer">
+						</div>
+					</div>
+
+					<!-- Tech Tab -->
+					<span id="techTabBtn" class="header">+ TECH</span>
+					<div id="techTab" style="display:block;">
+						<div id="techList"></div>
+					</div>
+				</div>
+			</div> 
+		</div> <!-- End of Container p4 -->
+
+		<!-- DOM Cloaning Section : WHY ARE YOU LOOKING AT ME!! -->
+		<div id="tempTechIcon" class="techIcon"></div>
+		
+	</body>
+</html>
