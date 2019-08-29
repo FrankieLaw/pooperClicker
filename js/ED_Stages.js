@@ -120,6 +120,10 @@ function ED_Stages( ) {
 		}, //END OF - PAGE2 - Load Screen
 
 
+
+
+
+
 		page4 : function( ) {
 			SessionState.debug( );	//DELETE ME
 
@@ -158,19 +162,120 @@ function ED_Stages( ) {
 			_10xBtn.addEventListener( "click", quantityTen );				//QUANTITY CONTROL
 			_100xBtn.addEventListener( "click", quantityHundred );			//QUANTITY CONTROL
 
-			giantPoo.addEventListener( "mousedown", function( ) {
-				this.style.className = "handCloseCursor";
-				console.log( this );
-			})
+			giantPoo.addEventListener( "mousedown", giantPoo_mouseDown );
+			giantPoo.addEventListener( "mouseup", giantPoo_mouseUp );
 
-//
-//
-//
-//
-//
-//=================================================================
-// QUANTITY CONTROL - METHODS
-//=================================================================
+			document.getElementById( "randomMessage" ).className = "randomMessage";
+
+			//=======================================================
+			// Endless Dungeon Page4 Button Action
+			//=======================================================
+			function p4_mouseOver( e )    { e.srcElement.style.cursor = "Pointer"; }
+
+			function p4_onClick_Save( e ) {	
+				SaveData.saveToLocalStorage( );	
+
+				pooArea = document.getElementById( "pooClickerBody" );
+
+				//Add div element with the number pop up
+				//Div moves up over 1 seconds and disappears after 1 seconds
+				//absolute position it.
+				let tempDiv = document.createElement( "div" );
+				let txtNode = document.createTextNode( "GAME SAVED!" );
+
+				tempDiv.setAttribute( "class", "SaveMsgBox" );
+				tempDiv.style.opacity = 1.0;
+
+				tempDiv.appendChild( txtNode );
+				pooArea.appendChild( tempDiv );
+
+				var tempTimer = new StatusTimer( tempDiv );
+				tempTimer.start( );
+			}
+
+			function p4_onClick_End( e ) {
+				//====================================
+				// REMOVE ALL LISTENENERS ON THE PAGE
+				//====================================
+				p4_saveBtn.removeEventListener(        "click", 	p4_onClick_Save );
+				p4_endBtn.removeEventListener(         "click", 	p4_onClick_End );
+				p4_saveBtn.removeEventListener(        "mouseover", p4_mouseOver );
+				p4_endBtn.removeEventListener(         "mouseover", p4_mouseOver );
+				
+				pooClicker.removeEventListener(        "click", 	poo_onClick );
+
+				upgradeTabBtn.removeEventListener(     "click", 	switchTab );
+				techTabBtn.removeEventListener(        "click", 	switchTab );
+				statisticTabBtn.removeEventListener(   "click", 	switchTab );
+				achievementTabBtn.removeEventListener( "click", 	switchTab );
+
+				buyBtn.removeEventListener(  		   "click", 	buyBtnPress );
+				sellBtn.removeEventListener( 		   "click", 	sellBtnPress );
+
+				_1xBtn.removeEventListener(  		   "click", 	quantityOne );
+				_10xBtn.removeEventListener( 		   "click", 	quantityTen );
+				_100xBtn.removeEventListener( 		   "click", 	quantityHundred );
+
+				giantPoo.removeEventListener( 		   "mousedown", giantPoo_mouseDown );
+				giantPoo.removeEventListener( 		   "mouseup",   giantPoo_mouseUp );
+
+				document.getElementById( "randomMessage" ).className = "";
+				document.getElementById( "randomMessage" ).innerHTML = "There is a piece of poo laying around on our beautiful planes...";
+
+
+				//====================================
+				// STAGE SETUP & SWITCH TO PAGE1
+				//====================================
+				ED_Stages( ).setStage( e.srcElement.attributes["data-target"].value );
+				SessionState.changeStageTo( e.srcElement.attributes["data-target"].value );
+
+
+				//END GAME TIMER
+				SessionState.getTimer( ).end( );
+				clearInterval( updateTimer );
+				clearInterval( messageTimer );
+
+				//SAVE PROGRESS
+				SaveData.saveToLocalStorage( );
+
+				//RESET SESSION STATE FOR THE NEXT GAME
+				SessionState.reset( );
+				resetTab( );
+				resetQuantity( );
+				resetTechTree( );
+			}
+
+			//=================================================================
+			// RESET CONTROL - UTILITY METHODS
+			//=================================================================
+			function resetQuantity( ) {
+				PooClickerData.getQuantity( ).forEach( function( element ) {
+					document.getElementById( element ).className = "quantityBtn";
+				});
+
+				document.getElementById( "1x" ).className      = "quantityBtn active";
+				document.getElementById( "buyBtn" ).className  = "optionBtn active";
+				document.getElementById( "sellBtn" ).className = "optionBtn";
+			}
+
+			function resetTab( ) {
+				PooClickerData.getUpgradeTabs( ).forEach( function(element) {
+					let header = element + "Btn";
+					let title = document.getElementById( header ).innerHTML;
+
+					document.getElementById( element ).style.display = "block";
+					document.getElementById( header ).innerHTML = title.replace( "-", "+" );
+				});
+			}
+
+			function resetTechTree( ) {
+				document.getElementById( "techList" ).innerHTML = "";
+			}
+
+
+			//=================================================================
+			// QUANTITY CONTROL - UTILITY METHODS
+			//=================================================================
 			function quantityOne( e ) {
 				removeAllActiveQuantity( );
 				e.srcElement.className = e.srcElement.className + " active";
@@ -257,11 +362,10 @@ function ED_Stages( ) {
 					});
 				}
 			}
-//
-//
-//
-//
-//
+
+			
+
+
 
 //=================================================================
 // INITIALIZE GAME STATE
@@ -283,11 +387,21 @@ function ED_Stages( ) {
 				var ppsDisplay  	   = document.getElementById( "ppsDisplay" );			//Center Stage
 				
 				var updateTimer 	   = setInterval( gameLoop, 10 );
+				var messageTimer       = setInterval( displayRandomMessage, 12500 );
 
-				updateStatistics( );				//SET STATISTICS VISUAL
-				generateList( );					//SET UPGRADE LIST VISUAL
-				generateTechTreeIcon( ); 			//SET TECH TREE ICON VISUAL
-				SessionState.getTimer( ).start( );	//START GAME TIMER
+
+				updateStatistics( );						//SET STATISTICS VISUAL
+				generateList( );							//SET UPGRADE LIST VISUAL
+				generateTechTreeIcon( ); 					//SET TECH TREE ICON VISUAL
+				PooClickerData.getMessageBoardUpdate( ); 	//SET RANDOM MESSAGE BOARD
+				SessionState.getTimer( ).start( );			//START GAME TIMER
+
+
+				
+				function displayRandomMessage( ) {
+					document.getElementById( "randomMessage" ).innerHTML = SessionState.getRandomMessage( );
+				}
+
 
 				function gameLoop( ) {
 					//UPDATE POO ACCUMULATION
@@ -353,104 +467,40 @@ function ED_Stages( ) {
 				}
 			}
 
+			function giantPoo_mouseDown( e ) {
+				e.srcElement.className = "cursorGrabbing";
+			}
 
-			//=======================================================
-			// Endless Dungeon Page4 Button Action
-			//=======================================================
-			function p4_mouseOver( e )    { e.srcElement.style.cursor = "Pointer"; }
+			function giantPoo_mouseUp( e ) {
+				e.srcElement.className = "cursorOpen";
+			}
 
-			function p4_onClick_Save( e ) {	
-				SaveData.saveToLocalStorage( );	
-
-				pooArea = document.getElementById( "pooClickerBody" );
+			function poo_onClick( e ) {
+				var pooArea = document.getElementById( "pooArea" );
 
 				//Add div element with the number pop up
 				//Div moves up over 1 seconds and disappears after 1 seconds
 				//absolute position it.
 				let tempDiv = document.createElement( "div" );
-				let txtNode = document.createTextNode( "GAME SAVED!" );
+				let txtNode = document.createTextNode( "+1" );
 
-				tempDiv.setAttribute( "class", "SaveMsgBox" );
+				tempDiv.setAttribute( "class", "pooClicked" );
+				tempDiv.style.left = between(e.offsetX - 24, e.offsetX + 56) + "px";
+				tempDiv.style.top  = (e.offsetY-50) + "px";
 				tempDiv.style.opacity = 1.0;
 
 				tempDiv.appendChild( txtNode );
 				pooArea.appendChild( tempDiv );
 
-				var tempTimer = new StatusTimer( tempDiv );
+				var tempTimer = new PooNumber( tempDiv );
 				tempTimer.start( );
-			}
 
-			function p4_onClick_End( e ) {
-				//====================================
-				// REMOVE ALL LISTENENERS ON THE PAGE
-				//====================================
-				p4_saveBtn.removeEventListener(        "click", 	p4_onClick_Save );
-				p4_endBtn.removeEventListener(         "click", 	p4_onClick_End );
-				p4_saveBtn.removeEventListener(        "mouseover", p4_mouseOver );
-				p4_endBtn.removeEventListener(         "mouseover", p4_mouseOver );
+				SessionState.addPoo( 1000 );
+				SessionState.addClick( 1 );
+				SessionState.addPooSinceStart( 1 );
+
+				//
 				
-				pooClicker.removeEventListener(        "click", 	poo_onClick );
-
-				upgradeTabBtn.removeEventListener(     "click", 	switchTab );
-				techTabBtn.removeEventListener(        "click", 	switchTab );
-				statisticTabBtn.removeEventListener(   "click", 	switchTab );
-				achievementTabBtn.removeEventListener( "click", 	switchTab );
-
-				buyBtn.removeEventListener(  		   "click", 	buyBtnPress );
-				sellBtn.removeEventListener( 		   "click", 	sellBtnPress );
-
-				_1xBtn.removeEventListener(  		   "click", 	quantityOne );
-				_10xBtn.removeEventListener( 		   "click", 	quantityTen );
-				_100xBtn.removeEventListener( 		   "click", 	quantityHundred );
-
-
-				//====================================
-				// STAGE SETUP & SWITCH TO PAGE1
-				//====================================
-				ED_Stages( ).setStage( e.srcElement.attributes["data-target"].value );
-				SessionState.changeStageTo( e.srcElement.attributes["data-target"].value );
-
-
-				//END GAME TIMER
-				SessionState.getTimer( ).end( );
-				clearInterval( updateTimer );
-
-				//SAVE PROGRESS
-				SaveData.saveToLocalStorage( );
-
-				//RESET SESSION STATE FOR THE NEXT GAME
-				SessionState.reset( );
-				resetTab( );
-				resetQuantity( );
-				resetTechTree( );
-			}
-
-
-//=================================================================
-// RESET CONTROLS - METHODS
-//=================================================================
-			function resetQuantity( ) {
-				PooClickerData.getQuantity( ).forEach( function( element ) {
-					document.getElementById( element ).className = "quantityBtn";
-				});
-
-				document.getElementById( "1x" ).className      = "quantityBtn active";
-				document.getElementById( "buyBtn" ).className  = "optionBtn active";
-				document.getElementById( "sellBtn" ).className = "optionBtn";
-			}
-
-			function resetTab( ) {
-				PooClickerData.getUpgradeTabs( ).forEach( function(element) {
-					let header = element + "Btn";
-					let title = document.getElementById( header ).innerHTML;
-
-					document.getElementById( element ).style.display = "block";
-					document.getElementById( header ).innerHTML = title.replace( "-", "+" );
-				});
-			}
-
-			function resetTechTree( ) {
-				document.getElementById( "techList" ).innerHTML = "";
 			}
 
 
@@ -468,7 +518,6 @@ function ED_Stages( ) {
 					e.srcElement.innerHTML = ( e.srcElement.innerHTML ).replace( "-", "+" );
 				}
 			}
-
 
 			function updateStatistics( ) {
 				currentTime.innerHTML 		 = SessionState.getTimer( ).elapsedToString( );
@@ -675,6 +724,7 @@ function ED_Stages( ) {
 							}
 
 							generateTechTreeIcon( );
+							PooClickerData.getMessageBoardUpdate( );
 						}
 					}
 				}
@@ -728,33 +778,7 @@ function ED_Stages( ) {
 
 					//ADD THEM TO THE TECH TREE CONTAINER.
 					techTreeContainer.appendChild( clone );
-				});
-				
-			}
-
-			function poo_onClick( e ) {
-				var pooArea = document.getElementById( "pooArea" );
-
-				//Add div element with the number pop up
-				//Div moves up over 1 seconds and disappears after 1 seconds
-				//absolute position it.
-				let tempDiv = document.createElement( "div" );
-				let txtNode = document.createTextNode( "+1" );
-
-				tempDiv.setAttribute( "class", "pooClicked" );
-				tempDiv.style.left = between(e.offsetX - 24, e.offsetX + 56) + "px";
-				tempDiv.style.top  = (e.offsetY-50) + "px";
-				tempDiv.style.opacity = 1.0;
-
-				tempDiv.appendChild( txtNode );
-				pooArea.appendChild( tempDiv );
-
-				var tempTimer = new PooNumber( tempDiv );
-				tempTimer.start( );
-
-				SessionState.addPoo( 1000 );
-				SessionState.addClick( 1 );
-				SessionState.addPooSinceStart( 1 );
+				});	
 			}
 		} // END OF PAGE 4 - IN GAME SCREEN
 	}

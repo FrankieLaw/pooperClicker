@@ -351,6 +351,43 @@ function devNoteControlSetup( ) {
 		}
 
 
+
+
+		const message = {
+			1 : { "quote" : "The world is becoming shit. That's all there is to it", 					"require" : { "Hand" :  0               } },
+			2 : { "quote" : "It all began with a unique scent of foul smell",        					"require" : { "Hand" :  0               } },
+			3 : { "quote" : "Poo beginning to emerge - reported by fellow humans",   					"require" : { "Hand" :  0               } },
+			4 : { "quote" : "Rumor have been spreading that human is made to pick up poo",   			"require" : { "Hand" : 10, "Baby" :  10 } },
+			5 : { "quote" : "Rumor is spread that a mysterious person is responsible for the poo",   	"require" : { "Hand" : 10, "Baby" : 100 } },
+		}
+
+		function getMessageID( id ) 		 { return message[ id ]; }
+		function getMessageQuoteById( id )   { return message[ id ][ "quote" ]; }
+		function getMessageRequireById( id ) { return message[ id ][ "require"]; }
+		function getMessageLength( ) 		 { return Object.keys( message ).length; }
+
+		function getMessageBoardUpdate( ) {
+			for( var id in message ) {
+				if( checkRequirement( SessionState.getUpgradeList( ), getMessageRequireById( id ) ) ) {
+					SessionState.addRandomMessage( message[id]["quote"] );
+				}
+			}
+		}
+
+		function checkRequirement( sessionStateUpgrades, requirement ) {
+			let retValue = true;	//Prove it wrong
+
+			//GET EVERY SINGLE TOOLS INSIDE THE REQUIRMENT
+			for( var tool in requirement ) {
+				let curLevel = SessionState.getLevel( tool );
+
+				if( curLevel < requirement[tool] ) { retValue = false; }
+			}
+
+			return retValue;
+		}
+
+
 		return {
 			upgrade        : upgrade,
 			calcPrice      : calcPrice,
@@ -374,7 +411,9 @@ function devNoteControlSetup( ) {
 			getTechSprite       : getTechSprite,
 
 			isTechEligible 				 : isTechEligible,
-			getPurchasbleTechTreeUpgrade : getPurchasbleTechTreeUpgrade
+			getPurchasbleTechTreeUpgrade : getPurchasbleTechTreeUpgrade,
+
+			getMessageBoardUpdate : getMessageBoardUpdate
 		}
 	}
 

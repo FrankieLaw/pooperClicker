@@ -60,16 +60,14 @@ html, body {
 	margin:0px;
 }
 
-.shovelCursor {
-	cursor: url('../img/shovel32x32.png'), auto;
+
+
+.cursorOpen {
+	cursor:url("../img/handOpen32x32.png"), auto;
 }
 
-.handCursor {
-	cursor: url('../img/handOpen32x32.png'), auto;
-}
-
-.handCloseCursor {
-	cursor: url('../img/handClose32x32.png'), auto;
+.cursorGrabbing {
+	cursor:url("../img/handClose32x32.png"), auto;
 }
 
 
@@ -613,14 +611,35 @@ div.upgradeCell div.overlay {
 	Poop Collected Display & Per Second
 ======================================== */
 div.randomMessage {
+	min-width:250px;
+	width:35%;
+
 	position:absolute;
 	left:0px; right:0px;
 	top:60px;
 
+	margin:auto;
+
 	font-size:12pt;
 	letter-spacing:1px;
+	word-wrap: break-word;
+
+	text-shadow: 0px 3px 5px rgba(0,0,0,0.8);
+	color:rgba( 255,255,255,0.7);
+
+	opacity: 1.0;
+
+	animation-name: fadeMessage;
+  	animation-duration: 12.5s;
+  	animation-iteration-count: infinite;
 }
 
+@keyframes fadeMessage {
+	0%   { opacity: 0.0; }
+	20%  { opacity: 1.0; }
+  	80%  { opacity: 1.0; }
+  	100% { opacity: 0.0; }
+}
 
 div.ppsBlock {
 	min-width:250px;

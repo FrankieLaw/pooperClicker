@@ -165,3 +165,41 @@ function StatusTimer( element ) {
 		start : startTimer
 	};
 }
+
+
+function MessageBoardTimer( element ) {
+	this.element    = element;		//Reference to "this" object's Element
+
+	this.timer      = "";
+	this.anime      = "";	
+
+	this.endTimer   = endTimer;		//Reference to "this" object's endTimer function
+	this.startTimer = startTimer;	//Reference to "this" object's startTimer function
+	this.startAnime = startAnime;
+
+	var self        = this;			//Reference to itself
+
+	function startTimer( ) {
+		self.timer = setInterval( self.endTimer, 3000 );
+		self.anime = setInterval( self.startAnime, 15 );
+	}
+
+	function endTimer( ) {
+		clearInterval( self.timer );
+		clearInterval( self.anime );
+
+		let parent = self.element.parentElement;
+		parent.removeChild( self.element );
+	}
+
+	function startAnime( ) {
+		let opacity = self.element.style.opacity;
+		    opacity -= 0.005;
+		    
+		self.element.style.opacity = opacity;
+	}
+
+	return {
+		start : startTimer
+	};
+}
