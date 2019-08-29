@@ -57,11 +57,12 @@ function AppSessionState( ) {
 		// STATISTICS Variables
 		//   _playerState["Upgrades"]["Shovel"]["upgradeable"]
 		//==============================
-		"Upgrades" : {					
-			"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0  },
-			"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  },
-			"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  },
-			"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0  }
+		"Upgrades" : {
+			"Hand"		   : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 0.0  },				
+			"Shovel"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  },
+			"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  },
+			"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  },
+			"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 0.0  }
 		},
 
 
@@ -183,7 +184,8 @@ function AppSessionState( ) {
 				},
 
 				"Upgrades" : {
-					"Shovel"       : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0 },
+					"Hand"		   : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0 },
+					"Shovel"       : { "level" : 0, "lock" : false , "upgradeable" : false, "multiplier" : 1.0 },
 					"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
 					"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
 					"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 }
