@@ -137,7 +137,7 @@ function ED_Stages( ) {
 			var _1xBtn 		      = document.getElementById( "1x" );
 			var _10xBtn           = document.getElementById( "10x" );
 			var _100xBtn          = document.getElementById( "100x" );
-
+			var giantPoo          = document.getElementById( "pooClicker" );
 
 
 			p4_saveBtn.addEventListener( "click", 	  p4_onClick_Save );	//GAME NAVIGATION CONTROL
@@ -157,6 +157,11 @@ function ED_Stages( ) {
 			_1xBtn.addEventListener(  "click", quantityOne );				//QUANTITY CONTROL
 			_10xBtn.addEventListener( "click", quantityTen );				//QUANTITY CONTROL
 			_100xBtn.addEventListener( "click", quantityHundred );			//QUANTITY CONTROL
+
+			giantPoo.addEventListener( "mousedown", function( ) {
+				this.style.className = "handCloseCursor";
+				console.log( this );
+			})
 
 //
 //
@@ -508,6 +513,10 @@ function ED_Stages( ) {
 						    img.setAttribute( "id", key + "Img" );
 
 						    switch( key ) {
+						    	case "Hand":
+						    		img.setAttribute( "src", "img/handOpen128x128.png" );	
+						    	break;
+
 						    	case "Shovel":
 						    		img.setAttribute( "src", "img/shovel128x128.png" );	
 						    	break;
@@ -694,8 +703,8 @@ function ED_Stages( ) {
 					let clone = document.getElementById( "tempTechIcon" ).cloneNode( true );
 
 					//ASSIGN CLONES WITH NEW INFORMATION
-					clone.id        = "tech" + element;
-					clone.innerHTML = element;
+					clone.id               = "tech" + element;
+					clone.style.background = "url('img/" + PooClickerData.getTechSprite( element ) + "')";
 
 					//ADD EVENTLISTENERS TO RESPONDE TO CLICKING
 					//ADD EVENTREGISTRY IF NEEDED TO REMOVE EVENTLISTENER
@@ -743,7 +752,7 @@ function ED_Stages( ) {
 				var tempTimer = new PooNumber( tempDiv );
 				tempTimer.start( );
 
-				SessionState.addPoo( 1000000 );
+				SessionState.addPoo( 1000 );
 				SessionState.addClick( 1 );
 				SessionState.addPooSinceStart( 1 );
 			}

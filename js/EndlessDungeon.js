@@ -20,13 +20,11 @@ const PooClickerData  	= new GameData( );
 function EndlessDungeon( ) {
 	ED_Stage_Setup( );
 
-/*\
-|*|=============================
-|*| DOCUMENTATION CONTROLS
-|*|=============================
-\*/ 
-	devNoteControlSetup( );
 	
+	//=============================
+	// DOCUMENTATION CONTROLS
+	//=============================
+	devNoteControlSetup( );
 }
 
 
@@ -71,10 +69,11 @@ function devNoteControlSetup( ) {
 	|*|=======================================================================
 	\*/
 		const upgrade = {
-			"Shovel"       : { "name" : "Shovel",      "factor" : 0.20, "base" :     15,   "PPS" :   0.10,	"refund" : 0.80 },
-			"Baby"         : { "name" : "Baby",        "factor" : 0.20, "base" :    100,   "PPS" :   1.00,	"refund" : 0.80 },
-			"Animal Farm"  : { "name" : "Animal Farm", "factor" : 0.20, "base" :   2500,   "PPS" :   3.00,	"refund" : 0.80 },
-			"Toilet"       : { "name" : "Toilet",      "factor" : 0.20, "base" :  20000,   "PPS" :  14.00,	"refund" : 0.80 }
+			"Hand"         : { "name" : "Hand",        "factor" : 0.10, "base" :     15,   "PPS" :   0.00,  "refund" : 0.80 },
+			"Shovel"       : { "name" : "Shovel",      "factor" : 0.20, "base" :    100,   "PPS" :   0.10,	"refund" : 0.20 },
+			"Baby"         : { "name" : "Baby",        "factor" : 0.20, "base" :   2500,   "PPS" :   1.00,	"refund" : 0.20 },
+			"Animal Farm"  : { "name" : "Animal Farm", "factor" : 0.20, "base" :  12000,   "PPS" :   3.00,	"refund" : 0.20 },
+			"Toilet"       : { "name" : "Toilet",      "factor" : 0.20, "base" :  75000,   "PPS" :  14.00,	"refund" : 0.20 }
 		};
 
 
@@ -243,7 +242,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Dig It",
 				"require"    : { "Shovel" : 15 }, 
 				"multiplier" : 1.00,
-				"cost"		 : 150
+				"cost"		 : 150,
+				"sprite"	 : "shovelTech1.png"
 			},
 
 
@@ -252,7 +252,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Dig It 2",
 				"require"    : { "Shovel" : 25 },
 				"multiplier" : 1.00,
-				"cost"		 : 500
+				"cost"		 : 500,
+				"sprite"	 : "shovelTech2.png"
 			},
 
 			3 : { 
@@ -260,7 +261,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Dig It 3",
 				"require"    : { "Shovel" : 35 },
 				"multiplier" : 1.00,
-				"cost"		 : 15000
+				"cost"		 : 15000,
+				"sprite"	 : "shovelTech3.png"
 			},
 
 			4 : { 
@@ -268,7 +270,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 15 },
 				"multiplier" : 1.00,
-				"cost"		 : 150
+				"cost"		 : 150,
+				"sprite"	 : "babyTech1.png"
 			},
 
 			5 : { 
@@ -276,7 +279,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 25 },
 				"multiplier" : 1.00,
-				"cost"		 : 150
+				"cost"		 : 150,
+				"sprite"	 : "babyTech2.png"
 			},
 
 			6 : { 
@@ -284,7 +288,8 @@ function devNoteControlSetup( ) {
 				"title"      : "Yea Baby!",
 				"require"    : { "Baby" : 35 },
 				"multiplier" : 1.00,
-				"cost"		 : 150
+				"cost"		 : 150,
+				"sprite"	 : "babyTech3.png"
 			}
 		};
 
@@ -293,7 +298,7 @@ function devNoteControlSetup( ) {
 		function getTechRequirement( id )   { return techTree[id]["require"]; }
 		function getTechMultiplier( id )    { return techTree[id]["multiplier"]; }
 		function getTechCost( id ) 			{ return techTree[id]["cost"]; }
-
+		function getTechSprite( id )		{ return techTree[id]["sprite"]; }
 
 		//This will check a single tech requirement based on ID
 		//The SessionStateTechId will know 
@@ -366,6 +371,7 @@ function devNoteControlSetup( ) {
 			getTechRequirement  : getTechRequirement,
 			getTechMultiplier   : getTechMultiplier,
 			getTechCost         : getTechCost,
+			getTechSprite       : getTechSprite,
 
 			isTechEligible 				 : isTechEligible,
 			getPurchasbleTechTreeUpgrade : getPurchasbleTechTreeUpgrade
