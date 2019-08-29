@@ -74,7 +74,26 @@ function AppSessionState( ) {
 		//======================================================
 		"TechTree" : {
 			1:0,	2:0,	3:0,	4:0,	5:0,	6:0
-		}
+		},
+
+
+		//======================================================
+		// Message Database
+		//   Random display of messages
+		//	 Message will be added as more upgrades unlocked
+		//======================================================
+		"StoryBoard" : { }
+	}
+
+	//GET A RANDOM MESSAGE
+	function getStoryBoardLength( ) { return Object.keys( _playerState["StoryBoard"] ).length; }
+	function getRandomMessage( )    { return _playerState[ "StoryBoard" ][ between( 1, getStoryBoardLength( ) ) ]; }
+
+	function addRandomMessage( msg ) {
+		let length = getStoryBoardLength( );	//Get Current Length
+		length++;								//Set next length
+
+		_playerState[ "StoryBoard" ][ length ] = msg;
 	}
 
 	//GET ALL TECH THAT IS NOT PURCHASED YET
@@ -135,7 +154,7 @@ function AppSessionState( ) {
 			_playerState["Upgrades"][key]["multiplier"] = sum[key];
 		}
 
-		console.group("SuM");
+		console.group("Sum");
 		console.log( sum );
 		console.log( _playerState["Upgrades"] );
 	}
@@ -193,6 +212,10 @@ function AppSessionState( ) {
 
 				"TechTree" : {
 					1:0,	2:0,	3:0,	4:0,	5:0,	6:0
+				},
+
+				"StoryBoard" : {
+
 				}
 			}
 
@@ -451,6 +474,10 @@ function AppSessionState( ) {
 				console.log(  _playerState["Upgrades"] );
 				console.log( _playerState["TechTree"] );
 			console.groupEnd( );
+
+			console.group( "Message Board" );
+				console.log( _playerState["StoryBoard"] );
+			console.groupEnd( );
 		console.groupEnd( );
 	}
 
@@ -523,9 +550,12 @@ function AppSessionState( ) {
 		getAllLockedTech : getAllLockedTech,
 		setTechPurchased : setTechPurchased,
 		calcTechPPSBonus : calcTechPPSBonus,
-
-
-		getTechTree : getTechTree,
+		
+		//==========================
+		// GAME - RANDOM MESSAGE
+		//==========================
+		getRandomMessage : getRandomMessage,
+		addRandomMessage : addRandomMessage,
 
 		//========================
 		// GAME - DEBUGGING
