@@ -88,6 +88,7 @@ function AppSessionState( ) {
 	//GET A RANDOM MESSAGE
 	function getStoryBoardLength( ) { return Object.keys( _playerState["StoryBoard"] ).length; }
 	function getRandomMessage( )    { return _playerState[ "StoryBoard" ][ between( 1, getStoryBoardLength( ) ) ]; }
+	function resetStoryBoard( ) { _playerState[ "StoryBoard"] = {}; }
 
 	function addRandomMessage( msg ) {
 		let length = getStoryBoardLength( );	//Get Current Length
@@ -556,6 +557,7 @@ function AppSessionState( ) {
 		//==========================
 		getRandomMessage : getRandomMessage,
 		addRandomMessage : addRandomMessage,
+		resetStoryBoard  : resetStoryBoard,
 
 		//========================
 		// GAME - DEBUGGING
