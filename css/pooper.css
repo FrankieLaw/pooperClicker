@@ -26,6 +26,15 @@
 	outline:2px solid black;
 }
 
+.debugPos1 {
+	position:absolute;
+	top:150px;
+	left:150px; right:0px;
+	margin:auto;
+
+	color:black;
+}
+
 /**
 =========================================
  GLOBAL LAYOUT RESET
@@ -44,8 +53,9 @@
 	box-sizing:border-box;
 	position:relative;
 
-	font-family:'Penny Pinch';
+	font-family:'Quicksand', 'Chilanka', 'Penny Pinch';
 	font-size:18pt;
+	font-weight:999;
 
 	-webkit-user-select: none; /* Safari */        
 	-moz-user-select: none; /* Firefox */
@@ -311,7 +321,7 @@ div#page3
 /* Page4 - Game Screen - CSS */
 /* ===================================== */
 div.statisticBlock, div.upgradeBlock, 
-div.totalPooDisplay, div.ppsDisplay {
+div.totalPooDisplay, div.ppsDisplay, div.worldNameBlock {
 	background-color:rgba(50,50,50,0.5);
 }
 
@@ -641,18 +651,21 @@ div.randomMessage {
   	100% { opacity: 0.0; }
 }
 
+
 div.ppsBlock {
 	min-width:250px;
 	width:35%;
-	
-	position:absolute;
-	left:0px; right:0px;
-	top:125px;
 
 	margin:auto;
 }
 
-div.totalPooDisplay, div.ppsDisplay {
+div.scoreArea {
+	position:absolute;
+	left:0px; right:0px;
+	top:185px;
+}
+
+div.totalPooDisplay, div.ppsDisplay, div.worldNameBlock {
 	padding:10px 5px;
 	color:white;
 	text-shadow:0px 0px 3px rgba(0, 0, 0, 1);
@@ -666,7 +679,20 @@ div.totalPooDisplay, div.ppsDisplay {
 div.totalPooDisplay { font-size:25pt; }
 div.ppsDisplay      { font-size:10pt; }
 
+div.worldNameBlock {
+	position:absolute; 
+	left:0px; right:0px; 
+	top:125px; 
 
+	margin:auto;
+}
+
+div.worldNameBlock input {
+	width:100%;
+	text-align:center;
+	color:white;
+	background-color:rgba(0,0,0,0);
+}
 
 
 /* ========================================
@@ -744,3 +770,124 @@ div.techIcon {
 div.techIcon:hover {
 	cursor:pointer;
 }
+
+div.techDescBox {
+	width:350px;
+
+	position:absolute;
+	top:0px;
+	left:0px;
+
+	padding:10px;
+
+	/*background-image: linear-gradient(to top, rgba(55,55,55,0.8), rgba(55,55,55,0.5));*/
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+	outline:6px double gold;
+	box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+div.techDescBox p {
+	font-size:10pt;
+	margin-bottom:10px;
+}
+
+div.techTitleBox {
+	margin-bottom:10px;
+}
+
+div.techTitleBox 
+	span {
+		font-size:16pt;
+		margin-right:10px;
+	}
+
+div.techTipBox { padding:0px 10px; }
+p.techDesc { font-style:italic; }
+
+p#techCost, p#techCost span.purchaseable, p#techCost span.notPurchaseable {
+	font-size:10pt;
+}
+
+
+
+/* ======================================================
+	ACHIEVEMENT POP UP & ICONS STYLING
+====================================================== */
+.fontSize10 { font-size:10pt; }
+.fontSize14 { font-size:14pt; }
+
+div.chevoContainer {
+	position:absolute;
+	bottom:25px;
+	left:0px; right:0px;
+	margin:auto;
+
+	width:350px;
+}
+
+div.chevoClose:hover { cursor:pointer; }
+div.chevoClose {
+	width:20px;
+	height:20px;
+	line-height: 17px;
+
+	position:absolute;
+	right:-7px;
+	top:-7px;
+
+	color:black;
+	font-size:10pt;
+	text-align:center;
+
+	outline:2px inset black;
+	background-color:gold;
+	box-shadow:-3px 3px 2px black;
+}
+
+div.chevoBox {
+	width:350px;
+
+	padding:10px;
+	margin-bottom:20px;
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+	font-size:10pt;
+
+	outline:6px double gold;
+	box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+p.chevoTitle {
+	width:100%;
+	text-align:left;
+	padding:0px 0px 5px 0px;
+
+	margin-bottom:5px;
+	border-bottom:1px solid gold;
+}
+
+div.chevoIcon {
+	position:absolute;
+
+	width:45px;
+	height:45px;
+
+	background-image:url("../img/shovelTech1.png");
+}
+
+p.chevoDesc { font-style: italic; }
+
+
+div.chevoLeft {
+	float:left;
+}
+
+div.chevoRight {
+	position:relative;
+	left:55px;
+	width:275px;
+}
+

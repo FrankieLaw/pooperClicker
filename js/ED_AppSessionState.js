@@ -17,8 +17,8 @@ function AppSessionState( ) {
 	//=======================================================
 	// Required Variables about SaveGame
 	//=======================================================
-	var _storageKey = "tempSlot";		//Use for permentant save
-	var _quickKey   = "quickSlot";		//Use for quickSave
+	var _storageKey = "pc-v1-tempSlot";		//Use for permentant save
+	var _quickKey   = "pc-v1-quickSlot";	//Use for quickSave
 
 
 
@@ -28,7 +28,7 @@ function AppSessionState( ) {
 	var _window     = { current : "page1", previous : "" };
 	var _buyOrSell  = { current : true };						//True = Buy | False = Sell
 	var _quantity   = { current : 1 };
-
+	var _curMsg     = -1;										//-1 Is the initial message set in HTML
 	
 
 	//=======================================================
@@ -82,14 +82,61 @@ function AppSessionState( ) {
 		//   Random display of messages
 		//	 Message will be added as more upgrades unlocked
 		//======================================================
-		"StoryBoard" : { }
+		"StoryBoard" : { },
+
+
+		//======================================================
+		// Name of this world
+		//======================================================
+		"WorldName" : "Temporary",
+
+
+		//======================================================
+		// Achievement Database
+		//	Unlocked Achievement goes in here
+		//======================================================
+		"Achievement" : {
+			1:0,	2:0,	3:0
+		}
 	}
 
-	//GET A RANDOM MESSAGE
-	function getStoryBoardLength( ) { return Object.keys( _playerState["StoryBoard"] ).length; }
-	function getRandomMessage( )    { return _playerState[ "StoryBoard" ][ between( 1, getStoryBoardLength( ) ) ]; }
-	function resetStoryBoard( ) { _playerState[ "StoryBoard"] = {}; }
+	
+	function getAchievement( )               { return _playerState["Achievement"]; }
+	function getAchievementLength( )         { return Object.keys( _playerState["Achievement"] ).length; }
+	function getAchievementKeys( )           { return Object.keys( _playerState["Achievement"] ); }
+	function getAchievementById( id )        { return _playerState["Achievement"][id]; }
 
+	function setAchievementById( id, value ) { _playerState["Achievement"][id] = value; }
+
+
+	//=======================================
+	// CHANGING WORLD NAME
+	//=======================================
+	function getWorldName( ) { return _playerState["WorldName"]; }
+	function setWorldName( name ) { _playerState["WorldName"] = name; }
+
+
+	//=======================================
+	// GET A RANDOM MESSAGE
+	//=======================================
+	function resetStoryBoard( ) { _playerState[ "StoryBoard"] = {}; }
+	function getStoryBoardLength( ) { return Object.keys( _playerState["StoryBoard"] ).length; }
+	
+	function getRandomMessage( )    { 
+		let messageIDPick = GameUtility.between( 1, getStoryBoardLength( ) );
+
+		//PREVENT DUPLICATE MESSAGE BEING DISPLAY
+		while( messageIDPick == _curMsg ) {
+			messageIDPick = GameUtility.between( 1, getStoryBoardLength( ) );
+		}
+
+		//NOTIFY SESSION STATE THE CURRENT MESSAGE
+		_curMsg = messageIDPick;
+
+		return _playerState[ "StoryBoard" ][ messageIDPick ]; 
+	}
+
+	//THIS FUNCTION WILL INCREMENTALLY ADD NEW MESSAGES IN SEQUENTIAL ORDER
 	function addRandomMessage( msg ) {
 		let length = getStoryBoardLength( );	//Get Current Length
 		length++;								//Set next length
@@ -97,7 +144,11 @@ function AppSessionState( ) {
 		_playerState[ "StoryBoard" ][ length ] = msg;
 	}
 
-	//GET ALL TECH THAT IS NOT PURCHASED YET
+
+
+	//=======================================
+	// GET ALL TECH THAT IS NOT PURCHASED YET
+	//=======================================
 	function getAllLockedTech( ) {
 		let retValue = {};
 
@@ -156,8 +207,9 @@ function AppSessionState( ) {
 		}
 
 		console.group("Sum");
-		console.log( sum );
-		console.log( _playerState["Upgrades"] );
+			console.log( sum );
+			console.log( _playerState["Upgrades"] );
+		console.groupEnd( );
 	}
 
 	function setMultiplerByName( name, value ) {
@@ -185,11 +237,12 @@ function AppSessionState( ) {
 	|*|================================================
 	\*/
 		function reset( ) {
-			_storageKey 	 	= "tempSlot";
-			_quickKey   	 	= "quickSlot";
+			_storageKey 	 	= "pc-v1-tempSlot";
+			_quickKey   	 	= "pc-v1-quickSlot";
 			_window     	    = { current : "page1", previous : "" };
 			_buyOrSell          = { current : true };
 			_quantity           = { current : 1 };
+			_curMsg             = -1;
 
 			_playerState = {
 				"GameTime" : {
@@ -215,18 +268,23 @@ function AppSessionState( ) {
 					1:0,	2:0,	3:0,	4:0,	5:0,	6:0
 				},
 
-				"StoryBoard" : {
+				"StoryBoard" : { },
 
+				"WorldName" : "Temporary",
+
+				"Achievement" : {
+					1:0,	2:0,	3:0
 				}
-			}
+			};
 
 			console.clear( );
 		}
 
 		function setFromSaveSlot( slotID, slotData ) {
 			_storageKey = slotID;
-			_quickKey   = "quickSlot";
+			_quickKey   = "pc-v1-quickSlot";
 			_window     = { current : "page2", previous : "" };
+			_curMsg     = -1;
 
 			//==============================================
 			// LOADING TIMER
@@ -255,6 +313,22 @@ function AppSessionState( ) {
 			// LOADING TECH TREE
 			//==============================================
 			_playerState["TechTree"] = slotData["TechTree"];
+
+
+			//==============================================
+			// LOADING WORLD NAME
+			//==============================================
+			_playerState["WorldName"] = slotData["WorldName"];
+
+
+			//==============================================
+			// LOADING ACHIEVEMENT
+			//==============================================
+			if( slotData["Achievement"] == undefined || slotData["Achievement"] == "" ) {
+				_playerState["Achievement"] = { 1:0, 2:0, 3:0 };
+			} else {
+				_playerState["Achievement"] = slotData["Achievement"];
+			}
 		}
 
 		function savePlayerState( ) {
@@ -266,8 +340,10 @@ function AppSessionState( ) {
 				"Statistics" : _playerState["Statistics"],
 				"Upgrades"   : _playerState["Upgrades"],
 
-				"TechTree"   : _playerState["TechTree"]
-			}
+				"TechTree"   : _playerState["TechTree"],
+				"WorldName"  : _playerState["WorldName"],
+				"Achievement": _playerState["Achievement"]
+			};
 		}
 
 		function newSlot( newSlot ) { _storageKey = newSlot; }
@@ -355,16 +431,39 @@ function AppSessionState( ) {
 			return sum;
 		}
 
+		function getDisplayNotation( statistic ) {
+			let retValue = "";
 
+			switch( statistic ) {
+				case "totalPoo":
+					retValue = GameUtility.useExpNotation( Math.round( getTotalPoo( ) ) );
+				break;
+
+				case "pooSinceStart":
+					retValue = GameUtility.useExpNotation( Math.round( getPooSinceStart( ) ) );
+				break;
+
+				default:
+					retValue = GameUtility.useExpNotation( Math.round( statistic ) );
+				break;
+			}
+
+			return retValue;
+		}
+
+		function getNotationByValue( value ) {
+			
+		}
 
 
 	/*\
 	|*|================================================
 	|*| GAME - UPGRADE STATISTIC
 	|*|================================================
+	|M| > getUpgradeByName( )
 	|M| > getUpgradeList( )
 	|M| > getLevel( )
-	|M| > getMultiplierByName( );
+	|M| > getMultiplierByName( )
 	|M| > upgradeLevelUp( )
 	|M| > upgradeLevelDown( )
 	|M| > isUpgradeUnLock( )
@@ -373,9 +472,10 @@ function AppSessionState( ) {
 	|M| > upgradeToggle( )
 	|*|================================================
 	\*/
-		function getUpgradeList( ) { return _playerState["Upgrades"]; }
-		function getLevel( name )       { return _playerState["Upgrades"][name]["level"]; }
-		function getMultiplierByName( name ) { return _playerState["Upgrades"][name]["multiplier"]; }
+		function getUpgradeByName( name )           { return _playerState["Upgrades"][name]; }
+		function getUpgradeList( )                  { return _playerState["Upgrades"]; }
+		function getLevel( name )                   { return _playerState["Upgrades"][name]["level"]; }
+		function getMultiplierByName( name )        { return _playerState["Upgrades"][name]["multiplier"]; }
 		function upgradeLevelUp( name, quantity )   { _playerState["Upgrades"][name]["level"] += quantity; }
 		function upgradeLevelDown( name, quantity ) { _playerState["Upgrades"][name]["level"] -= quantity; }
 
@@ -450,12 +550,13 @@ function AppSessionState( ) {
 	|*|================================================
 	\*/
 	function debug( ) {
-		console.group( "Session State Condition" );
+		console.groupCollapsed( "Session State Condition" );
 			console.log( "Storage Key: " + _storageKey );
 			console.log( "Quick Key: "   + _quickKey );
 
 			console.group( "Window Page" );
 				console.log( _window );
+				console.log( "Message Board ID: " + _curMsg );
 			console.groupEnd( );
 
 			console.group( "buyOrSell" );
@@ -477,7 +578,12 @@ function AppSessionState( ) {
 			console.groupEnd( );
 
 			console.group( "Message Board" );
+				console.log( _playerState["WorldName"] );
 				console.log( _playerState["StoryBoard"] );
+			console.groupEnd( );
+
+			console.group( "Achievement" );
+				console.log( _playerState["Achievement"] );
 			console.groupEnd( );
 		console.groupEnd( );
 	}
@@ -498,11 +604,13 @@ function AppSessionState( ) {
 		newSlot  : newSlot,
 		savePlayerState : savePlayerState,
 
+
 		//========================
 		// GAME - WINDOW
 		//========================
 		getCurWindow   : curWindow,
 		changeStageTo  : changeStageTo,
+
 
 		//========================
 		// GAME - TIMER
@@ -510,23 +618,29 @@ function AppSessionState( ) {
 		getTimer    : getTimer,
 		addTimer    : addTimer,
 
+
 		//========================
 		// GAME - POO STATISTIC
 		//========================
-		addPoo           : addPoo,
-		getTotalPoo      : getTotalPoo,
-		subtractPoo      : subtractPoo,
-		addClick         : addClick,
-		getTotalClicks   : getTotalClicks,
-		addPooSinceStart : addPooSinceStart,
-		getPooSinceStart : getPooSinceStart,
-		getPPS 			 : getPPS,
-		calcPPS          : calcPPS,
-		getTotalUpgrade  : getTotalUpgrade,
+		calcPPS             : calcPPS,
+		subtractPoo         : subtractPoo,
+
+		addPoo              : addPoo,
+		addClick            : addClick,
+		addPooSinceStart    : addPooSinceStart,
+
+		getTotalPoo         : getTotalPoo,
+		getTotalClicks      : getTotalClicks,
+		getPooSinceStart    : getPooSinceStart,
+		getPPS 			    : getPPS,
+		getTotalUpgrade     : getTotalUpgrade,
+		getDisplayNotation  : getDisplayNotation,
+
 
 		//==========================
 		// GAME - UPGRADE STATISTIC
 		//==========================
+		getUpgradeByName      : getUpgradeByName,
 		getUpgradeList	      : getUpgradeList,
 		getLevel       	      : getLevel,
 		getMultiplierByName   : getMultiplierByName,
@@ -537,6 +651,7 @@ function AppSessionState( ) {
 		isUpgradeEligible	  : isUpgradeEligible,
 		upgradeToggle         : upgradeToggle,
 
+
 		//==========================
 		// GAME - PURCHASE CONTROL
 		//==========================
@@ -545,12 +660,14 @@ function AppSessionState( ) {
 		setBuyOrSellQuantity : setBuyOrSellQuantity,
 		getBuyOrSellQuantity : getBuyOrSellQuantity,
 
+
 		//==========================
 		// GAME - TECH TREE CONTROL
 		//==========================
 		getAllLockedTech : getAllLockedTech,
 		setTechPurchased : setTechPurchased,
 		calcTechPPSBonus : calcTechPPSBonus,
+
 		
 		//==========================
 		// GAME - RANDOM MESSAGE
@@ -558,6 +675,24 @@ function AppSessionState( ) {
 		getRandomMessage : getRandomMessage,
 		addRandomMessage : addRandomMessage,
 		resetStoryBoard  : resetStoryBoard,
+
+
+		//==========================
+		// GAME - WORLD NAME
+		//==========================
+		getWorldName : getWorldName,
+		setWorldName : setWorldName,
+
+
+		//==========================
+		// GAME - ACHIEVEMENT
+		//==========================
+		getAchievement       : getAchievement,
+		getAchievementKeys   : getAchievementKeys,
+		getAchievementById   : getAchievementById,
+		getAchievementLength : getAchievementLength,
+		setAchievementById   : setAchievementById,
+
 
 		//========================
 		// GAME - DEBUGGING

@@ -20,15 +20,15 @@ function App_SaveState( ) {
 		// IF IT IS USING A TEMPORARY SLOT
 		// FIND A NEW SLOT FOR IT AUTOMATICALLY
 		//=============================================
-		if( SessionState.saveSlot( ) == "tempSlot" ) {
+		if( SessionState.saveSlot( ) == "pc-v1-tempSlot" ) {
 			var length = Object.getOwnPropertyNames( localStorage ).length;
 
 			//Check if the SlotName already Exist
-			while( localStorage.getItem( "Slot" + length ) != null ) {
+			while( localStorage.getItem( "pc-v1-Slot" + length ) != null ) {
 				length++;
 			};
 
-			SessionState.newSlot( "Slot" + length );	
+			SessionState.newSlot( "pc-v1-Slot" + length );	
 		}
 
 
@@ -65,7 +65,7 @@ function App_SaveState( ) {
 		//==========================================
 		//	Quick Save Feature
 		//==========================================
-		localStorage.setItem( "quickSave", SessionState.saveSlot( ) );
+		localStorage.setItem( "pc-v1-quickSave", SessionState.saveSlot( ) );
 
 
 		//==========================================
@@ -89,10 +89,16 @@ function App_SaveState( ) {
 	//=============================================================
 	function loadFromLocalStorage( ) {
 		var count = 0;
-
+		
+		//Filter Local Storage Data
 		//Retrieve all Save Slots, except quickSave
-		let keyArray = Object.getOwnPropertyNames( localStorage );
-		    keyArray.splice( keyArray.indexOf( "quickSave" ), 1 );
+		let keyArray        = Object.getOwnPropertyNames( localStorage );
+		let saveSlotPattern = /^pc-v1-Slot\d{0,2}$/g;
+
+		keyArray = keyArray.filter( function( data ) {
+			return data.match( saveSlotPattern );
+		});
+
 
 		//Slot Container ID "saveSlotContainer"
 		let container = document.getElementById( "saveSlotContainer" );
@@ -101,7 +107,8 @@ function App_SaveState( ) {
 		//that player can select their characters from.
 		for( let i = 0; i < keyArray.length; i++ ) {
 			let saveDat = JSON.parse( Decrypt( localStorage.getItem( keyArray[i] ) ) );
-			let saveTxt = "Run Time: " + saveDat["GameTime"]["seconds"];
+			let saveTxt = saveDat["WorldName"];
+				saveTxt += " > Run Time: " + saveDat["GameTime"]["seconds"];
 			//let saveTxt = "crap";
 
 			let tempDiv = document.createElement( "div" );
@@ -154,11 +161,11 @@ function App_SaveState( ) {
 	    		// LOAD DATA FROM LOCAL STORAGE
 	    		// SET DATA TO SESSION STATE
 	    		//===================================
-				let slot = (e.srcElement.id).split("-")[1];
+				let slot = ( e.srcElement.id ).replace( "p2-", "" );
 				SessionState.makeGame( slot, JSON.parse( Decrypt( localStorage.getItem( slot ) ) ) );
 
 			//Delete me//
-				console.group( "Loaded Data" );
+				console.groupCollapsed( "Loaded Data" );
 					console.log( JSON.parse( Decrypt( localStorage.getItem( slot ) ) ) );
 				console.groupEnd( );
 

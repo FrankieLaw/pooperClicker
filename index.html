@@ -4,10 +4,12 @@
 		<title>Pooper Clicker 2019 | Version 1.0 Demo</title>
 
 		<link href="css/pooper.css" rel="stylesheet" />
-		
+
+		<link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+
 
 		<script type="text/javascript" src="js/App_SaveState.js"></script>
-
 		<script type="text/javascript" src="js/ED_Timer.js"></script>
 		<script type="text/javascript" src="js/ED_Stages.js"></script>
 		<script type="text/javascript" src="js/ED_AppSessionState.js"></script>
@@ -15,6 +17,8 @@
 		
 
 		<script type="text/JavaScript">
+			// console.log( document.readyState );
+			
 			window.onload = function( ) {
 				EndlessDungeon( );
 			}			
@@ -40,6 +44,18 @@
 			<h1>
 				Development Note 
 			</h1>
+
+			<dl class="note">
+				<dt class="date">September 14, 2019</dt>
+				<dd class="definition">Been away for some time coding a system that I didn't need.  Wasted time, but good learning experience. I have added:</dd>
+				<dd class="definition">Number Notation - very large number don't appear unledgable anymore.</dd>
+				<dd class="definition">Mouse over upgrades will give pop up a description of what it does.  It also tells a little bit of the game's intent and story. :P</dd>
+			</dl>
+
+			<dl class="note">
+				<dt class="date">August 30, 2019</dt>
+				<dd class="definition">Added Random Story board message, now this game looks unique. :D</dd>
+			</dl>
 
 			<dl class="note">
 				<dt class="date">August 24, 2019</dt>
@@ -121,13 +137,17 @@
 
 		<!-- Reconstruct In-Game Content -->
 		<div id="page4">
-			<div class="p4Container">
+			<div id="mainGame" class="p4Container">
 				
 				<div id="pooArea" class="pooBlock">
 					<img id="pooClicker" class="cursorOpen" draggable="false" src="img/poo2.png"/>
 				</div>
 
-				<div id="scoreArea" class="ppsBlock">
+				<div id="worldNameBlock" class="ppsBlock worldNameBlock">
+					<input id="nameInput" type="text" value="hello world" disabled="true">
+				</div>
+
+				<div id="scoreArea" class="ppsBlock scoreArea">
 					<div id="totalPooDisplay" class="totalPooDisplay">0 Poops</div>
 					<div id="ppsDisplay" class="ppsDisplay">per second: 0</div>
 				</div>
@@ -136,8 +156,9 @@
 					There is a piece of poo laying around on our beautiful planes...
 				</div>
 
+				
 
-
+				<!-- STATISTICS AND ACHIEVEMENT BLOCK -->
 				<div id="contentArea" class="statisticBlock">
 					<span id="statisticTabBtn" class="header">+ STATISTICS</span>
 					<div id="statisticTab" style="display:block;">
@@ -172,12 +193,11 @@
 					</div>
 
 					<span id="achievementTabBtn" class="header">+ ACHIEVEMENT</span>
-					<div id="achievementTab" style="display:block;">
-						You are inside the achievement Tab
-					</div>
+					<div id="achievementTab" style="display:block;"></div>
 				</div>
 
 
+				<!-- TEMPORARY BUTTONS SAVE & QUIT -->
 				<div id="Button" class="contentBtnBlock">
 					<div id="p4-saveBtn" class="ED-btn" data-target="page4">
 						Save
@@ -188,10 +208,9 @@
 					</div>
 				</div>
 
-				
+
+				<!-- BUY AND SELL && UPGRADE BLOCK -->				
 				<div id="upgrades" class="upgradeBlock">
-
-
 					<!-- Upgrade Tab-->
 					<span id="upgradeTabBtn" class="header">+ UPGRADE</span>
 
@@ -221,11 +240,41 @@
 						<div id="techList"></div>
 					</div>
 				</div>
+
+				<!-- ACHIEVEMENT CONTAINER -->
+				<div id="chevoContainer" class="chevoContainer">
+				</div>
 			</div> 
 		</div> <!-- End of Container p4 -->
 
+
 		<!-- DOM Cloaning Section : WHY ARE YOU LOOKING AT ME!! -->
-		<div id="tempTechIcon" class="techIcon"></div>
-		
+		<div id="tempTechIcon" class="techIcon" style="display:none;"></div>
+
+
+		<div id="tempTechDescBox" class="techDescBox" style="display:none;">
+			<div class="techTitleBox">
+				<span id="techTitle"></span>
+				<p id="techEffect"></p>
+			</div>
+			
+			<div class="techTipBox">
+				<p id="techDesc" class="techDesc"></p>
+				<p id="techCost"></p>
+			</div>
+		</div>
+
+		<div id="tempAchievement" class="chevoBox" style="display:none;">
+			<div id="chevoClose" class="chevoClose">x</div>
+
+			<div class="chevoLeft">
+				<div id="chevoIcon" class="chevoIcon"></div>
+			</div>
+
+			<div class="chevoRight fontSize10">
+				<p id="chevoTitle" class="chevoTitle fontSize14"></p>
+				<p id="chevoDesc" class="chevoDesc fontSize10"></p>
+			</div>
+		</div>
 	</body>
 </html>
