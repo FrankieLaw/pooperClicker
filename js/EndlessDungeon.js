@@ -238,10 +238,10 @@ function devNoteControlSetup( ) {
 	|*|==============================================================================
 	\*/	
 		const techTree = {
-		    1 : { "owner" : "Hand",			"title" : "Handy Handy",			"desc" : "- Clean them poo up with both your hands and twice as fast please. -",																		"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 1500,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 10  } },
-		    2 : { "owner" : "Hand",			"title" : "All Hands on Deck",		"desc" : "- Embracing your destiny from here on out as professional janitor.  Better get ready. -",														"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 5000,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 20  } },
-		    3 : { "owner" : "Hand",			"title" : "Dabby Hand",				"desc" : "- You're the only expert on this land, better be proud. -",																					"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 25000,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 30  } },
-		    4 : { "owner" : "Hand",			"title" : "Gimme a Hand",			"desc" : "- Pleading for help cleaning up other people's poo? Not many people will say yes, but a man gotta try. -",									"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 200000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 40  } },
+		    1 : { "owner" : "Hand",			"title" : "Handy Handy",			"desc" : "- Clean them poo up with both your hands and twice as fast please. -",																		"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 1500,					"sprite" : "handTech1.png",			"require" : { "Hand" : 10  } },
+		    2 : { "owner" : "Hand",			"title" : "All Hands on Deck",		"desc" : "- Embracing your destiny from here on out as professional janitor.  Better get ready. -",														"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 5000,					"sprite" : "handTech2.png",			"require" : { "Hand" : 20  } },
+		    3 : { "owner" : "Hand",			"title" : "Dabby Hand",				"desc" : "- You're the only expert on this land, better be proud. -",																					"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 25000,					"sprite" : "handTech3.png",			"require" : { "Hand" : 30  } },
+		    4 : { "owner" : "Hand",			"title" : "Gimme a Hand",			"desc" : "- Pleading for help cleaning up other people's poo? Not many people will say yes, but a man gotta try. -",									"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 200000,				"sprite" : "handTech4.png",			"require" : { "Hand" : 40  } },
 		    5 : { "owner" : "Hand",			"title" : "It Goes Hand to Hand",	"desc" : "- Are you having fun playing with this?  Please say you are, I worked very hard to get this far. -",											"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 1400000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 50  } },
 		    6 : { "owner" : "Hand",			"title" : "Common Hand",			"desc" : "- You have inspired others around you and rewarded you with an identical hand to help pick up more poo, but they won't come help -",			"effect" : "Hand Multiplier +100.0",		"multiplier" : 100.00,		"cost" : 5000000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 51  } },
 		    7 : { "owner" : "Hand",			"title" : "A Helping Hand",			"desc" : "- Some advice came through that says \"you are doing a great job\" althought you knew it was poo. -",											"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 20000000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 60  } },
@@ -562,6 +562,10 @@ function GameUtilityAPI( ) {
 	//		1.236 MILLION
 	//==================================================
 	function getNotationWord( num ) {
+		if( num > 35 ) {
+			return "POOGOL";
+		}
+
 		let notation = {
 			3  : "MILLION",
 			4  : "BILLION",
@@ -610,8 +614,14 @@ function GameUtilityAPI( ) {
 	// @textNumber		Text
 	//==================================================
 	function useExpNotation( num ) {
-		let numberArray = convertExponential( String( num ) ).split(",");		// [1] [000] [000] [000]
+		let sNum 	 = num;
 		let retValue = "";
+
+		if( !Arithmetic.isValid( String( num ) ) ) {
+			sNum = Arithmetic.expandENotation( String( num ) );
+		}
+
+		let numberArray = convertExponential( String( sNum ) ).split(",");		// [1] [000] [000] [000]
 
 		//ANYTHING LESS THAN A MILLION WILL NOT GET CONVERTED
 		if( numberArray.length <= 2 ) { return numberArray + ""; } 
@@ -621,7 +631,10 @@ function GameUtilityAPI( ) {
 		}
 	}
 
-
+	function newNotation( num ) {
+		let sNum = Arithmetic.expandENotation( String( num ) );
+		return useExpNotation( sNum );
+	}
 
 	//==================================================
 	// METHOD:
@@ -764,6 +777,7 @@ function GameUtilityAPI( ) {
 		between : between,
 
 		//NUMBER STRING CONVERSION
-		useExpNotation     : useExpNotation
+		useExpNotation     : useExpNotation,
+		newNotation        : newNotation
 	};
 }
