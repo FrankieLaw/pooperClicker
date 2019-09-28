@@ -384,17 +384,17 @@ function devNoteControlSetup( ) {
 	|*|==============================================================================
 	\*/	
 		const achievement = {
-			1 : { "title" : "Try it First Hand", 	"desc" : "Who could've done this horrible deed?!", 												"sprite" : "shovelTech1.png",		"require" : { "Hand" : 1  } },
-			2 : { "title" : "Who Gives a Poo", 		"desc" : "People simply do whatever they want and they don't really care.", 					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 10 } },
-			3 : { "title" : "Back Handed", 			"desc" : "I just cleaned this spot, now there is twice as much poo?!.", 						"sprite" : "shovelTech1.png",		"require" : { "Hand" : 25 } },
-			4 : { "title" : "Sleight of Hand", 		"desc" : "It looks like there is only 1 piece of poo, but there are actually hundreds!", 		"sprite" : "shovelTech1.png",		"require" : { "Hand" : 50 } },
-			5 : { "title" : "Filthy Hand", 			"desc" : "You really outdone yourself in this world. Someone gotta do the dirty work right?", 	"sprite" : "shovelTech1.png",		"require" : { "Hand" : 100 } },
+		    1 : { "title" : "Try it First Hand", 	"desc" : "Who could've done this horrible deed?!", 												"sprite" : "shovelTech1.png",		"require" : { "Hand" : 1   } },
+		    2 : { "title" : "Who Gives a Poo", 		"desc" : "People simply do whatever they want and they don't really care.", 					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 10  } },
+		    3 : { "title" : "Back Handed", 			"desc" : "I just cleaned this spot, now there is twice as much poo?!.", 						"sprite" : "shovelTech1.png",		"require" : { "Hand" : 25  } },
+		    4 : { "title" : "Sleight of Hand", 		"desc" : "It looks like there is only 1 piece of poo, but there are actually hundreds!", 		"sprite" : "shovelTech1.png",		"require" : { "Hand" : 50  } },
+		    5 : { "title" : "Filthy Hand", 			"desc" : "You really outdone yourself in this world. Someone gotta do the dirty work right?", 	"sprite" : "shovelTech1.png",		"require" : { "Hand" : 100 } },
 
-
-			6 : { "title" : "Poo Happens", 			"desc" : "Who could've done this horrible deed?!", 								"sprite" : "shovelTech1.png",		"require" : { "TotalPoo"    : 1             } },
-			7 : { "title" : "Brave Soul",  			"desc" : "Let's clean up this world.", 											"sprite" : "shovelTech2.png", 		"require" : { "TotalPoo"    : 1000000       } },
-
-			8 : { "title" : "Yea Baby!",   			"desc" : "Let us all welcome baby Thomas.", 									"sprite" : "babyTech1.png", 		"require" : { "Baby"        : 1, "Hand" : 1 } }
+		    6 : { "title" : "Poo Happens", 			"desc" : "Who could've done this horrible deed?!", 												"sprite" : "shovelTech1.png",		"require" : { "TotalPoo"    : 1             } },
+		    7 : { "title" : "Brave Soul",  			"desc" : "Let's clean up this world.", 															"sprite" : "shovelTech2.png", 		"require" : { "TotalPoo"    : 1000000       } },
+		    8 : { "title" : "Yea Baby!",   			"desc" : "Let us all welcome baby Thomas.", 													"sprite" : "babyTech1.png", 		"require" : { "Baby"        : 100, "Hand" : 1 } },
+		    9 : { "title" : "Yea Baby!",   			"desc" : "Let us all welcome baby Thomas.", 													"sprite" : "babyTech1.png", 		"require" : { "Baby"        : 200, "Hand" : 1 } },
+		   10 : { "title" : "Yea Baby!",   			"desc" : "Let us all welcome baby Thomas.", 													"sprite" : "babyTech1.png", 		"require" : { "Baby"        : 300, "Hand" : 1 } }
 		};
 
 
