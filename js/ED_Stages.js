@@ -1,5 +1,8 @@
-var hackMode     = true;
+var hackMode     = false;
 var hackClickAmt = 250000;
+
+var loopTimer    = 10;		//RECORDED AS MILLISECONDS
+var msgTimer     = 12500;	//RECORDED AS MILLISECONDS
 
 // console.log( String( hackClickAmt ) );
 
@@ -126,9 +129,9 @@ function ED_Stages( ) {
 
 
 
-
-
-
+		//==================================
+		// START OF PAGE 4 - In Game Screen
+		//==================================
 		page4 : function( ) {
 			SessionState.debug( );	//DELETE ME
 
@@ -402,12 +405,19 @@ function ED_Stages( ) {
 			}
 
 			
+			//=================================================================
+			// RANDOM MESSAGE BOARD CONTROL
+			//=================================================================
+			function displayRandomMessage( ) {
+				let messageBoard = document.getElementById( "randomMessage" );
+				messageBoard.innerHTML = SessionState.getRandomMessage( );
+			}
 
 
 
-//=================================================================
-// INITIALIZE GAME STATE
-//=================================================================
+			//=================================================================
+			// INITIALIZE GAME STATE
+			//=================================================================
 			{
 				var pooClicker = document.getElementById( "pooClicker" );
 				    pooClicker.addEventListener( "click", poo_onClick );
@@ -425,9 +435,9 @@ function ED_Stages( ) {
 				var ppsDisplay  	   = document.getElementById( "ppsDisplay" );			//Center Stage
 				
 				var updateTimer 	   = setInterval( gameLoop, 10 );
-				var messageTimer       = setInterval( displayRandomMessage, 12500 );
+				var messageTimer       = setInterval( displayRandomMessage, msgTimer );
 
-				var chevoUpdateFreq    = 125;
+				var chevoUpdateFreq    = 125;				//NUMBER OF FRAMES ELAPSED
 				var chevoCurrentFreq   = 0;
 				var achievementPopUp   = [];
 
@@ -437,14 +447,6 @@ function ED_Stages( ) {
 				generateAchievementIcon( );					//GENERATE ACHIEVEMENTS
 				PooClickerData.getMessageBoardUpdate( ); 	//SET RANDOM MESSAGE BOARD
 				SessionState.getTimer( ).start( );			//START GAME TIMER
-
-				
-
-				
-				function displayRandomMessage( ) {
-					let messageBoard = document.getElementById( "randomMessage" );
-					messageBoard.innerHTML = SessionState.getRandomMessage( );
-				}
 
 
 				function gameLoop( ) {
@@ -558,6 +560,57 @@ function ED_Stages( ) {
 				}
 			}
 
+			
+			//=================================================================
+			// GAME CONTROLS
+			//=================================================================
+			function giantPoo_mouseDown( e ) {
+				e.srcElement.className = "cursorGrabbing";
+			}
+
+			function giantPoo_mouseUp( e ) {
+				e.srcElement.className = "cursorOpen";
+			}
+
+			function poo_onClick( e ) {
+				let manualPooGenerated = SessionState.calcPooPerClick( );
+
+				var pooArea = document.getElementById( "pooArea" );
+
+				//Add div element with the number pop up
+				//Div moves up over 1 seconds and disappears after 1 seconds
+				//absolute position it.
+				let tempDiv = document.createElement( "div" );
+				let txtNode = document.createTextNode( "+" + manualPooGenerated );
+
+				tempDiv.setAttribute( "class", "pooClicked" );
+				tempDiv.style.left = GameUtility.between(e.offsetX - 24, e.offsetX + 56) + "px";
+				tempDiv.style.top  = (e.offsetY-50) + "px";
+				tempDiv.style.opacity = 1.0;
+
+				tempDiv.appendChild( txtNode );
+				pooArea.appendChild( tempDiv );
+
+				var tempTimer = new PooNumber( tempDiv );
+				tempTimer.start( );
+
+				if( hackMode ) {
+					SessionState.addPoo( hackClickAmt );
+					SessionState.addPooSinceStart( hackClickAmt );
+					SessionState.addClick( 1 );
+
+				} else {
+					SessionState.addPoo( manualPooGenerated );
+					SessionState.addPooSinceStart( manualPooGenerated );
+
+					SessionState.addClick( 1 );
+				}
+			}
+
+
+			//=================================================================
+			// UI DYNAMIC GENERATION 
+			//=================================================================
 			function generateAchievementIcon( ) {
 				let chevoEarnedBox = document.getElementById( "achievementTab" );	//attachTo
 				let allChevoKeys   = SessionState.getAchievementKeys( );			//[1][2][3]
@@ -613,49 +666,7 @@ function ED_Stages( ) {
 				});
 			}
 
-			function giantPoo_mouseDown( e ) {
-				e.srcElement.className = "cursorGrabbing";
-			}
-
-			function giantPoo_mouseUp( e ) {
-				e.srcElement.className = "cursorOpen";
-			}
-
-			function poo_onClick( e ) {
-				var pooArea = document.getElementById( "pooArea" );
-
-				//Add div element with the number pop up
-				//Div moves up over 1 seconds and disappears after 1 seconds
-				//absolute position it.
-				let tempDiv = document.createElement( "div" );
-				let txtNode = document.createTextNode( "+1" );
-
-				tempDiv.setAttribute( "class", "pooClicked" );
-				tempDiv.style.left = GameUtility.between(e.offsetX - 24, e.offsetX + 56) + "px";
-				tempDiv.style.top  = (e.offsetY-50) + "px";
-				tempDiv.style.opacity = 1.0;
-
-				tempDiv.appendChild( txtNode );
-				pooArea.appendChild( tempDiv );
-
-				var tempTimer = new PooNumber( tempDiv );
-				tempTimer.start( );
-
-				if( hackMode ) {
-					SessionState.addPoo( hackClickAmt );
-					SessionState.addClick( 1 );
-					SessionState.addPooSinceStart( hackClickAmt );
-				} else {
-					SessionState.addPoo( 1 );
-					SessionState.addClick( 1 );
-					SessionState.addPooSinceStart( 1 );
-				}
-
-				// console.clear( );
-				// PooClickerData.checkAchievement( SessionState.getAchievement( ) );
-				// console.log( SessionState.getAchievement( ) );
-			}
-
+			//CONTROL FOR SWITCHING TABS
 			function switchTab( e ) {
 				let txt = ( e.srcElement.innerHTML ).replace( "+", "-" );
 				let id = ( e.srcElement.id ).replace( "Btn", "" );
@@ -671,6 +682,7 @@ function ED_Stages( ) {
 				}
 			}
 
+			//UPDATE THE NUMBERS WITHIN STATISTICS
 			function updateStatistics( ) {
 				let totalPooText  = SessionState.getDisplayNotation( "totalPoo" );
 				let pooSinceStart = SessionState.getDisplayNotation( "pooSinceStart" );
@@ -704,6 +716,8 @@ function ED_Stages( ) {
 				}
 			}
 
+			//GENERATE UPGRADE LIST [HANDS][SHOVEL][ETC]
+			//ONLY CALL WHEN SOMETHING NEW IS UNLOCK
 			function generateList( ) {
 				var upgradeContainer = document.getElementById( "upgradeList" );
 				    upgradeContainer.innerHTML = "";
@@ -896,17 +910,9 @@ function ED_Stages( ) {
 					}
 				}
 			}
-
-			/*\
-			|*|==========================================================
-			|*| Method: generateTechTreeIcon( )
-			|*| Return: Nothing
-			|*|
-			|*| Description: To construct a TechTree Icon list
-			|*| 			 everytime the player purchases or
-			|*|              sells an upgrade.
-			|*|==========================================================
-			\*/		
+			
+			//GENERATE TECH TREE ICON BASED ON UPGRADE THAT IS RECENTLY
+			//UNLOCK. 
 			function generateTechTreeIcon( ) {
 				let techTreeContainer = document.getElementById( "techList" );
 				let techTreeArray     = PooClickerData.getPurchasbleTechTreeUpgrade( );

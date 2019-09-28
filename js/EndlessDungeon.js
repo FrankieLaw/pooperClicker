@@ -69,11 +69,11 @@ function devNoteControlSetup( ) {
 	|*|=======================================================================
 	\*/
 		const upgrade = {
-			"Hand"         : { "name" : "Hand",        "factor" : 0.10, "base" :     15,   "PPS" :   0.00,  "refund" : 0.80 },
+			"Hand"         : { "name" : "Hand",        "factor" : 0.25, "base" :     15,   "PPS" :   0.00,  "refund" : 0.80 },
 			"Shovel"       : { "name" : "Shovel",      "factor" : 0.20, "base" :    100,   "PPS" :   0.10,	"refund" : 0.20 },
-			"Baby"         : { "name" : "Baby",        "factor" : 0.20, "base" :   1750,   "PPS" :   1.00,	"refund" : 0.20 },
-			"Animal Farm"  : { "name" : "Animal Farm", "factor" : 0.20, "base" :  32000,   "PPS" :   3.00,	"refund" : 0.20 },
-			"Toilet"       : { "name" : "Toilet",      "factor" : 0.20, "base" : 350000,   "PPS" :  14.00,	"refund" : 0.20 }
+			"Baby"         : { "name" : "Baby",        "factor" : 0.20, "base" :   1200,   "PPS" :   1.00,	"refund" : 0.20 },
+			"Animal Farm"  : { "name" : "Animal Farm", "factor" : 0.20, "base" :  17000,   "PPS" :   3.00,	"refund" : 0.20 },
+			"Toilet"       : { "name" : "Toilet",      "factor" : 0.20, "base" :  65000,   "PPS" :  14.00,	"refund" : 0.20 }
 		};
 
 
@@ -234,94 +234,35 @@ function devNoteControlSetup( ) {
 	|*|
 	|*|		require 	Required level to unlock
 	|*|		multiplier  Poo Per SEcond Multiplier
+	|*|		change SessionState LOAD/RESET/HeroState
 	|*|==============================================================================
 	\*/	
 		const techTree = {
-			1 : { 
-				"owner"      : "Shovel",
+		    1 : { "owner" : "Hand",			"title" : "Handy Handy",			"desc" : "- Clean them poo up with both your hands and twice as fast please. -",																		"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 1500,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 10  } },
+		    2 : { "owner" : "Hand",			"title" : "All Hands on Deck",		"desc" : "- Embracing your destiny from here on out as professional janitor.  Better get ready. -",														"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 5000,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 20  } },
+		    3 : { "owner" : "Hand",			"title" : "Dabby Hand",				"desc" : "- You're the only expert on this land, better be proud. -",																					"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 25000,					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 30  } },
+		    4 : { "owner" : "Hand",			"title" : "Gimme a Hand",			"desc" : "- Pleading for help cleaning up other people's poo? Not many people will say yes, but a man gotta try. -",									"effect" : "Hand Multiplier +1.0",			"multiplier" :   1.00,		"cost" : 200000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 40  } },
+		    5 : { "owner" : "Hand",			"title" : "It Goes Hand to Hand",	"desc" : "- Are you having fun playing with this?  Please say you are, I worked very hard to get this far. -",											"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 1400000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 50  } },
+		    6 : { "owner" : "Hand",			"title" : "Common Hand",			"desc" : "- You have inspired others around you and rewarded you with an identical hand to help pick up more poo, but they won't come help -",			"effect" : "Hand Multiplier +100.0",		"multiplier" : 100.00,		"cost" : 5000000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 51  } },
+		    7 : { "owner" : "Hand",			"title" : "A Helping Hand",			"desc" : "- Some advice came through that says \"you are doing a great job\" althought you knew it was poo. -",											"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 20000000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 60  } },
+		    8 : { "owner" : "Hand",			"title" : "A Guiding Hand",			"desc" : "- Fellow animals walked by and you saw it as a sign of guidance but it turned out you are lead to poo. -",									"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 210000000,				"sprite" : "shovelTech1.png",		"require" : { "Hand" : 70  } },
+		    9 : { "owner" : "Hand",			"title" : "The Upper Hand",			"desc" : "- You're finally catching on... You did right?  All these messages isn't as random as you think. -",											"effect" : "Hand Multiplier +2.0",			"multiplier" :   2.00,		"cost" : 1300000000,			"sprite" : "shovelTech1.png",		"require" : { "Hand" : 80  } },
+		   10 : { "owner" : "Hand",			"title" : "Get those Hand Dirty",	"desc" : "- Trying to figure out what these messages mean?  You're gonna have to get your hands dirty because that's a lot of poos to dig up. -",		"effect" : "Hand Multiplier +3.0",			"multiplier" :   3.00,		"cost" : 12000000000,			"sprite" : "shovelTech1.png",		"require" : { "Hand" : 90  } },
+		   11 : { "owner" : "Hand",			"title" : "The Holding of Hand",	"desc" : "- New martial art technique to help you pick up poo faster, it turns out that you smoosh them in your hand and multiply. -",					"effect" : "Hand Multiplier +3.0",			"multiplier" :   3.00,		"cost" : 200000000000,			"sprite" : "shovelTech1.png",		"require" : { "Hand" : 100 } },
 
-				"title"      : "A Wooden Shovel",
-				"desc"       : "- Not much of a shovel.  Just a piece of wood so you don't have to use your hands. -",
-				"effect"     : "Shovel Multiplier +1.0",
-				"cost"		 : 100,
 
-				"require"    : { "Shovel" : 10 }, 
-				"multiplier" : 1.00,
+		   12 : { "owner" : "Shovel",		"title" : "A Wooden Shovel",		"desc" : "- Not much of a shovel.  Just a piece of wood so you don't have to use your hands. -",														"effect" : "Shovel Multiplier +1.0",		"multiplier" : 1.00,		"cost" : 1500,					"sprite" : "shovelTech1.png",		"require" : { "Shovel" : 10 } },
+		   13 : { "owner" : "Shovel",		"title" : "A Garden Shovel",		"desc" : "- Improvement from the wooden shovel.  It doesn't make a mess on you. -",																		"effect" : "Shovel Multiplier +1.0",		"multiplier" : 1.00,		"cost" : 8000,					"sprite" : "shovelTech2.png",		"require" : { "Shovel" : 20 } },
+		   14 : { "owner" : "Shovel",		"title" : "Scoop Shovel",			"desc" : "- That's a load of poo you're going to shovel with that... -",																				"effect" : "Shovel Multiplier +1.0",		"multiplier" : 1.00,		"cost" : 40000,					"sprite" : "shovelTech3.png",		"require" : { "Shovel" : 30 } },
+
+
+		   15 : { "owner" : "Baby",			"title" : "Yea Baby!",				"desc" : "- Automatic 'Poo' Generator every minute of the day. Can't wait for them to grow up. -",														"effect" : "Baby Multiplier +1.0", 			"multiplier" : 1.00, 		"cost" : 150, 					"sprite" : "babyTech1.png", 		"require" : { "Baby" : 10 } },
+		   16 : { "owner" : "Baby", 		"title" : "Eat Baby~~", 			"desc" : "- Got the baby to eat the veges, and the clean up is twices as bad. -", 																		"effect" : "Baby Multiplier +1.0", 			"multiplier" : 1.00, 		"cost" : 3000, 					"sprite" : "babyTech2.png", 		"require" : { "Baby" : 20 } },
+		   17 : { "owner" : "Baby", 		"title" : "Potty Pooper", 			"desc" : "- The babies is starting to have intelligence of their own, disturbing you every minute of the day. But we still love them. -",				"effect" : "Baby Multiplier +1.0", 			"multiplier" : 1.00, 		"cost" : 12095000000000, 		"sprite" : "babyTech3.png", 		"require" : { "Baby" : 30 } }
+
 				
-				"sprite"	 : "shovelTech1.png"
-			},
-
-			2 : { 
-				"owner"      : "Shovel",
-
-				"title"      : "A Garden Shovel",
-				"desc"       : "- Improvement from the wooden shovel.  It doesn't make a mess on you. -",
-				"effect"     : "Shovel Multiplier +1.0",
-				"cost"		 : 500,
-
-				"require"    : { "Shovel" : 25 },
-				"multiplier" : 1.00,
 				
-				"sprite"	 : "shovelTech2.png"
-			},
-
-			3 : { 
-				"owner"      : "Shovel",
 				
-				"title"      : "Scoop Shovel",
-				"desc"       : "- That's a load of poo you're going to shovel with that... -",
-				"effect"     : "Shovel Multiplier +1.0",
-				"cost"		 : 15000,
-
-
-				"require"    : { "Shovel" : 50 },
-				"multiplier" : 1.00,
-				
-				"sprite"	 : "shovelTech3.png"
-			},
-
-			4 : { 
-				"owner"      : "Baby",
-
-				"title"      : "Yea Baby!",
-				"desc"       : "- Automatic 'Poo' Generator every minute of the day. Can't wait for them to grow up. -",
-				"effect"     : "Baby Multiplier +1.0",
-				"cost"		 : 150,
-
-				"require"    : { "Baby" : 15 },
-				"multiplier" : 1.00,
-				
-				"sprite"	 : "babyTech1.png"
-			},
-
-			5 : { 
-				"owner"      : "Baby",
-
-				"title"      : "Eat Baby~~",
-				"desc"       : "- Got the baby to eat the veges, and the clean up is twices as bad. -",
-				"effect"     : "Baby Multiplier +1.0",
-				"cost"		 : 3000,
-
-				"require"    : { "Baby" : 25 },
-				"multiplier" : 1.00,
-				
-				"sprite"	 : "babyTech2.png"
-			},
-
-			6 : { 
-				"owner"      : "Baby",
-
-				"title"      : "Potty Pooper",
-				"desc"       : "- The babies is starting to have intelligence of their own, disturbing you every minute of the day. But we still love them. -",
-				"effect"     : "Baby Multiplier +1.0",
-				"cost"		 : 12095000000000,
-
-
-				"require"    : { "Baby" : 35 },
-				"multiplier" : 1.00,
-				
-				"sprite"	 : "babyTech3.png"
-			}
 		};
 
 		function getTechTree( ) 			{ return techTree; }
@@ -393,11 +334,19 @@ function devNoteControlSetup( ) {
 	|*|==============================================================================
 	\*/	
 		const message = {
-			1 : { "quote" : "The world is becoming shit. That's all there is to it", 					"require" : { "Hand" :  0 } },
-			2 : { "quote" : "It all began with a unique scent of foul smell",        					"require" : { "Hand" :  0 } },
-			3 : { "quote" : "Poo beginning to emerge - reported by fellow humans",   					"require" : { "Hand" :  0 } },
-			4 : { "quote" : "Rumor have been spreading that human is made to pick up poo",   			"require" : { "Hand" : 10 } },
-			5 : { "quote" : "Rumor is spread that a mysterious person is responsible for the poo",   	"require" : { "Hand" : 10 } },
+			1 : { "quote" : "I smell something funny on my hand...", 													"require" : { "Hand" :   0 } },
+			2 : { "quote" : "Poo is beginning to emerge - reported by fellow humans",		        					"require" : { "Hand" :   1 } },
+			3 : { "quote" : "I feel the urge to clean this up but I smeared it everywhere.",   							"require" : { "Hand" :   2 } },
+			4 : { "quote" : "Rumor have been spreading that people is pooping at random places.",   					"require" : { "Hand" :  10 } },
+			5 : { "quote" : "My kid found a dead plant but it turns out that it is only covered in poo.",   			"require" : { "Hand" :  20 } },
+			6 : { "quote" : "Rumor is spreading that a mysterious person is responsible for the poo.",      			"require" : { "Hand" :  30 } },
+			7 : { "quote" : "I looked into the distant land and saw that it is brown.",      							"require" : { "Hand" :  40 } },
+			8 : { "quote" : "Animals have keen sense of smell and they don't like the smell of poo.",      				"require" : { "Hand" :  50 } },
+			9 : { "quote" : "Researchers have found that the earth is turning into poo.",      	            			"require" : { "Hand" :  60 } },
+		   10 : { "quote" : "Architecture discovered that building with poo makes a building sturdier.",    			"require" : { "Hand" :  70 } },
+		   11 : { "quote" : "Government is declaring that poo will soon be the new currency.",      	    			"require" : { "Hand" :  80 } },
+		   12 : { "quote" : "Science research made a breakthrough in turning silver into poo.",      	    			"require" : { "Hand" :  90 } },
+		   13 : { "quote" : "Citizen reported that they are funnelling poo into the rivers, turning fish to poo.",      "require" : { "Hand" : 100 } }
 		}
 
 		function getMessageID( id ) 		 { return message[ id ]; }
@@ -435,9 +384,17 @@ function devNoteControlSetup( ) {
 	|*|==============================================================================
 	\*/	
 		const achievement = {
-			1 : { "require" : { "TotalPoo"    : 1             },   "title" : "Poo Happens", "desc" : "Who could've done this horrible deed?!", "sprite" : "shovelTech1.png" },
-			2 : { "require" : { "TotalPoo"    : 1000000       },   "title" : "Brave Soul",  "desc" : "Let's clean up this world."            , "sprite" : "shovelTech2.png" },
-			3 : { "require" : { "Baby"        : 1, "Hand" : 1 },   "title" : "Yea Baby!",   "desc" : "Let us all welcome baby Thomas."       , "sprite" : "babyTech1.png" }
+			1 : { "title" : "Try it First Hand", 	"desc" : "Who could've done this horrible deed?!", 												"sprite" : "shovelTech1.png",		"require" : { "Hand" : 1  } },
+			2 : { "title" : "Who Gives a Poo", 		"desc" : "People simply do whatever they want and they don't really care.", 					"sprite" : "shovelTech1.png",		"require" : { "Hand" : 10 } },
+			3 : { "title" : "Back Handed", 			"desc" : "I just cleaned this spot, now there is twice as much poo?!.", 						"sprite" : "shovelTech1.png",		"require" : { "Hand" : 25 } },
+			4 : { "title" : "Sleight of Hand", 		"desc" : "It looks like there is only 1 piece of poo, but there are actually hundreds!", 		"sprite" : "shovelTech1.png",		"require" : { "Hand" : 50 } },
+			5 : { "title" : "Filthy Hand", 			"desc" : "You really outdone yourself in this world. Someone gotta do the dirty work right?", 	"sprite" : "shovelTech1.png",		"require" : { "Hand" : 100 } },
+
+
+			6 : { "title" : "Poo Happens", 			"desc" : "Who could've done this horrible deed?!", 								"sprite" : "shovelTech1.png",		"require" : { "TotalPoo"    : 1             } },
+			7 : { "title" : "Brave Soul",  			"desc" : "Let's clean up this world.", 											"sprite" : "shovelTech2.png", 		"require" : { "TotalPoo"    : 1000000       } },
+
+			8 : { "title" : "Yea Baby!",   			"desc" : "Let us all welcome baby Thomas.", 									"sprite" : "babyTech1.png", 		"require" : { "Baby"        : 1, "Hand" : 1 } }
 		};
 
 

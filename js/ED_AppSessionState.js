@@ -73,7 +73,8 @@ function AppSessionState( ) {
 		//	 easy storage.
 		//======================================================
 		"TechTree" : {
-			1:0,	2:0,	3:0,	4:0,	5:0,	6:0
+			1:0,	2:0,	3:0,	4:0,	5:0,	6:0,	7:0,	8:0,	9:0,	10:0,
+			11:0,	12:0,	13:0,	14:0,	15:0,	16:0
 		},
 
 
@@ -96,11 +97,22 @@ function AppSessionState( ) {
 		//	Unlocked Achievement goes in here
 		//======================================================
 		"Achievement" : {
-			1:0,	2:0,	3:0
+			1:0,	2:0,	3:0,	4:0,	5:0,	6:0,	7:0,	8:0,	9:0,	10:0
 		}
 	}
 
+
+	//=======================================
+	// GAME CONTROL METHODS
+	//=======================================
+	function calcPooPerClick( ) { 
+		return ( 1 + getLevel( "Hand" ) ) * ( 1 + getMultiplierByName( "Hand" ) );
+	}
 	
+
+	//=======================================
+	// ACHIEVEMENT METHODS
+	//=======================================
 	function getAchievement( )               { return _playerState["Achievement"]; }
 	function getAchievementLength( )         { return Object.keys( _playerState["Achievement"] ).length; }
 	function getAchievementKeys( )           { return Object.keys( _playerState["Achievement"] ); }
@@ -182,6 +194,10 @@ function AppSessionState( ) {
 				let techInfo = PooClickerData.getTechById( key );
 
 				switch( techInfo["owner"] ) {
+					case "Hand":
+						sum["Hand"] += techInfo["multiplier"];
+					break;
+
 					case "Shovel":
 						sum["Shovel"] += techInfo["multiplier"];
 					break;
@@ -258,14 +274,15 @@ function AppSessionState( ) {
 
 				"Upgrades" : {
 					"Hand"		   : { "level" : 0, "lock" : true , "upgradeable" : false, "multiplier" : 1.0 },
-					"Shovel"       : { "level" : 0, "lock" : false , "upgradeable" : false, "multiplier" : 1.0 },
+					"Shovel"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
 					"Baby"         : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
 					"Animal Farm"  : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 },
 					"Toilet"       : { "level" : 0, "lock" : false, "upgradeable" : false, "multiplier" : 1.0 }
 				},
 
 				"TechTree" : {
-					1:0,	2:0,	3:0,	4:0,	5:0,	6:0
+					1:0,	2:0,	3:0,	4:0,	5:0,	6:0,	7:0,	8:0,	9:0,	10:0,
+					11:0,	12:0,	13:0,	14:0,	15:0,	16:0
 				},
 
 				"StoryBoard" : { },
@@ -312,7 +329,11 @@ function AppSessionState( ) {
 			//==============================================
 			// LOADING TECH TREE
 			//==============================================
-			_playerState["TechTree"] = slotData["TechTree"];
+			// _playerState["TechTree"] = slotData["TechTree"];
+			_playerState["TechTree"] = { 
+				1:0,	2:0,	3:0,	4:0,	5:0,	6:0,	7:0,	8:0,	9:0,	10:0,
+				11:0,	12:0,	13:0,	14:0,	15:0,	16:0
+			};
 
 
 			//==============================================
@@ -588,6 +609,9 @@ function AppSessionState( ) {
 		console.groupEnd( );
 	}
 
+	function _hackPooCount( num ) {
+		addPoo( num );
+	}
 
 
 
@@ -694,10 +718,17 @@ function AppSessionState( ) {
 		setAchievementById   : setAchievementById,
 
 
+		//==========================
+		// GAME - CALCULATIONS
+		//==========================
+		calcPooPerClick      : calcPooPerClick,
+
+
 		//========================
 		// GAME - DEBUGGING
 		//========================
-		debug : debug
+		debug         : debug,
+		_hackPooCount : _hackPooCount
 	};
 
 	return AppSessionStateAPI;
