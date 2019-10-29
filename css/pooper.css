@@ -88,7 +88,7 @@ html, body {
 .ED-btn { 
 	width:200px;
 	height:50px;
-	line-height:36px;
+	line-height:30px;
 
 	border:8px solid black; 
 	background-color:rgba(139, 69, 19, 1);
@@ -99,6 +99,7 @@ html, body {
 
 .ED-SaveFile 	{ background-color:#CCCCCC; }
 .ED-Reserved	{ background-color:#FFCCCC; }
+
 
 
 /* ============================================
@@ -338,6 +339,9 @@ div.upgradeBlock, div.statisticBlock {
 div.upgradeBlock   { 
 	right:0px;
 	outline-left:20px solid rgba(0,0,0,0.5);
+
+/*	border-left:30px solid black;
+	border-image:url('../img/iconBorder2_6x6.png') 6 round;*/
 }
 
 div.statisticBlock { 
@@ -490,7 +494,8 @@ div#page4
 
 			position:absolute;
 			bottom:0px;
-
+			left:0px;
+			
 			padding-top:40px;
 			padding-left:15px;
 			padding-right:15px;
@@ -529,7 +534,7 @@ div#page4
 				position:absolute;
 				top:0px; bottom:0px; left:0px; right:0px;
 
-				width:1px;
+				width:200px;
 				height:1px;
 				font-size:12pt;
 
@@ -538,6 +543,31 @@ div#page4
 				text-align:center;
 				z-index:1000;
 			}
+
+
+/*
+	PAGE 4 - BUTTONS
+*/
+div#p4-saveBtn {
+
+}
+
+
+
+.PC-btn {
+	width:60px;
+	height:60px;
+
+	border:8px solid black;
+	background-color:rgba(139, 69, 19, 1);
+
+	border-radius: 50px;
+	color:white;
+
+	margin-bottom:10px;
+}
+
+.PC-btn i {	top:8px; }
 
 
 
@@ -779,15 +809,17 @@ dd.definition { padding-left:40px; }
 	TECH TREE ICON - STYLING
 ====================================================== */
 div.techIcon {
-	width:45px;
-	height:45px;
+	width:48px; height:48px;
 
 	float:left;
-	margin:3px;
+	margin:1px;
 
-	border:0px solid black;
+	border:6px solid;
+	border-image:url('../img/iconBorder2_6x6.png') 6 round;
+
 	background-color:blue;
-	text-align:center;
+	
+	text-align:center;	
 }
 
 div.techIcon:hover {
@@ -832,6 +864,8 @@ p.techDesc { font-style:italic; }
 p#techCost, p#techCost span.purchaseable, p#techCost span.notPurchaseable {
 	font-size:10pt;
 }
+
+
 
 
 

@@ -581,10 +581,10 @@ function ED_Stages( ) {
 				//Div moves up over 1 seconds and disappears after 1 seconds
 				//absolute position it.
 				let tempDiv = document.createElement( "div" );
-				let txtNode = document.createTextNode( "+" + manualPooGenerated );
+				let txtNode = document.createTextNode( "+" + SessionState.getDisplayNotation( manualPooGenerated ) );
 
 				tempDiv.setAttribute( "class", "pooClicked" );
-				tempDiv.style.left = GameUtility.between(e.offsetX - 24, e.offsetX + 56) + "px";
+				tempDiv.style.left = GameUtility.between(e.offsetX - 120, e.offsetX + 12) + "px";
 				tempDiv.style.top  = (e.offsetY-50) + "px";
 				tempDiv.style.opacity = 1.0;
 
