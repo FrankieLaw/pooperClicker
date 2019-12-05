@@ -1,0 +1,950 @@
+/**
+=========================================
+ DEBUG
+========================================= */
+.debug {
+	outline:2px solid black;
+}
+
+.debug1 {
+	background-color:#FFCCFF;
+	outline:2px solid black;
+}
+
+.debug2 {
+	background-color:#FFFFCC;
+	outline:2px solid black;
+}
+
+.debug3 {
+	background-color:#CCFFFF;
+	outline:2px solid black;
+}
+
+.debug4 {
+	background-color:#CCCCFF;
+	outline:2px solid black;
+}
+
+.debugPos1 {
+	position:absolute;
+	top:150px;
+	left:150px; right:0px;
+	margin:auto;
+
+	color:black;
+}
+
+/**
+=========================================
+ GLOBAL LAYOUT RESET
+========================================= */
+@font-face {
+	font-family:"Penny Pinch";
+	src:url("font/PennyPinch.ttf");
+
+}	
+
+* {
+	margin:0px;
+	padding:0px;
+	border:0px;
+	outline:0px solid black;
+	box-sizing:border-box;
+	position:relative;
+
+	font-family:'Quicksand', 'Chilanka', 'Penny Pinch';
+	font-size:18pt;
+	font-weight:999;
+
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+html, body {
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	margin:0px;
+}
+
+
+
+.cursorOpen {
+	cursor:url("../img/handOpen32x32.png"), auto;
+}
+
+.cursorGrabbing {
+	cursor:url("../img/handClose32x32.png"), auto;
+}
+
+
+/**
+=========================================
+ ENDLESS DUNGEON - BUTTON THEME
+========================================= */
+.ED-btn { 
+	width:200px;
+	height:50px;
+	line-height:30px;
+
+	border:8px solid black; 
+	background-color:rgba(139, 69, 19, 1);
+
+	border-radius: 25px;
+	color:white;
+}
+
+.ED-SaveFile 	{ background-color:#CCCCCC; }
+.ED-Reserved	{ background-color:#FFCCCC; }
+
+
+
+/* ============================================
+	Navigation Bar
+============================================ */
+div.navBar, div.footer {
+	width:100%;
+	height:30px;
+
+	color:#DDDDDD;
+	font-size:10pt;
+
+	position:absolute;
+	z-index:1000;
+
+	line-height:30px;
+
+	padding-left:10px;
+	padding-right:10px;
+
+	text-shadow:0px 3px #000000;
+}
+
+div.navBar {
+	background-color:rgba(20,20,20,1);
+}
+
+div.navBar ul { list-style-type:none; }
+div.navBar ul li { 
+	float:left; 
+	font-size:10pt; 
+	margin-right:10px;
+}
+
+div.navbar ul li:nth-child(2) {
+	padding:0px 10px;
+}
+
+div.navBar ul li#devNoteToggle {
+	color:gold;
+
+	font-size:10pt;
+	text-decoration:none;
+
+	transition:text-shadow 0.25s, box-shadow 0.25s;
+}
+
+div.navBar ul li#devNoteToggle:hover {
+	text-shadow:0px 0px 5px yellow;
+	/*box-shadow: 0px 15px 5px black;*/
+}
+
+div.footer {
+	bottom:0px;
+}
+
+div.SaveMsgBox {
+	width:250px;
+	height:65px;
+	line-height:65px;
+
+	position:absolute;
+	z-index:1000;
+
+	margin:auto;
+	left:0px; right:0px; bottom:50px;
+
+	text-align:center;
+
+	outline:2px dotted rgba(50,50,50,0.75);
+}
+
+div#pageContainer, div#page1, div#page2, div#page3, div#page4 {
+	display:none;
+
+	margin-left:auto;
+	margin-right:auto;
+
+	text-align:center;
+
+	height:100.0%;
+
+	background-image:url("../img/background.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+}
+
+
+/* ==================================== */
+/* Page1 - Splash Screen - CSS          */
+/* ==================================== */
+div#page1 
+	div.p1Container {
+		width:200px;
+		height:16.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px;	right:0px;	top:0px;	bottom:0px;
+}
+
+div#page1 
+	div.p1Container 
+		div.ED-btn {
+			position:relative;
+			margin-bottom:40px; 
+}
+
+
+/* ==================================== */
+/* Page2 - Save Game Table Screen - CSS */
+/* ==================================== */
+div#page2 
+	div.p2Container {
+		width:500px;
+		height:41.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; 	right:0px; 	top:0px; 	bottom:0px;
+}
+
+div#page2 
+	div.p2Container 
+		div.saveSlotBlock {
+			width:100%;
+			position:relative;
+
+			height:400px; line-height:400px;
+			margin-bottom:40px;
+
+			overflow:auto;
+}
+
+div#page2 
+	div.p2Container 
+		div.slotConatiner 
+			div.saveBlock {
+				height:50px;  line-height:50px;
+				margin-bottom:20px;
+
+				background-color:rgba(150,150,150,0.25);
+
+				text-align:center;
+				padding-left:10px;
+			}
+
+div#page2 
+	div.p2Container 
+		div.ED-btn {
+			position:relative; 
+			margin:auto;		
+}
+
+
+/* ===================================== */
+/* Page3 - Character Create Screen - CSS */
+/* ===================================== */
+div#page3 
+	div.p3Container {
+		width:66.66%;
+		height:16.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; right:0px; top:0px; bottom:0px;
+	}
+
+div#page3 
+	div.p3Container 
+		div.ED-CharNameBlock {
+			width:100%;
+			position:relative;
+
+			height:50px;  line-height:50px;
+			margin-bottom:40px;
+
+			background-color:#FFCCCC;
+		}
+
+div#page3 
+	div.p3Container 
+		div.ED-CharNameBlock 
+			div.ED-InputBlock {
+				height:30px;
+				padding:5px;
+				text-align:center;
+			}
+
+div#page3 
+	div.p3Conatiner 
+		div.ED-NavBlock {
+			width:100%;
+			position:relative;
+
+			height:50px;  line-height:50px;
+			margin-bottom:40px;
+
+			background-color:#FFCCCC;
+		}
+
+
+div#page3 
+	div.p3Container 
+		div.ED-NavBlock 
+			div.ED-btn {
+				width:25.00%;
+				height:50px;  
+				float:left;
+				margin-right:40px;
+			}
+
+
+
+/* ===================================== */
+/* Page4 - Game Screen - CSS */
+/* ===================================== */
+div.statisticBlock, div.upgradeBlock, 
+div.totalPooDisplay, div.ppsDisplay, div.worldNameBlock {
+	background-color:rgba(50,50,50,0.5);
+}
+
+div.upgradeBlock, div.statisticBlock {
+	min-width:300px;
+	width:22.50%;
+	height:100%;
+	padding-top:35px;
+
+	position:absolute;
+	text-align:left;
+}
+
+div.upgradeBlock   { 
+	right:0px;
+	outline-left:20px solid rgba(0,0,0,0.5);
+
+/*	border-left:30px solid black;
+	border-image:url('../img/iconBorder2_6x6.png') 6 round;*/
+}
+
+div.statisticBlock { 
+	left:0px;   
+}
+
+div.statisticBlock div.blurred {
+	width:100%;
+	height:100%;
+
+	position:absolute;
+	top:0px; left:0px;
+	z-index:-1;
+
+	background-image:url("../img/background.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:left;
+
+	filter: blur(8px);
+	-webkit-filter: blur(8px);
+}
+
+
+/* ============================================================
+	CSS for Tab Headers - Statistics/Achievement/Upgrade...
+============================================================ */
+span.header {
+	display:block;
+
+	padding:5px;
+	padding-left:10px;
+	margin-bottom:10px;
+	border-bottom:2px solid rgba(0,0,0,0.5);
+	
+	text-align: left;
+	letter-spacing:1px;
+	color:white;
+}
+
+span.header             { margin-top:20px; }
+span.header:hover       { text-shadow:0px 0px 5px white; }
+span.header:first-child { margin-top:0px; }
+
+
+/* ============================================================
+	CSS for the Upgrade Block - QuantityButton - UpgradeList
+============================================================ */
+div.quantityBlock {
+	height:40px;
+	line-height:40px;
+
+	margin-top:-5px;
+	margin-bottom:5px;
+}
+
+div.quantityOption, div.quantityAmount, span.quantityBtn { float:left; }
+span.optionBtn, span.quantityBtn { 
+	display:block; 
+	color:rgba(155, 155, 155, .8);
+
+	transition:text-shadow 0.25s, color 0.25s;
+}
+
+span.optionBtn:hover, span.quantityBtn:hover {
+	cursor:pointer;
+	color:white;
+	text-shadow:0px 0px 10px rgba(0,0,0,0.8);
+}
+
+span.active { 
+	color:white;
+	text-shadow:0px 0px 10px rgba(0,0,0,0.8);
+}
+
+div.quantityBlock 
+	div.quantityOption { width:25%; }
+
+div.quantityBlock 
+	div.quantityAmount { width:75%; }
+
+div.quantityBlock 
+	div.quantityOption 
+		span.optionBtn {
+			width:100%;
+			height:20px;
+			line-height:20px;
+
+			font-size:12pt;
+			padding-left:10px;	
+			text-align:center;		
+		}
+
+div.quantityBlock 
+	div.quantityAmount 
+		span.quantityBtn {			
+			width:33.33%;
+
+			text-align:center;
+		}
+
+div#page4 
+	div.p4Container {
+		width:100%;
+		height:100%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; right:0px; top:0px; bottom:0px;	
+	}
+
+
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock div {
+				font-size:11pt;
+				
+			}
+
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock 
+			div.row {
+				width:100%;
+				margin-bottom:5px;
+}
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock 
+			div.label {
+				float:left; 
+				margin-right:20px;
+			}
+
+div#statisticTab, div#achievementTab, div#techTab {
+	padding-left:15px;
+	padding-right:15px;
+}
+
+div#page4 
+	div.p4Container 
+		div.contentBtnBlock {
+			min-width:200px;
+			width:25%;
+			/*height:100%;*/
+
+			position:absolute;
+			bottom:0px;
+			left:0px;
+			
+			padding-top:40px;
+			padding-left:15px;
+			padding-right:15px;
+		}
+
+div#page4 
+	div.p4Container 
+		div.contentBtnBlock
+			div.ED-btn {
+				margin-bottom:15px;
+			}
+
+
+div#page4 
+	div.p4Container 
+		div.pooBlock {
+			/* Center is [120x105]*/
+			height:210px;
+			width:240px;
+
+			position:absolute;
+			top:76%; bottom:24%; left:0px; right:0px;
+			margin:auto;
+		}
+
+div#page4 
+	div.p4Container 
+		div.pooBlock img {
+			height:200px;
+		}
+
+div#page4 
+	div.p4Container 
+		div.pooBlock 
+			div.pooClicked {
+				position:absolute;
+				top:0px; bottom:0px; left:0px; right:0px;
+
+				width:200px;
+				height:1px;
+				font-size:12pt;
+
+				opacity:1.0;
+
+				text-align:center;
+				z-index:1000;
+			}
+
+
+/*
+	PAGE 4 - BUTTONS
+*/
+div#p4-saveBtn {
+
+}
+
+
+
+.PC-btn {
+	width:60px;
+	height:60px;
+
+	border:8px solid black;
+	background-color:rgba(139, 69, 19, 1);
+
+	border-radius: 50px;
+	color:white;
+
+	margin-bottom:10px;
+}
+
+.PC-btn i {	top:8px; }
+
+
+
+
+
+
+div.upgradeCell > * { /*outline:2px dotted blue;*/ }
+div.upgradeCell {
+	height:70px;
+	padding:10px;
+	background-color:rgba(200, 200, 200, 1);
+}
+
+div.upgradeCell:hover {
+	cursor:pointer;
+}
+
+div.upgradeCell img {
+	position:absolute;
+	left:0px; top:0px;
+
+	width:70px;
+	height:70px;
+
+	/*box-shadow: 0px 0px 5px black;*/
+}
+
+
+div.upgradeCell span.label {
+	position:absolute;
+	left:80px;
+
+	height:50px;
+
+	font-size:20pt;
+}
+
+
+div.upgradeCell span.cost {
+	position:absolute;
+	left:80px; top:42px;
+
+	font-size:12pt;	
+}
+
+div.upgradeCell span.level {
+	position:absolute;
+	top:0px; right:10px;
+
+	height:70px;
+	line-height:70px;
+	font-size:30pt;
+
+	color:rgba(130, 130, 130, 0.9);
+}
+
+div.upgradeCell div.overlay {
+	position:absolute;
+	left:0px; top:0px;
+
+	width:100%;
+	height:100%;
+
+	z-index:2000;
+}
+
+.notPurchaseable {
+	color:rgba(130, 130, 130, 0.7);
+}
+
+.purchaseable {
+	color:rgba(255, 215, 0, 1);
+	text-shadow:-1px 1px 2px rgba(30, 30, 30, 0.8);
+	/*color:rgba(139, 69, 19, 1);	Brown Poo Color*/
+}
+
+
+
+
+/* ========================================
+	Poop Collected Display & Per Second
+======================================== */
+div.randomMessage {
+	min-width:250px;
+	width:35%;
+
+	position:absolute;
+	left:0px; right:0px;
+	top:60px;
+
+	margin:auto;
+
+	font-size:12pt;
+	letter-spacing:1px;
+	word-wrap: break-word;
+
+	text-shadow: 0px 3px 5px rgba(0,0,0,0.8);
+	color:rgba( 255,255,255,0.7);
+
+	opacity: 1.0;
+
+	animation-name: fadeMessage;
+  	animation-duration: 12.5s;
+  	animation-iteration-count: infinite;
+}
+
+@keyframes fadeMessage {
+	0%   { opacity: 0.0; }
+	20%  { opacity: 1.0; }
+  	80%  { opacity: 1.0; }
+  	100% { opacity: 0.0; }
+}
+
+
+div.ppsBlock {
+	min-width:250px;
+	width:35%;
+
+	margin:auto;
+}
+
+div.scoreArea {
+	position:absolute;
+	left:0px; right:0px;
+	top:185px;
+}
+
+div.totalPooDisplay, div.ppsDisplay, div.worldNameBlock {
+	padding:10px 5px;
+	color:white;
+	text-shadow:0px 0px 3px rgba(0, 0, 0, 1);
+	letter-spacing:1px;
+
+	border-radius:25px;	
+	margin-bottom:10px;
+	box-shadow: 0px 1px 5px rgba(0,0,0,1);
+}
+
+div.totalPooDisplay { font-size:25pt; }
+div.ppsDisplay      { font-size:10pt; }
+
+div.worldNameBlock {
+	position:absolute; 
+	left:0px; right:0px; 
+	top:125px; 
+
+	margin:auto;
+}
+
+div.worldNameBlock input {
+	width:100%;
+	text-align:center;
+	color:white;
+	background-color:rgba(0,0,0,0);
+}
+
+
+/* ========================================
+	Development Note Case
+======================================== */
+div.devNote {
+	position:absolute;
+	z-index:2000;
+	display:none;
+
+	width:100%;
+	height:100%;
+
+	background-color:rgba(30,30,30,0.95);
+
+	color:white;
+	padding:40px;
+}
+
+div.devMessage {
+	position:absolute;
+	left:0px; right:0px;
+	top:0px; bottom:0px;
+
+	margin:auto;
+
+	min-width:300px;
+	
+	width:50%;
+	height:75%;
+
+	padding:10px;
+	outline: 4px double gold;
+
+	overflow:scroll;
+	overflow-x: hidden;
+}
+
+
+div.closeDevNote {
+	width:40px;
+	line-height:30px;
+	font-size:9pt;
+
+	position:absolute;
+	right:30px;
+
+	border-radius: 25px;
+
+	text-align:center;
+
+	background-color:rgba(20,20,20,0.8);
+	border:5px outset gold;
+}
+
+div.closeDevNote:hover, li#devNoteToggle:hover {
+	cursor:pointer;
+}
+
+div.devNote h1 {
+	border-bottom:2px solid white;
+
+	width:100%;
+
+	padding:5px 10px;
+
+	letter-spacing:2px;
+	text-align: center;
+}
+
+div.devNote dl.note { padding:10px 10px; margin-bottom:15px; }
+div.devNote dt.date, dd.definition {
+	font-size:9pt;
+	margin-bottom:5px;
+	letter-spacing:1px;
+}
+
+dd.definition { padding-left:40px; }
+
+
+
+
+/* ======================================================
+	TECH TREE ICON - STYLING
+====================================================== */
+div.techIcon {
+	width:48px; height:48px;
+
+	float:left;
+	margin:1px;
+
+	border:6px solid;
+	border-image:url('../img/iconBorder2_6x6.png') 6 round;
+
+	background-color:blue;
+	
+	text-align:center;	
+}
+
+div.techIcon:hover {
+	cursor:pointer;
+}
+
+div.techDescBox {
+	width:350px;
+
+	position:absolute;
+	top:0px;
+	left:0px;
+
+	padding:10px;
+
+	/*background-image: linear-gradient(to top, rgba(55,55,55,0.8), rgba(55,55,55,0.5));*/
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+	outline:6px double gold;
+	box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+div.techDescBox p {
+	font-size:10pt;
+	margin-bottom:10px;
+}
+
+div.techTitleBox {
+	margin-bottom:10px;
+}
+
+div.techTitleBox 
+	span {
+		font-size:16pt;
+		margin-right:10px;
+	}
+
+div.techTipBox { padding:0px 10px; }
+p.techDesc { font-style:italic; }
+
+p#techCost, p#techCost span.purchaseable, p#techCost span.notPurchaseable {
+	font-size:10pt;
+}
+
+
+
+
+
+/* ======================================================
+	ACHIEVEMENT POP UP & ICONS STYLING
+====================================================== */
+.fontSize10 { font-size:10pt; }
+.fontSize14 { font-size:14pt; }
+
+div.chevoContainer {
+	position:absolute;
+	bottom:25px;
+	left:0px; right:0px;
+	margin:auto;
+
+	width:350px;
+}
+
+div.chevoClose:hover { cursor:pointer; }
+div.chevoClose {
+	width:20px;
+	height:20px;
+	line-height: 17px;
+
+	position:absolute;
+	right:-7px;
+	top:-7px;
+
+	color:black;
+	font-size:10pt;
+	text-align:center;
+
+	outline:2px inset black;
+	background-color:gold;
+	box-shadow:-3px 3px 2px black;
+}
+
+div.chevoBox {
+	width:350px;
+
+	padding:10px;
+	margin-bottom:20px;
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+	font-size:10pt;
+
+	outline:6px double gold;
+	box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+p.chevoTitle {
+	width:100%;
+	text-align:left;
+	padding:0px 0px 5px 0px;
+
+	margin-bottom:5px;
+	border-bottom:1px solid gold;
+}
+
+div.chevoIcon {
+	position:absolute;
+
+	width:45px;
+	height:45px;
+
+	background-image:url("../img/shovelTech1.png");
+}
+
+p.chevoDesc { font-style: italic; }
+
+
+div.chevoLeft {
+	float:left;
+}
+
+div.chevoRight {
+	position:relative;
+	left:55px;
+	width:275px;
+}
+

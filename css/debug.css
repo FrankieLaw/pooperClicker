@@ -1,0 +1,44 @@
+/* ================================= */
+/*   DEBUG CLASSES                   */
+/* ================================= */
+.debug {
+	outline:2px solid black;
+}
+
+.debug1 {
+	background-color:#FFCCFF;
+	outline:2px solid black;
+}
+
+.debug2 {
+	background-color:#FFFFCC;
+	outline:2px solid black;
+}
+
+.debug3 {
+	background-color:#CCFFFF;
+	outline:2px solid black;
+}
+
+.debug4 {
+	background-color:#CCCCFF;
+	outline:2px solid black;
+}
+
+.debugPos1 {
+	position:absolute;
+	top:150px;
+	left:150px; right:0px;
+	margin:auto;
+
+	color:black;
+}
+
+div.tempUnavailable {
+	position:absolute;
+	top:0px; bottom:0px; left:0px; right:0px;
+	margin:auto;
+
+	color:white;
+	font-size:5em;
+}	

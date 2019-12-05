@@ -1,16 +1,4 @@
 function App_SaveState( ) {
-
-	//=============================================================
-	// Game Data Structure
-	//	-> Data Slot Name
-	//	     -> Hero Info (Save the entire object, it must be consistent)
-	//
-	//		 -> Map Info (To Be Determine how to add additional
-	//					  information as the game becomes more complex. )
-	//=============================================================
-
-
-
 	//=============================================================
 	// Save Method - Required Game Slot Name
 	//				 Otherwise it will save over other save games.
@@ -20,26 +8,26 @@ function App_SaveState( ) {
 		// IF IT IS USING A TEMPORARY SLOT
 		// FIND A NEW SLOT FOR IT AUTOMATICALLY
 		//=============================================
-		if( SessionState.saveSlot( ) == "pc-v1-tempSlot" ) {
-			var length = Object.getOwnPropertyNames( localStorage ).length;
+		if( $ST.saveSlot( ) == `pc-${$ST.Copyright("version")}-tempSlot` ) {
+			let length = Object.getOwnPropertyNames( localStorage ).length;
 
 			//Check if the SlotName already Exist
-			while( localStorage.getItem( "pc-v1-Slot" + length ) != null ) {
+			while( localStorage.getItem( `pc-${$ST.Copyright("version")}-Slot` + length ) != null ) {
 				length++;
 			};
 
-			SessionState.newSlot( "pc-v1-Slot" + length );	
+			$ST.newSlot( `pc-${$ST.Copyright("version")}-Slot` + length );	
 		}
 
 
 		//==========================================
 		//	Final Data that will be saved
 		//==========================================
-		let saveData = {};									//blank save data
-		saveData[SessionState.saveSlot( )] = {};			//create save data slot = empty {}
+		let saveData = {};							//blank save data
+		saveData[$ST.saveSlot( )] = {};				//create save data slot = empty {}
 
-		var playerState = SessionState.savePlayerState( );	//Get _playerState
-		saveData[SessionState.saveSlot( )] = playerState;	//Put everything inside localStorage
+		let playerState = $ST.savePlayerState( );	//Get _playerState
+		saveData[$ST.saveSlot( )] = playerState;	//Put everything inside localStorage
 
 		console.group( "Inside PlayerState" );
 			console.log( playerState );
@@ -49,8 +37,8 @@ function App_SaveState( ) {
 		//==========================================
 		//	Encryption Data
 		//==========================================
-		var temp = JSON.stringify( saveData[SessionState.saveSlot( )] );
-		var encrypted = Encrypt( temp );
+		let temp = JSON.stringify( saveData[$ST.saveSlot( )] );
+		let encrypted = Encrypt( temp );
 
 		console.group( "What is being Saved" );
 			console.log( temp );
@@ -59,13 +47,13 @@ function App_SaveState( ) {
 		//==========================================
 		//	Transfer Encrypted Data to localStorage
 		//==========================================
-		localStorage.setItem( SessionState.saveSlot( ), encrypted );
+		localStorage.setItem( $ST.saveSlot( ), encrypted );
 
 
 		//==========================================
 		//	Quick Save Feature
 		//==========================================
-		localStorage.setItem( "pc-v1-quickSave", SessionState.saveSlot( ) );
+		localStorage.setItem( `pc-${$ST.Copyright("version")}-quickSave`, $ST.saveSlot( ) );
 
 
 		//==========================================
@@ -74,7 +62,7 @@ function App_SaveState( ) {
 		function Encrypt( value ) {
 			let output = "";
 
-			for( var i = 0; i < value.length; i++ ) {
+			for( let i = 0; i < value.length; i++ ) {
 				output += String.fromCharCode(value.charCodeAt(i) + 5);
 			}
 
@@ -88,12 +76,12 @@ function App_SaveState( ) {
 	//				 Otherwise it will not know which game to load.
 	//=============================================================
 	function loadFromLocalStorage( ) {
-		var count = 0;
+		let count = 0;
 		
 		//Filter Local Storage Data
 		//Retrieve all Save Slots, except quickSave
 		let keyArray        = Object.getOwnPropertyNames( localStorage );
-		let saveSlotPattern = /^pc-v1-Slot\d{0,2}$/g;
+		let saveSlotPattern = new RegExp( "^pc-" + $ST.Copyright("version") + "-Slot\\d{0,2}$", "g" );
 
 		keyArray = keyArray.filter( function( data ) {
 			return data.match( saveSlotPattern );
@@ -109,7 +97,6 @@ function App_SaveState( ) {
 			let saveDat = JSON.parse( Decrypt( localStorage.getItem( keyArray[i] ) ) );
 			let saveTxt = saveDat["WorldName"];
 				saveTxt += " > Run Time: " + saveDat["GameTime"]["seconds"];
-			//let saveTxt = "crap";
 
 			let tempDiv = document.createElement( "div" );
 	    	let txtNode = document.createTextNode( saveTxt );
@@ -162,7 +149,7 @@ function App_SaveState( ) {
 	    		// SET DATA TO SESSION STATE
 	    		//===================================
 				let slot = ( e.srcElement.id ).replace( "p2-", "" );
-				SessionState.makeGame( slot, JSON.parse( Decrypt( localStorage.getItem( slot ) ) ) );
+				$ST.makeGame( slot, JSON.parse( Decrypt( localStorage.getItem( slot ) ) ) );
 
 			//Delete me//
 				console.groupCollapsed( "Loaded Data" );
@@ -173,14 +160,14 @@ function App_SaveState( ) {
 				ED_Stages( ).setStage( e.srcElement.attributes["data-target"].value );
 
 				//Change the stage screen from [P1 -> P4]
-				SessionState.changeStageTo( e.srcElement.attributes["data-target"].value );
+				$ST.changeStageTo( e.srcElement.attributes["data-target"].value );
 	    	}
 		}
 
 		function Decrypt( value ) {
 			let output = "";
 
-			for( var i = 0; i < value.length; i++ ) {
+			for( let i = 0; i < value.length; i++ ) {
 				output += String.fromCharCode(value.charCodeAt(i) - 5);
 			}
 			return output;
@@ -188,10 +175,40 @@ function App_SaveState( ) {
 	};
 
 
+	function localStorageToSetting( ) {
+		//Filter Local Storage Data
+		//Retrieve all Save Slots, except quickSave
+		let   keyArray        = Object.getOwnPropertyNames( localStorage );
+		const saveSlotPattern = new RegExp( "^pc-" + $ST.Copyright("version") + "-Slot\\d{0,2}$", "g" );
+		const container = document.getElementById( "setting-saveData" );
+
+		let result = [];
+
+		keyArray = keyArray.filter( function( data ) {
+			return data.match( saveSlotPattern );
+		});
+
+		keyArray.forEach( (gameData) => {
+			const saveDat = JSON.parse( Decrypt( localStorage.getItem( gameData ) ) );
+			result.push( [gameData, saveDat] );
+		});
+
+		return result;
+		function Decrypt( value ) {
+			let output = "";
+
+			for( let i = 0; i < value.length; i++ ) {
+				output += String.fromCharCode(value.charCodeAt(i) - 5);
+			}
+			return output;
+		}
+	}
+
+
 	function removeSaveSlotEvents( ) {
 		let saveSlots = document.getElementById( "saveSlotContainer" ).children;
 
-		for( var i = 0; i < saveSlots.length; i++ ) {
+		for( let i = 0; i < saveSlots.length; i++ ) {
 			let id = saveSlots[i].id;
     		let slotEl = document.getElementById( id );
     		let aMover = EventRegistry.getEvent( id, "mouseover" )
@@ -207,11 +224,37 @@ function App_SaveState( ) {
 		document.getElementById( "saveSlotContainer" ).innerHTML = "";
 	}
 
+	function saveGame( e ) { 
+        //FINAL CLEAN UP OF THE GAME
+        $ST.calcPPS( );                 //RECALCULATE PPS INCASE IT IS NOT MATCHING.
+
+        SaveData.saveToLocalStorage( );	
+
+        pooArea = $D.id( "mainScreen" );
+
+        //Add div element with the number pop up
+        //Div moves up over 1 seconds and disappears after 1 seconds
+        //absolute position it.
+        let tempDiv = document.createElement( "div" );
+        let txtNode = document.createTextNode( "GAME SAVED!" );
+
+        tempDiv.setAttribute( "class", "SaveMsgBox" );
+        tempDiv.style.opacity = 1.0;
+
+        tempDiv.appendChild( txtNode );
+        pooArea.appendChild( tempDiv );
+
+		const selfDestruct = new PooTimer( tempDiv, 3000, 15, "save" );
+		selfDestruct.start( );
+	}
+	
 	let GameDataAPI = {
-		//curGame : curGameData,
-		saveToLocalStorage   : saveToLocalStorage,
-		loadFromLocalStorage : loadFromLocalStorage,
-		unload               : removeSaveSlotEvents
+		saveToLocalStorage    : saveToLocalStorage,
+		loadFromLocalStorage  : loadFromLocalStorage,
+		unload                : removeSaveSlotEvents,
+		localStorageToSetting : localStorageToSetting,
+
+		saveGame : saveGame
 	};
 
 	return GameDataAPI;

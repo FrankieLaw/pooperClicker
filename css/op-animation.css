@@ -1,0 +1,204 @@
+/* =============================================
+	CSS ANIMATION - LIBRARY
+============================================= */
+
+/*\
+|*| =============================================
+|*|  GLOBAL VARIABLES FOR CHOOSING COLOR
+|*| =============================================
+\*/
+	:root {
+		/* COLOR PALLET */
+		--black     : rgba(0,     0,   0, 1.0);
+		--white     : rgba(255, 255, 255, 1.0); /* #FFFFFF */
+		--smoke     : rgba(204, 204, 204, 1.0); /* #CCCCCC */
+		--LightRose : rgba(255, 204, 204, 1.0); /* #FFCCCC */
+		--mintGreen : rgba(204, 255, 204, 1.0); /* #CCFFCC */
+		--lavender  : rgba(204, 204, 255, 1.0); /* #CCCCFF */
+		--banana    : rgba(255, 255, 204, 1.0); /* #FFFFCC */
+		--pink      : rgba(255, 204, 255, 1.0); /* #FFCCFF */
+		--cyan      : rgba(204, 255, 255, 1.0); /* #CCFFFF */
+		--menthol   : rgba(0,   216, 135, 1.0);
+		--yellow    : rgba(255, 255,   0, 1.0);
+		--tint      : rgba( 40,  40,  40, 0.85);
+		--cyanHot   : #8afbff;
+
+		--animation-slowGlow-white        : rgba(255, 255, 255, 1.0);
+		--animation-slowGlow-yellow       : rgba(255, 255, 0, 1.0);
+		--animation-slowGlow-goldenYellow : rgba(255, 223, 0, 1.0);
+
+
+		/* ADJUSTMENT VARIABLE */
+		--animation-slowGlow-color : var(--animation-slowGlow-yellow);
+		--transition-glow-color    : var(--animation-slowGlow-yellow);
+	}
+/*\
+\*/
+
+
+/* text-shadow: 0 0 5px #5ff7ff, 0 0 10px #6af7ff, 0 0 20px #3af5ff, 0 0 30px #65f7ff; */
+
+/*\
+|*| =============================================
+|*|  ANIMATION
+|*|  MAKE ANYTHING APPEAR TO BE BLINKING
+|*| =============================================
+\*/
+	.blink {
+		animation-name:blinking;
+		animation-duration:1.5s;
+		animation-iteration-count: infinite;
+	}
+
+	@keyframes blinking {
+		0%   { opacity: 1.0; }
+		50%  { opacity: 1.0; }
+		51%  { opacity: 0.0; }
+		100% { opacity: 0.0; }
+	}
+/*\
+\*/
+
+
+
+/*\
+|*| =============================================
+|*|  ANIMATION
+|*|  MAKE ANYTHING APPEAR TO BE GLOWING SLOWLY
+|*| =============================================
+\*/
+	.glowing {
+		animation-name:slowGlow;
+		animation-duration:5.0s;
+		animation-iteration-count: infinite;
+	}
+
+	@keyframes slowGlow {
+		0% { 
+			text-shadow: 0px 0px 0px var(--animation-slowGlow-color),
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color);
+		 }
+
+		 50% { 
+			text-shadow: 0px 0px 30px var(--animation-slowGlow-color),
+		             	 0px 0px 30px var(--animation-slowGlow-color), 
+		             	 0px 0px 20px var(--animation-slowGlow-color), 
+		             	 0px 0px 10px var(--animation-slowGlow-color), 
+		             	 0px 0px 5px  var(--animation-slowGlow-color), 
+		             	 0px 0px 5px  var(--animation-slowGlow-color);
+		 }
+
+		 100% { 
+			text-shadow: 0px 0px 0px var(--animation-slowGlow-color),
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color), 
+		             	 0px 0px 0px var(--animation-slowGlow-color);
+		 }
+	}
+/*\
+\*/
+
+
+
+/*\
+|*| =============================================
+|*|  TRANSITION
+|*|  MAKE ANYTHING GLOW UPON HOVERING
+|*| =============================================
+\*/
+	.glow { transition:text-shadow 0.5s ease; }
+
+	.glow:hover {
+		text-shadow: 0px 0px 50px var(--transition-glow-color),
+		             0px 0px 50px var(--transition-glow-color), 
+		             0px 0px 30px var(--transition-glow-color), 
+		             0px 0px 20px var(--transition-glow-color), 
+		             0px 0px 10px var(--transition-glow-color), 
+		             0px 0px 5px  var(--transition-glow-color);
+	}
+/*\
+\*/
+
+
+
+/*\
+|*| =============================================
+|*|  CSS STYLE
+|*|  	.static-glow-m [medium glow]
+|*|  	.static-glow-s [small glow]
+|*|
+|*|  EMITS A STATIC GLOW AROUND TEXT
+|*| =============================================
+\*/
+	.static-glow-m {
+		text-shadow: 0px 0px 30px var(--transition-glow-color),
+			         0px 0px 30px var(--transition-glow-color), 
+			         0px 0px 20px var(--transition-glow-color), 
+			         0px 0px 10px var(--transition-glow-color), 
+			         0px 0px 10px var(--transition-glow-color), 
+			         0px 0px 5px  var(--transition-glow-color);
+	}
+
+	.static-glow-s {
+		text-shadow: 0px 0px 10px var(--transition-glow-color), 
+			         0px 0px 10px var(--transition-glow-color), 
+			         0px 0px 5px  var(--transition-glow-color), 
+			         0px 0px 5px  var(--transition-glow-color);
+	}
+/*\
+\*/
+
+
+
+/*\
+|*| =============================================
+|*|  GALLERY TRANSITION
+|*|  MAKE CUSTOM CAPTION POP UP FROM THE BOTTOM
+|*|
+|*|  HOW TO USE:
+|*|  	<div class="captionText">
+|*|  		<div>Your Text goes here</div>
+|*| =============================================
+\*/
+	.captionText {
+		position:relative;
+
+		width:300px;
+		height:125px;
+	}
+
+	.captionText > div:nth-child(1) {
+		width:100%;
+		height:0px;
+		line-height:25px;
+
+		position:absolute;
+		bottom:0px;
+
+		background-color:rgba(0, 0, 0, 0.75);
+
+		overflow-y:hidden;
+		overflow:hidden;
+		transition:height 0.4s ease;
+
+		color:white;
+		text-align:center;
+
+		border-bottom-left-radius:10px;
+		border-bottom-right-radius:10px;
+	}
+
+	.captionText:hover > div:nth-child(1) {
+		height:25px;
+
+		overflow:auto;
+		overflow-y:hidden;
+	}
+/*\
+\*/

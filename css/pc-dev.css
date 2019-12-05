@@ -1,0 +1,120 @@
+/* ================================= */
+/*   DEVELOPMENT NOTE                */
+/* ================================= */
+h1.dev {
+	text-align:center;
+	padding:5px 0px;
+
+	margin-bottom:10px;
+
+	border-top:2px solid;
+	border-bottom:2px solid;
+	
+	border-image-source: linear-gradient(
+		to right, 
+		rgba(255, 255, 255, 0.0),
+		rgba(95, 95, 95, 0.9) 45%, 
+		rgb(100, 100, 100) 50%, 
+		rgba(95, 95, 95, 0.9) 55%,
+		rgba(255, 255, 255, 0.0)
+	);
+	border-image-slice: 1;
+}
+
+h1.dev {
+	border-bottom:2px solid white;
+
+	width:100%;
+
+	padding:5px 10px;
+
+	letter-spacing:2px;
+	text-align: center;
+}
+
+
+div.devNote {
+	position:absolute;
+	z-index:10000;
+	display:none;
+
+	width:100%;
+	height:100%;
+
+	background-color:rgba(30,30,30,0.95);
+
+	color:white;
+	padding:40px;
+}
+
+div.devMessage {
+	position:absolute;
+	left:0px; right:0px;
+	top:0px; bottom:0px;
+
+	margin:auto;
+
+	min-width:300px;
+	
+	width:35%;
+	height:100%;
+
+	padding:30px;
+
+	border-left:6px solid;
+	border-right:6px solid;
+	border-image:var(--gold-border-image) 6 round;
+
+	overflow:scroll;
+	overflow-x: hidden;
+}
+
+
+div.closeDevNote {
+	width:40px;
+	line-height:30px;
+	font-size:9pt;
+
+	position:absolute;
+	right:30px;
+
+	border-radius: 25px;
+
+	text-align:center;
+
+	background-color:rgba(20,20,20,0.8);
+	border:5px outset gold;
+}
+
+div.closeDevNote:hover, li#devNoteToggle:hover {
+	cursor:pointer;
+}
+
+
+
+dl.note { padding:10px 10px; margin-bottom:15px; }
+dt.date, dd.definition { letter-spacing:1px; }
+dd.story, dd.fixed, dd.added { padding:10px; border-radius:5px; }
+
+dt.date { 
+	text-align:center;
+	font-size:14pt; 
+	margin-bottom:10px;
+}
+
+dd.definition { 
+	font-size:10pt;
+	margin-bottom:10px;
+}
+
+dd.story { background-color:rgba(234, 255, 115, 0.3); }
+dd.fixed { background-color:rgba(255, 200, 148, 0.3); }
+dd.added { background-color:rgba(200, 255, 148, 0.3); }
+
+dd i { font-size:0.8em;}
+
+br {
+	content: " ";
+	display:block;
+	margin-bottom:10px;
+}
