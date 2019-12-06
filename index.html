@@ -10,18 +10,29 @@
 		<link href="css/pooper.css" rel="stylesheet" />
 		<link href="css/pc-nav.css" rel="stylesheet" />
 		<link href="css/pc-dev.css" rel="stylesheet" />
+		<link href="css/fancy.css" rel="stylesheet" />
 
 		<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,300i" rel="stylesheet">
 
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 
-		<link rel="prefetch" href="js/audio/shovel_sfx_4.mp4" as="audio">
-		<link rel="prefetch" href="js/audio/shovel_sfx_2.mp4" as="audio">
+		<link rel="prefetch" href="../audio/shovel_sfx_4.mp4" as="audio">
+		<link rel="prefetch" href="../audio/shovel_sfx_2.mp4" as="audio">
 
-		<script type="text/javascript" src="js/Dev_Data.js"></script>
-		<script type="text/javascript" src="js/DOM.js"></script>
-		<script type="text/javascript" src="js/Arithmetic.js"></script>
+		<script type="text/javascript" src="js/utils/Dev_Data.js"></script>
+		<script type="text/javascript" src="js/utils/DOM.js"></script>
+		<script type="text/javascript" src="js/utils/Arithmetic.js"></script>
+
+		<script type="text/javascript" src="js/data/upgradeData.js"></script>
+		<script type="text/javascript" src="js/data/techData.js"></script>
+		<script type="text/javascript" src="js/data/quantity.js"></script>
+		<script type="text/javascript" src="js/data/messageData.js"></script>
+		<script type="text/javascript" src="js/data/achievementData.js"></script>
+		<script type="text/javascript" src="js/data/worldNameData.js"></script>
+		<script type="text/javascript" src="js/data/screenPanel.js"></script>
+		<script type="text/javascript" src="js/data/soundData.js"></script>
+
 		<script type="text/javascript" src="js/App_SaveState.js"></script>
 		<script type="text/javascript" src="js/PC.js"></script>
 		<script type="text/javascript" src="js/PC_Num.js"></script>
@@ -67,7 +78,9 @@
 			</div>
 		</div>
 
-		<div id="transition"></div>
+		<div id="transition">
+			<div class="loadingMsg">Flushing old Game... Loading...</div>
+		</div>
 
 		<div id="mainGame">
 			<div class="pc-gridLayout">
@@ -237,9 +250,15 @@
 						<div class="setting-body">
 							<div id="ngBtn" class="setting-saveBtn gData">New Game</div>
 							<div id="saveBtn" class="setting-saveBtn gData">Save Game</div>
+
 							<div id="autoSaveBtn">
 								<input id="autoSaveInput" class="autoSaveChkBox" type="checkbox" />
 								<label class="autoSaveLabel">Auto Save</label>
+							</div>
+
+							<div id="fancyCSSBtn">
+								<input id="fancyCSSInput" class="autoSaveChkBox" type="checkbox" />
+								<label class="autoSaveLabel">Disable Fancy CSS</label>
 							</div>
 						</div>
 

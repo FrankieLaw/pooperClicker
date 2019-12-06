@@ -10,7 +10,7 @@ const dNote           = new Notes( );
 
 const hackMode        = false;
 const hackClickAmt    = 25;
-const FPS             = 10;
+const FPS             = 50;
 
 let	  updateTimer     = null;
 

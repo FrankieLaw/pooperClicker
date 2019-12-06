@@ -203,14 +203,6 @@ function GameUtilityAPI( ) {
 		return string.split(".");
 	}
 
-	//FIND OUT WHERE THE DECIMAL PLACE IS
-	//REQUIRE ALL NUMERICAL PUNCTUATION REMOVED FIRST
-	function getDecimalPlace( string ) {
-		let d1 = splitNumber( string );
-
-		return ( d1.length == 2 ) ? d1[1].length : 0;
-	}
-
 	//CHECK IF A NUMBER STRING IS ALL 0
 	function isZero( string ) {
 		let retValue = true;
@@ -225,13 +217,6 @@ function GameUtilityAPI( ) {
 		}
 
 		return retValue;
-	}
-
-	//CLEAN UP THE STRING TO ITS ENTIRETY
-	//REMOVE POSITIVE & NEGATIVE & COMMAS (+ - ,)
-	//REMOVE LEADING ZEROS
-	function cleanUp( string ) {
-		return removeLeadingZero( removeSign( string == undefined ? "0" : string ) );
 	}
 
 

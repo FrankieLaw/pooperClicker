@@ -86,6 +86,8 @@ function initPooStoreContorl( ) {
                 let sum            = $PC.calcSellPrice( name, curLevel, decrement );
                 let refundAmt      = $ST.getDisplayNotation( sum );
                 
+                console.log( refundAmt );
+
                 upgradeElement.innerHTML = refundAmt;
             });
         }
@@ -332,12 +334,8 @@ function devNoteControlSetup( ) {
     dNote.getDNotes.forEach( (entry) => {
         $D.id( "devNoteEntry" ).innerHTML += entry;
     });
-    
 }
 
-function addDevNotes( ) {
-
-}
 
 function headerSetup( ) {
     const title = `POOPER CLICKER &copy ${$ST.Copyright("dateTo")}`;

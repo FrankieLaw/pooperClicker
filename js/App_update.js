@@ -64,7 +64,7 @@ function updateMainStats( ) {
 
     //SCORE DISPLAY
     pooDisplay.innerHTML = totalPooText + " POOPS";
-    ppsDisplay.innerHTML = `per second: ${ ( $ST.calcAllTotalPPS( ) ).toFixed(2) }`;
+    ppsDisplay.innerHTML = `per second: ${ $ST.getDisplayNotation( ( $ST.calcAllTotalPPS( ) ).toFixed(2) ) }`;
 }
 
 function updateStatistisScreen( ) {
@@ -88,16 +88,16 @@ function updateStatistisScreen( ) {
     totalClicks.innerHTML        = $ST.getTotalClicks( );
     totalUpgrades.innerHTML      = $ST.getTotalUpgrade( );
     totalPooCollected.innerHTML  = totalPooText;
-    totalPooSinceStart.innerHTML = pooSinceStart;
-    currentPPS.innerHTML         = ( $ST.getPPS( ) ).toFixed( 2 );
+    totalPooSinceStart.innerHTML = $ST.getDisplayNotation( pooSinceStart );
+    currentPPS.innerHTML         = $ST.getDisplayNotation( ( $ST.getPPS( ) ).toFixed( 2 ) );
     ppsMultiplier.innerHTML      = `+${$ST.getAllUnlockedChevo( ).length}%`;
     
     //UPGRADE STATISTICS
     totalUpgradeUnlocked.innerHTML = `${$ST.getAllOwnedTech( ).length} / ${$PC.getTechTreeLength( )}`;
 
-    handStats.children[1].innerHTML = $ST.getUpgradeLevel( "Hand" );                //level
-    handStats.children[2].innerHTML = $ST.getMultiplierByName( "Hand" ).toFixed(2); //multiplier
-    handStats.children[3].innerHTML = $ST.calcPooPerClick( );                       //Clicking power
+    handStats.children[1].innerHTML = $ST.getUpgradeLevel( "Hand" );                    //level
+    handStats.children[2].innerHTML = $ST.getMultiplierByName( "Hand" ).toFixed(2);     //multiplier
+    handStats.children[3].innerHTML = $ST.getDisplayNotation( $ST.calcPooPerClick( ) ); //Clicking power
 
 
     //================================
@@ -123,7 +123,7 @@ function updateStatistisScreen( ) {
                 clone.children[0].children[0].setAttribute( "src", `./img/${$PC.getUpgradeShop(key)}` );
                 clone.children[1].innerHTML = $ST.getUpgradeLevel(key);
                 clone.children[2].innerHTML = $ST.getMultiplierByName(key).toFixed(2);
-                clone.children[3].innerHTML = $ST.calcPPSByName( key ).toFixed(2);
+                clone.children[3].innerHTML = $ST.getDisplayNotation( $ST.calcPPSByName( key ).toFixed(2) );
 
                 container.appendChild( clone );
             } 
@@ -131,7 +131,7 @@ function updateStatistisScreen( ) {
             else {
                 curRow.children[1].innerHTML = $ST.getUpgradeLevel(key);
                 curRow.children[2].innerHTML = $ST.getMultiplierByName(key).toFixed(2);
-                curRow.children[3].innerHTML = $ST.calcPPSByName( key ).toFixed(2);
+                curRow.children[3].innerHTML = $ST.getDisplayNotation( $ST.calcPPSByName( key ).toFixed(2) );
             }
         }
     });

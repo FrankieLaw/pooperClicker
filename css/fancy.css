@@ -1,0 +1,115 @@
+h2 {
+    border-top:2px solid;
+	border-bottom:2px solid;
+	
+	border-image-source: linear-gradient(
+		to right, 
+		rgba(255, 255, 255, 0.0),
+		rgba(0, 0, 0, 0.9) 45%, 
+		rgba(0, 0, 0, 1.0) 50%, 
+		rgba(0, 0, 0, 0.9) 55%,
+		rgba(255, 255, 255, 0.0)
+	);
+	border-image-slice: 1;
+}
+
+div.techDescBox {
+    box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+div.chevoClose {
+    box-shadow:-3px 3px 2px black;
+}
+
+div.chevoBox {
+    box-shadow: -15px 15px 10px rgba(0,0,0,0.8);
+}
+
+.transAnimation {
+	animation-name: bkgTransition;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+}
+
+@keyframes bkgTransition {
+	0%   { opacity: 1.0; }
+	100% { opacity: 0.0; }
+}
+
+div.staticMessage, div.randomMessage {
+    text-shadow: 0px 3px 5px rgba(0,0,0,0.8);
+}
+
+div.randomMessage {
+    animation-name: fadeMessage;
+        animation-duration: 12.5s;
+        animation-iteration-count: infinite;
+}
+
+@keyframes fadeMessage {
+    0%   { opacity: 0.0; }
+    20%  { opacity: 1.0; }
+    80%  { opacity: 1.0; }
+    100% { opacity: 0.0; }
+}
+
+div.worldNameBlock, div.totalPooDisplay, div.ppsDisplay  {
+    text-shadow:0px 0px 3px rgba(0, 0, 0, 1);
+    box-shadow: 0px 1px 5px rgba(0,0,0,1);
+}
+
+div.cmdBtn {
+    transition:text-shadow 0.5s ease !important;
+    color:white !important;
+}
+
+div.cmdBtn:hover {
+    text-shadow:0px 0px 50px gold,
+                0px 0px 30px gold,
+                0px 0px 20px gold,
+                0px 0px 20px gold,
+                0px 0px 10px gold;
+}
+
+div.selected {
+    text-shadow:0px 0px 50px gold,
+                0px 0px 30px gold,
+                0px 0px 20px gold,
+                0px 0px 20px gold,
+                0px 0px 10px gold;
+}
+
+span.optionBtn, span.quantityBtn { 
+    transition:text-shadow 0.25s, color 0.25s;
+}
+
+span.optionBtn:hover, span.quantityBtn:hover {
+    text-shadow:0px 0px 10px rgba(0,0,0,0.8);
+}
+
+span.active { 
+    text-shadow:0px 0px 10px rgba(0,0,0,0.8);
+}
+
+div.upgradeCell span.level {
+    text-shadow:-2px 2px 3px rgba(0, 0, 0, 0.50);
+}
+
+.purchaseable {
+    text-shadow:-1px 1px 2px rgba(30, 30, 30, 0.8);
+}
+
+div.setting-saveBtn {
+    transition:background-color 0.6s ease;
+}
+
+div.gData {
+    box-shadow:-2px 3px 5px black;
+}
+
+div.deleteSaveData {
+    transition:
+        font-size 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
