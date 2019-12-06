@@ -1,0 +1,111 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Sandbox Reference Page (2019)</title>
+
+		<link href="css/endlessDungeon.css" rel="stylesheet" />
+		
+
+		<script type="text/javascript" src="js/App_SaveState.js"></script>
+
+		<script type="text/javascript" src="js/ED_Timer.js"></script>
+		<script type="text/javascript" src="js/ED_Stages.js"></script>
+		<script type="text/javascript" src="js/ED_AppSessionState.js"></script>
+		<script type="text/javascript" src="js/EndlessDungeon.js"></script>
+		
+
+		<script type="text/JavaScript">
+			window.onload = function( ) {
+				EndlessDungeon( );
+			}			
+		</script>
+	</head>
+
+	<body>
+		<div class="navBar">
+			Pooper Clicker &copy;
+		</div>
+
+		<div class="footer">
+			Version 1'0
+		</div>
+
+		<!-- Splash Screen -->
+		<div id="page1">
+			<div class="p1Container">
+				<div class="ED-btn"
+					id="p1-newGameBtn"
+					data-target="page4">
+					New Game
+				</div>
+
+				<div class="ED-btn"
+					id="p1-loadGameBtn" 
+					data-target="page2">
+					Load Game
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Load Game Screen -->
+		<div id="page2">
+			<div class="p2Container">
+				<div id="saveSlotContainer" class="slotConatiner">
+				</div>
+
+				<div class="ED-btn"
+					id="p2-backBtn"
+					data-target="page1">
+					Back
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Reconstruct In-Game Content -->
+		<div id="page4">
+			<div class="p4Container">
+				
+				<div id="contentArea" class="statisticBlock">
+					<span class="header">STATISTICS</span>
+
+					<div class="row">
+						<div class="label">Game Started:</div>
+						<div id="currentTime">...</div>
+					</div>
+
+					<div class="row">
+						<div class="label">Poop Collected:</div>
+						<div id="totalPooCollected">0</div>
+					</div>
+				</div>
+
+				<div id="pooArea" class="pooBlock">
+					<img id="pooClicker" class="shovelCursor" draggable="false" src="img/poo2.png"/>
+				</div>
+
+
+				<div id="Button" class="contentBtnBlock">
+					<div id="p4-saveBtn" class="ED-btn" data-target="page4">
+						Save
+					</div>
+
+					<div id="p4-endBtn" class="ED-btn" data-target="page1">
+						Save & Quit
+					</div>
+				</div>
+
+				<div id="upgrades" class="upgradeBlock">
+					<span class="header">POO TOOLS</span>
+
+					<!-- UpgradeList is a container -->
+					<div id="upgradeList" class="upgradeListContainer">
+					</div>
+				</div>
+				
+			</div> <!-- End of Container p4 -->
+		</div>
+	</body>
+</html>

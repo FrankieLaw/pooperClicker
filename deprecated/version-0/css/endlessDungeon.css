@@ -1,0 +1,593 @@
+/**
+=========================================
+ DEBUG
+========================================= */
+.debug {
+	outline:2px solid black;
+}
+
+.debug1 {
+	background-color:#FFCCFF;
+	outline:2px solid black;
+}
+
+.debug2 {
+	background-color:#FFFFCC;
+	outline:2px solid black;
+}
+
+.debug3 {
+	background-color:#CCFFFF;
+	outline:2px solid black;
+}
+
+.debug4 {
+	background-color:#CCCCFF;
+	outline:2px solid black;
+}
+
+/**
+=========================================
+ GLOBAL LAYOUT RESET
+========================================= */
+@font-face {
+	font-family:"Penny Pinch";
+	src:url("font/PennyPinch.ttf");
+
+}	
+
+* {
+	margin:0px;
+	padding:0px;
+	border:0px;
+	outline:0px solid black;
+	box-sizing:border-box;
+	position:relative;
+
+	font-family:'Penny Pinch';
+	font-size:18pt;
+
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+html, body {
+	width:100%;
+	height:100%;
+}
+
+.shovelCursor {
+	cursor: url('../img/shovel32x32.png'), auto;
+}
+
+
+/**
+=============================================
+ DEFINING [DYNAMIC] GRID BASED LAYOUT SYSTEM
+============================================= */
+.container {
+	margin-left:auto;
+	margin-right:auto;
+
+	text-align:center;
+}
+
+.container
+	.row {
+		width:100%;
+		position:relative;
+}
+
+.clearfix {
+	clear:both;
+}
+
+
+.grid-1, .grid-2, .grid-3, .grid-4, .grid-5, .grid-6, 
+.grid-7, .grid-8, .grid-9, .grid-10, .grid-11, .grid-12 {
+	float:left;
+}
+
+.row-1,  .grid-1  { width:8.33%;  }
+.row-2,  .grid-2  { width:16.66%; }
+.row-3,  .grid-3  { width:25.00%; }
+.row-4,  .grid-4  { width:33.33%; }
+.row-5,  .grid-5  { width:41.66%; }
+.row-6,  .grid-6  { width:50.00%; }
+.row-7,  .grid-7  { width:58.33%; }
+.row-8,  .grid-8  { width:66.66%; }
+.row-9,  .grid-9  { width:75.00%; }
+.row-10, .grid-10 { width:83.33%; }
+.row-11, .grid-11 { width:91.66%; }
+.row-12, .grid-12 { width:100.0%; }
+
+
+.h-grid-0  { height:0.00%;  }
+.h-grid-1  { height:8.33%;  }
+.h-grid-2  { height:16.66%; }
+.h-grid-3  { height:25.00%; }
+.h-grid-4  { height:33.33%; }
+.h-grid-5  { height:41.66%; }
+.h-grid-6  { height:50.00%; }
+.h-grid-7  { height:58.33%; }
+.h-grid-8  { height:66.66%; }
+.h-grid-9  { height:75.00%; }
+.h-grid-10 { height:83.33%; }
+.h-grid-11 { height:91.66%; }
+.h-grid-12 { height:100.0%; }
+
+
+/**
+============================================
+ DEFINING [STATIC] GRID BASED LAYOUT SYSTEM
+============================================ */
+.height-1  { height:50px;  line-height:50px; }
+.height-2  { height:100px; line-height:100px; }
+.height-3  { height:150px; line-height:150px; }
+.height-4  { height:200px; line-height:200px; }
+.height-5  { height:250px; line-height:250px; }
+.height-6  { height:300px; line-height:300px; }
+.height-7  { height:350px; line-height:350px; }
+.height-8  { height:400px; line-height:400px; }
+.height-9  { height:450px; line-height:450px; }
+.height-10 { height:500px; line-height:500px; }
+.height-11 { height:550px; line-height:550px; }
+.height-12 { height:600px; line-height:600px; }
+
+
+/**
+=========================================
+ DEFINING ELEMENT POSITIONING
+========================================= 
+ UL     UC     UR
+ CL     CC     CR     <- Require Custom Height
+ LL     LC     LR
+========================================= */
+.UC, .UR, .CL, .CC, .CR, .LL, .LC, .LR {
+	position:absolute;
+	margin:auto;
+}
+
+.UC { left:0px; right:0px; }
+.UR { right:0px; }
+
+.CL { left:0px; top:0px; bottom:0px; }
+.CC { left:0px; right:0px; top:0px; bottom:0px; }
+.CR { right:0px; top:0px; bottom:0px; }
+
+.LL { left:0px;	bottom:0px; }
+.LC { left:0px; right:0px; bottom:0px; }
+.LR { right:0px; bottom:0px; }
+
+
+
+/**
+=========================================
+ DEFINING ELEMENT SPACING
+========================================= */
+.VSpace-1 { margin-bottom:10px; }
+.VSpace-2 { margin-bottom:20px; }
+.VSpace-3 { margin-bottom:30px; }
+.VSpace-4 { margin-bottom:40px; }
+
+
+
+/**
+=========================================
+ ENDLESS DUNGEON - BUTTON THEME
+========================================= */
+.ED-btn { 
+	width:200px;
+	height:50px;
+	line-height:36px;
+
+	border:8px solid black; 
+	background-color:rgba(139, 69, 19, 1);
+
+	border-radius: 25px;
+	color:white;
+}
+
+.ED-SaveFile 	{ background-color:#CCCCCC; }
+.ED-Reserved	{ background-color:#FFCCCC; }
+
+
+div.navBar, div.footer {
+	width:100%;
+	height:30px;
+
+	color:#DDDDDD;
+	font-size:10pt;
+
+	position:absolute;
+	z-index:1000;
+
+	line-height:30px;
+
+	padding-left:10px;
+	padding-right:10px;
+
+	text-shadow:0px 3px #000000;
+}
+
+div.navBar {
+	background-color:rgba(20,20,20,1);
+	/*background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.2), rgba(0,0,0,0));*/
+}
+
+div.footer {
+	bottom:0px;
+}
+
+div#pageContainer, div#page1, div#page2, div#page3, div#page4 {
+	display:none;
+
+	margin-left:auto;
+	margin-right:auto;
+
+	text-align:center;
+
+	height:100.0%;
+
+	background-image:url("../img/background.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+}
+
+
+/* ==================================== */
+/* Page1 - Splash Screen - CSS          */
+/* ==================================== */
+div#page1 
+	div.p1Container {
+		width:200px;
+		height:16.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px;	right:0px;	top:0px;	bottom:0px;
+}
+
+div#page1 
+	div.p1Container 
+		div.ED-btn {
+			position:relative;
+			margin-bottom:40px; 
+}
+
+
+/* ==================================== */
+/* Page2 - Save Game Table Screen - CSS */
+/* ==================================== */
+div#page2 
+	div.p2Container {
+		width:500px;
+		height:41.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; 	right:0px; 	top:0px; 	bottom:0px;
+}
+
+div#page2 
+	div.p2Container 
+		div.saveSlotBlock {
+			width:100%;
+			position:relative;
+
+			height:400px; line-height:400px;
+			margin-bottom:40px;
+
+			overflow:auto;
+}
+
+div#page2 
+	div.p2Container 
+		div.slotConatiner 
+			div.saveBlock {
+				height:50px;  line-height:50px;
+				margin-bottom:20px;
+
+				background-color:rgba(150,150,150,0.25);
+
+				text-align:center;
+				padding-left:10px;
+			}
+
+div#page2 
+	div.p2Container 
+		div.ED-btn {
+			position:relative; 
+			margin:auto;		
+}
+
+
+/* ===================================== */
+/* Page3 - Character Create Screen - CSS */
+/* ===================================== */
+div#page3 
+	div.p3Container {
+		width:66.66%;
+		height:16.66%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; right:0px; top:0px; bottom:0px;
+	}
+
+div#page3 
+	div.p3Container 
+		div.ED-CharNameBlock {
+			width:100%;
+			position:relative;
+
+			height:50px;  line-height:50px;
+			margin-bottom:40px;
+
+			background-color:#FFCCCC;
+		}
+
+div#page3 
+	div.p3Container 
+		div.ED-CharNameBlock 
+			div.ED-InputBlock {
+				height:30px;
+				padding:5px;
+				text-align:center;
+			}
+
+div#page3 
+	div.p3Conatiner 
+		div.ED-NavBlock {
+			width:100%;
+			position:relative;
+
+			height:50px;  line-height:50px;
+			margin-bottom:40px;
+
+			background-color:#FFCCCC;
+		}
+
+
+div#page3 
+	div.p3Container 
+		div.ED-NavBlock 
+			div.ED-btn {
+				width:25.00%;
+				height:50px;  
+				float:left;
+				margin-right:40px;
+			}
+
+
+
+/* ===================================== */
+/* Page4 - Game Screen - CSS */
+/* ===================================== */
+div.statisticBlock, div.upgradeBlock {
+	background-color:rgba(50,50,50,0.5);
+	min-width:300px;
+}
+
+span.header {
+	letter-spacing:1px;
+	color:white;
+	margin-bottom:10px;
+	padding:10px;
+	border-bottom:2px solid rgba(0,0,0,0.5);
+	display:block;
+	text-align: center;
+}
+
+span.header:hover { text-shadow:0px 0px 5px white; }
+
+div#page4 
+	div.p4Container {
+		width:100%;
+		height:100%;
+
+		position:absolute;
+		margin:auto;
+
+		left:0px; right:0px; top:0px; bottom:0px;	
+	}
+
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock {
+			position:absolute;
+			left:0px;
+
+			min-width:300px;
+			width:22.50%;
+			height:100%;
+
+			padding-top:40px;
+			padding-left:15px;
+			padding-right:15px;
+
+			text-align:left;
+		}
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock div {
+				font-size:12pt;
+			}
+
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock 
+			div.row {
+				width:100%;
+				margin-bottom:5px;
+}
+
+div#page4 
+	div.p4Container 
+		div.statisticBlock 
+			div.label {
+				float:left; 
+				margin-right:20px;
+			}
+
+
+div#page4 
+	div.p4Container 
+		div.contentBtnBlock {
+			min-width:200px;
+			width:25%;
+			/*height:100%;*/
+
+			position:absolute;
+			bottom:0px;
+
+			padding-top:40px;
+			padding-left:15px;
+			padding-right:15px;
+		}
+
+div#page4 
+	div.p4Container 
+		div.contentBtnBlock
+			div.ED-btn {
+				margin-bottom:15px;
+			}
+
+
+div#page4 
+	div.p4Container 
+		div.pooBlock {
+			/* Center is [120x105]*/
+			height:210px;
+			width:240px;
+
+			position:absolute;
+			top:76%; bottom:24%; left:0px; right:0px;
+			margin:auto;
+		}
+
+div#page4 
+	div.p4Container 
+		div.pooBlock img {
+			height:200px;
+		}
+
+div#page4 
+	div.p4Container 
+		div.pooBlock 
+			div.pooClicked {
+				position:absolute;
+				top:0px; bottom:0px; left:0px; right:0px;
+
+				width:1px;
+				height:1px;
+				font-size:12pt;
+
+				opacity:1.0;
+
+				text-align:center;
+				z-index:1000;
+			}
+
+
+
+div#page4 
+	div.p4Container 
+		div.upgradeBlock {
+			width:22.50%;
+			height:100%;
+
+			padding-top:40px;
+
+			position:absolute;
+			right:0px;
+		}
+
+
+div#page4 
+	div.p4Container 
+		div.upgradeBlock 
+			div.upgradeListContainer {
+				height:100%;
+			}
+
+
+div.upgradeCell > * { /*outline:2px dotted blue;*/ }
+div.upgradeCell {
+	height:70px;
+	padding:10px;
+	background-color:rgba(200, 200, 200, 1);
+	margin-bottom:1px;
+}
+
+div.upgradeCell:hover {
+	cursor:pointer;
+}
+
+div.upgradeCell img {
+	position:absolute;
+	left:10px;
+
+	width:50px;
+	height:50px;
+
+	/*box-shadow: 0px 0px 5px black;*/
+}
+
+
+div.upgradeCell span.label {
+	position:absolute;
+	left:70px;
+
+	height:50px;
+
+	font-size:20pt;
+}
+
+
+div.upgradeCell span.cost {
+	position:absolute;
+	left:70px; top:42px;
+
+	font-size:12pt;	
+}
+
+div.upgradeCell span.level {
+	position:absolute;
+	top:0px; right:10px;
+
+	height:70px;
+	line-height:70px;
+	font-size:30pt;
+
+	color:rgba(130, 130, 130, 0.9);
+}
+
+div.upgradeCell div.overlay {
+	position:absolute;
+	left:0px; top:0px;
+
+	width:100%;
+	height:100%;
+
+	z-index:2000;
+}
+
+.notPurchaseable {
+	color:rgba(130, 130, 130, 0.7);
+}
+
+.purchaseable {
+	color:rgba(255, 215, 0, 1);
+	text-shadow:-1px 1px 2px rgba(30, 30, 30, 0.8);
+	/*color:rgba(139, 69, 19, 1);	Brown Poo Color*/
+}
