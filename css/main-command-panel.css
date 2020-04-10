@@ -1,0 +1,31 @@
+/* ======================================== */
+/*  RIGHT COLUMN - PANEL SCREEN             */
+/*  USED BY => UPGRADE | SETTING            */
+/* ======================================== */				
+div.commandPanel {
+    width:100%;
+    height:100%;
+
+    position:absolute;
+    text-align:left;
+}
+
+div.cmdBtn {
+    width:100%;
+    height:70px;
+
+    line-height:70px;
+
+    padding:0px 30px;
+    
+    color:white;
+}
+
+div.cmdBtn:hover {
+    cursor:pointer;
+    color:gold;
+}
+
+div.selected {
+    color:gold;
+}

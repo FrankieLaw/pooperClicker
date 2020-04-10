@@ -1,0 +1,83 @@
+/* ======================================== */
+/*  PANEL SCREEN - STATISTIC                */
+/* ======================================== */
+div#achievementTab {
+    width:100%;
+
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+p#chevoCount, p#chevoNote, p#techCount {
+    font-size:11pt;
+    text-align:left;
+    margin-bottom:10px;
+}
+
+div#statisticTab, div#allUpgradeTab {
+    text-align:left;
+}
+
+div.pc-stats-gridLayout {
+    display:grid;
+    grid-template-columns:33.33% 33.33% 33.33%;
+
+    width:100%;
+    height:100%;
+
+    padding:10px;
+
+    color:white;
+}
+
+div.pc-stats-gridLayout > div {
+    padding:0px 20px;
+    overflow-y:auto;
+}
+
+div#statisticTab {
+    width:100%;
+    margin:auto;
+}
+
+div#statisticTab div,
+div#allUpgradeTab div { font-size:11pt; }
+
+div.row {
+    display:grid;
+    grid-template-columns:55% 45%;
+
+    width:100%;
+    margin-bottom:1vh;
+    padding:0px 1vw;
+}
+
+div.row:first-child { float:left; }
+
+#upgradeOwnTab {
+    clear :both;
+}
+
+.statsFormat > * { float:right; }
+.statsFormat > img { 
+    height:20px;
+    margin-right:10px; 
+}
+
+.smallIcon { height:20px; }
+
+.upgradeChart-grid {
+    display:grid;
+    grid-template-columns:10% 10% 40% 40%;
+    margin-bottom:5px;
+}
+
+.upgradeChart-grid div {
+    text-align:center;
+}
+
+.chartHeader {
+    background-color:rgba(0,0,0,0.3);
+    padding:5px;
+}

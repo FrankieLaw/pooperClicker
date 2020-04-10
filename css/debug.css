@@ -1,29 +1,12 @@
 /* ================================= */
 /*   DEBUG CLASSES                   */
 /* ================================= */
-.debug {
-	outline:2px solid black;
-}
-
-.debug1 {
-	background-color:#FFCCFF;
-	outline:2px solid black;
-}
-
-.debug2 {
-	background-color:#FFFFCC;
-	outline:2px solid black;
-}
-
-.debug3 {
-	background-color:#CCFFFF;
-	outline:2px solid black;
-}
-
-.debug4 {
-	background-color:#CCCCFF;
-	outline:2px solid black;
-}
+.debug1 { background-color:rgba( 255, 148, 148, 0.3); }
+.debug2 { background-color:rgba( 148, 255, 148, 0.3); }
+.debug3 { background-color:rgba( 148, 148, 255, 0.3); }
+.debug4 { background-color:rgba( 255, 255, 148, 0.3); }
+.debug5 { background-color:rgba( 255, 148, 255, 0.3); }
+.debug6 { background-color:rgba( 148, 255, 255, 0.3); }
 
 .debugPos1 {
 	position:absolute;

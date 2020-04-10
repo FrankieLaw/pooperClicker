@@ -1,0 +1,26 @@
+/* ======================================== */
+/*   POP UP MESSAGE THEME                   */
+/* ======================================== */
+div.SaveMsgBox {
+	width:250px;
+	height:65px;
+	line-height:65px;
+
+	position:absolute;
+	left:0px; right:0px; bottom:50px;
+	margin:auto;
+	z-index:1000;
+
+	text-align:center;
+
+	outline:2px dotted rgba(50,50,50,0.75);
+}
+
+div.chevoContainer {
+	position:absolute;
+	bottom:25px;
+	left:0px; right:0px;
+	margin:auto;
+
+	width:350px;
+}

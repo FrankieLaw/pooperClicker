@@ -1,0 +1,115 @@
+/* ======================================== */
+/*  PANEL SCREEN - POO STORE                */
+/* ======================================== */
+div#upgradeTab { margin-bottom:60px; }
+
+div.quantityBlock {
+    height:40px;
+    line-height:40px;
+
+    margin:-5px 0px 5px 0px;
+}
+
+div.quantityOption, div.quantityAmount { float:left; }
+span.quantityBtn                       { float:left; }
+
+span.optionBtn, span.quantityBtn { 
+    display:block; 
+    color:rgba(155, 155, 155, .8);
+    text-align:center;
+}
+
+span.optionBtn:hover, span.quantityBtn:hover {
+    cursor:pointer;
+    color:white;
+}
+
+span.active { 
+    color:white;
+}
+    
+div.quantityOption { width:25%; }
+div.quantityAmount { width:75%; }
+
+span.optionBtn {
+    width:100%;
+    height:20px;
+    line-height:20px;
+
+    font-size:12pt;
+    padding-left:10px;	
+}
+        
+span.quantityBtn {			
+    width:33.33%;
+}
+
+div#techList {
+    padding:0px 10px;
+}
+
+/* ======================================== */
+/*  POO STORE - Upgrade | Hand, Shovel, etc */
+/* ======================================== */
+div.upgradeCell {
+    height:70px;
+    padding:10px;
+    background-color:rgba(200, 200, 200, 0.2);
+}
+
+div.upgradeCell:hover {
+    cursor:pointer;						
+}
+
+div.upgradeCell img {
+    position:absolute;
+    left:0px; top:0px;
+
+    width:70px;
+    height:70px;
+}
+
+div.upgradeCell span.label {
+    position:absolute;
+    left:80px;
+
+    height:50px;
+
+    font-size:20pt;
+}
+
+div.upgradeCell span.cost {
+    position:absolute;
+    left:80px; top:42px;
+
+    font-size:12pt;	
+}
+
+div.upgradeCell span.level {
+    position:absolute;
+    top:0px; right:15px;
+
+    height:70px;
+    line-height:70px;
+    font-size:30pt;
+
+    color:rgba(255, 255, 255, 0.9);
+}
+
+div.upgradeCell div.overlay {
+    position:absolute;
+    left:0px; top:0px;
+
+    width:100%;
+    height:100%;
+
+    z-index:2000;
+}
+
+.notPurchaseable {
+    color:rgba(145, 145, 145, 0.7);
+}
+
+.purchaseable {
+    color:rgba(255, 215, 0, 1);
+}

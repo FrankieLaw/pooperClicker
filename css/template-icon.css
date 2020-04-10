@@ -1,0 +1,32 @@
+/* ======================================== */
+/*  TEMPLATE STYLING - TECH ICON            */
+/* ======================================== */
+div.techIcon {
+	width:48px; height:48px;
+
+	float:left;
+	margin:2px;
+
+	border:6px solid;
+	border-image:var(--gold-border-image) 6 round;
+
+	text-align:center;	
+}
+
+div.techIcon:hover {
+	cursor:pointer;
+}
+
+div.chevoBlankIcon {
+	width:48px; height:48px;
+
+	float:left;
+	margin:2px;
+
+	border:6px solid;
+	border-image:var(--gold-border-image) 6 round;
+
+	text-align:center;
+
+	background-color:black;
+}

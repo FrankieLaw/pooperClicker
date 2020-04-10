@@ -1,0 +1,74 @@
+/* ======================================== */
+/*  TEMPLATE STYLING - ACHIEVEMENT POP UP   */
+/* ======================================== */
+.fontSize10 { font-size:10pt; }
+.fontSize14 { font-size:14pt; }
+
+div.chevoClose:hover { cursor:pointer; }
+div.chevoClose {
+	width:25px;
+	height:25px;
+	line-height: 16px;
+
+	position:absolute;
+	right:-12px;
+	top:-12px;
+
+	color:white;
+	font-size:10pt;
+	text-align:center;
+
+	border:3px solid;
+	border-image:var(--gold-border-image) 6 round;
+
+	background-color:black;
+}
+
+div.chevoBox {
+	width:350px;
+
+	padding:10px;
+	margin-bottom:20px;
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+	font-size:10pt;
+
+	border:6px solid;
+	border-image:var(--gold-border-image) 6 round;
+}
+
+p.chevoTitle {
+	width:100%;
+	text-align:left;
+	padding:0px 0px 5px 0px;
+
+	margin-bottom:5px;
+	border-bottom:1px solid gold;
+}
+
+div.chevoIcon {
+	position:absolute;
+
+	width:45px;
+	height:45px;
+
+	background-image:url("../img/shovelTech1.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	border:2px solid rgba(115,115,115,1.0);
+}
+
+p.chevoDesc { font-style: italic; }
+
+
+div.chevoLeft {
+	float:left;
+}
+
+div.chevoRight {
+	position:relative;
+	left:55px;
+	width:255px;
+}

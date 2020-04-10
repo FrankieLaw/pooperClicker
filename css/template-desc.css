@@ -1,0 +1,41 @@
+/* ======================================== */
+/*  TEMPLATE STYLING - TECH DESCRIPTION     */
+/* ======================================== */
+div.techDescBox {
+	width:350px;
+
+	position:absolute;
+	top:0px;
+	left:0px;
+
+	padding:10px;
+
+	background-color:rgba(55,55,55,0.8);
+	color:white;
+	text-align:left;
+
+	border:6px solid;
+	border-image:var(--gold-border-image) 6 round;
+}
+
+div.techDescBox p {
+	font-size:10pt;
+	margin-bottom:10px;
+}
+
+div.techTitleBox {
+	margin-bottom:10px;
+}
+
+div.techTitleBox 
+	span {
+		font-size:16pt;
+		margin-right:10px;
+	}
+
+div.techTipBox { padding:0px 10px; }
+p.techDesc { font-style:italic; }
+
+p#techCost, p#techCost span.purchaseable, p#techCost span.notPurchaseable {
+	font-size:10pt;
+}

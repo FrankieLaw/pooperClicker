@@ -1,0 +1,69 @@
+/* ======================================== */
+/*  PANEL SCREEN - SETTINGS                 */
+/* ======================================== */
+div.setting-body {
+    padding:10px 20px;
+    margin-bottom:20px;
+}
+
+div.dataGrid {
+    display:grid;
+    grid-template-columns:1fr 40px;
+}
+
+div.dataGrid > div {
+    padding:5px;
+}
+
+div.setting-saveBtn {
+    width:100%;
+    
+    padding:5px 5px;
+    margin:0px auto 10px auto;
+
+    color:black;
+    text-align:center;
+
+    background-color:rgba( 200, 200, 200, 0.2 );
+
+    border:2px dotted black;
+    border-radius:10px;
+}
+
+div.setting-saveBtn:hover {
+    cursor:pointer;
+    background-color:rgba( 200, 200, 200, 1.0 );
+}
+
+div.gData {
+    font-size:0.6em;
+    font-weight:bold;
+    color:white;
+}
+
+div.deleteSaveData:hover {
+    color:red;
+}
+
+#autoSaveBtn, #fancyCSSBtn {
+    width:50%;
+
+    font-size:0.6em;
+    font-weight:bold;
+    color:white;
+
+    margin-top:20px;
+    text-align:left;
+}
+
+.autoSaveChkBox {
+    position: relative;
+    top:3px;
+
+    width:15px; height:15px;
+    margin-right:5px;
+}
+
+.autoSaveLabel {
+    font-size:1.0em;
+}
