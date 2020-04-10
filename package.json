@@ -1,0 +1,25 @@
+{
+  "name": "pooperClicker",
+  "version": "1.0.0",
+  "description": "An idle clicker game that takes the player through a world of symbolism about a mysterious and magical poo that is causing havoc in the world.",
+  "main": "index.js",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankieLaw/pooperClicker.git"
+  },
+
+  "keywords": [],
+  "author": "Frankie",
+  "license": "MIT",
+
+  "bugs": {
+    "url": "https://github.com/FrankieLaw/pooperClicker/issues"
+  },
+  
+  "homepage": "https://github.com/FrankieLaw/pooperClicker#readme"
+}

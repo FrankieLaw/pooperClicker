@@ -281,6 +281,15 @@ div.chevoContainer {
 /* ======================================== */
 /*  2 COLUMN GRID LAYOUT                    */
 /* ======================================== */
+div.pc-flexLayout {
+	display:flex;
+	width:100%;
+	height:100%;
+
+	padding-top:30px;
+}
+
+
 div.pc-gridLayout {
 	display:grid;
 	grid-template-columns:1fr minmax(15.50%, 300px);
