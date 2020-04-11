@@ -8,6 +8,8 @@ div.commandPanel {
 
     position:absolute;
     text-align:left;
+
+    background-color:var(--displayBkgColor);
 }
 
 div.cmdBtn {

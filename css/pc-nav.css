@@ -7,54 +7,36 @@
 }
 
 @media( min-width:768px) {
-	.navBarMobile { display:none; }
+	.navBarMobile { display:none !important; }
 	.navBar { display:block; }
-}
-
-.navBar, .footer, li, .version, select, option {
-	font-size:10pt;
-}
-
-
-div.navBar, div.footer {
-	width:100%;
-	height:30px;
-
-	color:#DDDDDD;
-
-	position:absolute;
-	z-index:10000;
-
-	line-height:30px;
-
-	padding-left:10px;
-	padding-right:10px;
-
-	text-shadow:0px 3px #000000;
 }
 
 
 /* ================================= */
 /*   NAVIGATION                      */
 /* ================================= */
+div.navBar { background-color:rgba(20,20,20,1); }
+
 div.navBar {
-	background-color:rgba(20,20,20,1);
-}
+	width:100%;
+	height:30px;
+	line-height:22px;
 
-div.navBar ul { 
-	list-style-type:none; 
-}
-
-div.navBar ul li { 
-	float:left; 
-	margin-right:10px;
-}
-
-div.navbar ul li:nth-child(2) {
+	position:absolute;
+	z-index:10000;
+	
 	padding:0px 10px;
+	
+	color:#DDDDDD;
+	text-shadow:0px 3px #000000;
 }
 
-div.navBar ul li#devNoteToggle {
+div.navBar > span { 
+	margin-right:10px;
+	font-size:10pt; 
+}
+
+span#devNoteToggle { 
 	color:white;
 
 	font-size:10pt;
@@ -68,33 +50,40 @@ div.navBar ul li#devNoteToggle {
 
 	transition:letter-spacing 0.25s;
 }
-
-div.navBar ul li#devNoteToggle:hover {
-	letter-spacing:2px;
-}
-
-select {
-	color:white;
-	background-color:rgba(20, 20, 20, 1);
-}
-
-.version { 
-	padding-top:6px;
-	float:right; 
-}
-
-
-/* ================================= */
-/*   FOOTER                          */
-/* ================================= */
-div.footer { bottom:0px; }
-
+#devNoteToggle:hover { letter-spacing:2px; }
 
 
 /* ================================= */
 /*   NAVIGATION MOBILE               */
 /* ================================= */
 div.navBarMobile {
-	padding:10px;
+	display:flex;
+
+	color:white;
 	text-align:center;
+
+	height:50px;
+	line-height:30px;
+
+	padding:10px 20px;
+
+	background-color:rgba(20,20,20,1);
+
+	text-shadow:
+		0px 0px 5px yellow,
+		0px 0px 5px yellow,
+		0px 0px 15px yellow,
+		0px 0px 15px yellow,
+		0px 0px 25px yellow;
+}
+
+div.navBarMobile > span:nth-child(1) {
+	font-size:0.60em;
+	width:300px;
+	text-align: left;
+}
+
+div.navBarMobile > span:nth-child(2) {
+	width:100%;
+	text-align: right;
 }

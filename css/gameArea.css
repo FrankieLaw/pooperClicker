@@ -1,0 +1,215 @@
+div.mainScreen  { display:block; }
+
+div.statsScreen, div.mainScreen {
+	position:absolute;
+	top:0px;
+
+	width:100%;
+	height:100%;
+}
+
+div.pc-flexLayout #gameArea {
+    width:100%; height:100%;
+}
+
+
+/* ======================================== */
+/*  main Screen                             */
+/* ======================================== */
+	/* ======================================== */
+	/*  RANDOM MESSAGE                          */
+	/* ======================================== */
+	div.staticMessage, div.randomMessage { top:50px;  }
+
+	div.scoreArea                        { top:175px; }
+
+
+	div.totalPooDisplay { font-size:25pt; }
+	div.ppsDisplay      { font-size:10pt; }
+
+
+	/* ======================================== */
+	/*  RANDOM MESSAGES - THEME                 */
+	/* ======================================== */
+	div.staticMessage, div.randomMessage {
+		/* min-width:250px; */
+		width:100%;
+
+		position:absolute;
+		left:0px; right:0px;
+
+		margin:auto;
+		padding:0px 10px; 
+
+		font-size:12pt;
+		letter-spacing:1px;
+		word-wrap: break-word;
+
+		color:rgba( 255,255,255,1.0);
+
+		opacity: 1.0;
+	}
+
+	
+	/* ======================================== */
+	/*  GIANT POO - THEME                       */
+	/* ======================================== */
+	.cursorOpen     { cursor:url("../img/handOpen32x32.png"), auto;	}
+	.cursorGrabbing { cursor:url("../img/handClose32x32.png"), auto; }
+
+
+	div.pooBlock {
+		/* Center is [120x105]*/
+		position:absolute;
+		bottom:12%; left:0px; right:0px;
+		margin:auto;
+
+		height:200px;
+		width:240px;
+	}
+
+	div.pooBlock img {
+		height:200px;
+	}
+
+	div.pooClicked {
+		position:absolute;
+		top:0px; bottom:0px; left:0px; right:0px;
+
+		width:200px;
+		height:1px;
+
+		font-size:12pt;
+		text-align:center;
+		
+		opacity:1.0;
+	}
+
+
+	/* ======================================== */
+	/*  THEME - PPS | PoopCounter | World Name  */
+	/* ======================================== */
+	@media (max-width:767px) {
+		div.scoreArea, div.worldNameBlock {
+			width:87%;
+		}	
+	}
+
+	@media (min-width:768px) {
+		div.scoreArea, div.worldNameBlock {
+			min-width:430px;
+			width:38%;
+		}	
+	}
+
+	div.worldNameBlock { 
+		top:115px; 
+		background-color:var(--displayBkgColor);
+	}
+
+	div.worldNameBlock, div.totalPooDisplay, div.ppsDisplay  {
+		padding:10px 5px;
+		color:white;
+		letter-spacing:1px;
+
+		border-radius:25px;	
+		margin-bottom:10px;
+	}
+
+	div.totalPooDisplay, div.ppsDisplay {
+		background-color:var(--displayBkgColor);
+	}
+
+	div.scoreArea, div.worldNameBlock {
+		position:absolute;
+		left:0px; right:0px;
+		margin:auto;
+	}								
+
+	div.worldNameBlock input {
+		width:100%;
+		text-align:center;
+		color:white;
+		background-color:rgba(0,0,0,0);
+	}
+
+	div.worldNameBlock input:hover {
+		cursor: pointer;
+	}
+
+
+
+
+
+
+
+
+/* ======================================== */
+/*  upgrade Screen                          */
+/* ======================================== */
+	/* ======================================== */
+	/*  LEFT COLUMN - PARTIAL SCREEN            */
+	/*  USED BY => UPGRADE | SETTING            */
+	/* ======================================== */
+	@media (max-width:767px ) {
+		div.upgradeScreen, div.settingScreen {
+			width:100%;
+		}	
+	}
+
+	@media (min-width:768px ) {
+		div.upgradeScreen, div.settingScreen {
+			min-width:340px;
+			width:24.50%;
+		}
+	}
+
+	div.upgradeScreen {
+		background-color:var(--screenBkgColor);
+	}
+
+	div.upgradeScreen, div.settingScreen  {
+		display:none;
+		position:absolute;
+		top:0px; right:0px;
+
+		height:100%;
+		overflow-y:auto;
+
+		color:white;
+	}
+
+	div.cls {
+		cursor:pointer;
+
+		position:sticky;
+		z-index:3000;
+		top:0px; right:0px;
+
+		width:50px; height:50px;
+		/* margin-bottom:50px; */
+
+		color:white;
+
+		padding:10px;
+		padding-right:8px;
+	}
+
+
+
+/* ======================================== */
+/*  stats Screen                            */
+/* ======================================== */
+div.statsScreen { 
+	display:none;
+	overflow-y:auto; 
+	background-color:var(--screenBkgColor);
+}
+
+
+/* ======================================== */
+/*  setting Screen                          */
+/* ======================================== */
+div.settingScreen {
+	background-color:var(--screenBkgColor);
+}

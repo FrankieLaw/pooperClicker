@@ -1,0 +1,16 @@
+@media (max-width:767px) {
+    div.pc-flexLayout #panelArea {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    div.pc-flexLayout #panelArea {
+        display:block;
+    }
+}
+
+div.pc-flexLayout #panelArea {
+    height:100%;
+    min-width:300px;
+}
