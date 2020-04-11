@@ -19,6 +19,35 @@ div#statisticTab, div#allUpgradeTab {
     text-align:left;
 }
 
+@media (max-width:767px) {
+    div.pc-stats-flexLayout {
+        width:100%;
+    }
+}
+
+@media (min-width:1300px) {
+    div.pc-stats-flexLayout {
+        width:800px;
+    }
+}
+
+div.statsScreen { overflow-y:auto; }
+
+div.pc-stats-flexLayout {
+    display:flex;
+    flex-wrap:wrap;
+
+    color:white;
+
+    margin:auto;
+    overflow-y:auto;
+}
+
+div.pc-stats-flexLayout > div {
+    width:100%;
+    margin-bottom:80px;
+}
+
 div.pc-stats-gridLayout {
     display:grid;
     grid-template-columns:33.33% 33.33% 33.33%;

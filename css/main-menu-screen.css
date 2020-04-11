@@ -18,17 +18,28 @@ div.techScreen, div.statsScreen, div.mainScreen {
 /*  LEFT COLUMN - PARTIAL SCREEN            */
 /*  USED BY => UPGRADE | SETTING            */
 /* ======================================== */
+@media (max-width:767px ) {
+	div.upgradeScreen, div.settingScreen {
+		width:100%;
+	}	
+}
+
+@media (min-width:768px ) {
+	div.upgradeScreen, div.settingScreen {
+		min-width:340px;
+		width:24.50%;
+	}
+}
+
 div.upgradeScreen, div.settingScreen  {
 	display:none;
 
 	position:absolute;
 	top:0px; right:0px;
 
-	min-width:340px;
-	width:24.50%;
 	height:100%;
 
-	padding-top:20px;
+	/* padding-top:20px; */
 
 	color:white;
 
@@ -38,19 +49,19 @@ div.upgradeScreen, div.settingScreen  {
 div.cls {
 	cursor:pointer;
 
-	position:absolute;
+	position:sticky;
 	z-index:3000;
 	top:0px; right:0px;
-
+	
 	width:50px;
 	height:50px;
 
-	border-left:5px solid gold;
+	border-right:5px solid gold;
 	border-bottom:5px solid gold;
-	border-bottom-left-radius:50px;
+	border-bottom-right-radius:50px;
 
 	color:white;
 	background-color:black;
 
-	padding-left:8px;
+	padding-right:8px;
 }
