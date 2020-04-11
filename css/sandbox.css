@@ -1,0 +1,45 @@
+* {
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    position:relative;
+
+    font-family:'Quicksand';
+	font-size:18pt;
+	font-weight:999;
+
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+html, body, #mainGame { height:100%; }
+
+
+@media (max-width:767px) {
+    div.pc-flexLayout { padding-top:0px; }
+    div.pc-flexLayout #panelArea {
+        display:none;
+    }
+}
+
+@media (min-width:768px) {
+    div.pc-flexLayout { padding-top:30px; }
+    div.pc-flexLayout #panelArea {
+        display:block;
+    }
+}
+
+div.pc-flexLayout {
+    display:flex;
+    height:100%;
+}
+
+div.pc-flexLayout #gameArea {
+    width:100%;
+}
+
+div.pc-flexLayout #panelArea {
+    min-width:300px;
+}

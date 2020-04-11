@@ -57,8 +57,6 @@ div.statsScreen, div.settingScreen {
 	background-color:var(--screenBkgColor);
 }
 
-
-
 /* ======================================== */
 /*   MAIN GAME STATIC SCREEN                */
 /* ======================================== */
@@ -86,11 +84,3 @@ div.loadingMsg {
 	text-align:center;
 	color:white;
 }
-
-							
-
-
-							
-
-							
-

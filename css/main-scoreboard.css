@@ -1,65 +1,77 @@
 /* ======================================== */
-	/*  SCORE BOARD AREA - THEME                */
-	/* ======================================== */
-	div.staticMessage, div.randomMessage { top:60px;  }
-	div.worldNameBlock                   { top:125px; }
-	div.scoreArea                        { top:185px; }
-	
-
-	div.totalPooDisplay { font-size:25pt; }
-	div.ppsDisplay      { font-size:10pt; }
+/*  SCORE BOARD AREA - THEME                */
+/* ======================================== */
+div.staticMessage, div.randomMessage { top:50px;  }
+div.worldNameBlock                   { top:115px; }
+div.scoreArea                        { top:175px; }
 
 
-	/* ======================================== */
-	/*  RANDOM MESSAGES - THEME                 */
-	/* ======================================== */
-	div.staticMessage, div.randomMessage {
-		min-width:250px;
-		width:50%;
-
-		position:absolute;
-		left:0px; right:0px;
-
-		margin:auto;
-
-		font-size:12pt;
-		letter-spacing:1px;
-		word-wrap: break-word;
-
-		color:rgba( 255,255,255,1.0);
-
-		opacity: 1.0;
-	}
+div.totalPooDisplay { font-size:25pt; }
+div.ppsDisplay      { font-size:10pt; }
 
 
-	/* ======================================== */
-	/*  THEME - PPS | PoopCounter | World Name  */
-	/* ======================================== */
-	div.worldNameBlock, div.totalPooDisplay, div.ppsDisplay  {
-		padding:10px 5px;
-		color:white;
-		letter-spacing:1px;
-	
-		border-radius:25px;	
-		margin-bottom:10px;
-	}
+/* ======================================== */
+/*  RANDOM MESSAGES - THEME                 */
+/* ======================================== */
+div.staticMessage, div.randomMessage {
+	/* min-width:250px; */
+	width:100%;
 
+	position:absolute;
+	left:0px; right:0px;
+
+	margin:auto;
+	padding:0px 10px; 
+
+	font-size:12pt;
+	letter-spacing:1px;
+	word-wrap: break-word;
+
+	color:rgba( 255,255,255,1.0);
+
+	opacity: 1.0;
+}
+
+
+
+/* ======================================== */
+/*  THEME - PPS | PoopCounter | World Name  */
+/* ======================================== */
+@media (max-width:767px) {
 	div.scoreArea, div.worldNameBlock {
-		min-width:450px;
-		width:38%;
+		width:87%;
+	}	
+}
 
-		position:absolute;
-		left:0px; right:0px;
-		margin:auto;
-	}								
-	
-	div.worldNameBlock input {
-		width:100%;
-		text-align:center;
-		color:white;
-		background-color:rgba(0,0,0,0);
-	}
-	
-	div.worldNameBlock input:hover {
-		cursor: pointer;
-	}
+@media (min-width:768px) {
+	div.scoreArea, div.worldNameBlock {
+		min-width:430px;
+		width:38%;
+	}	
+}
+
+div.worldNameBlock, div.totalPooDisplay, div.ppsDisplay  {
+	padding:10px 5px;
+	color:white;
+	letter-spacing:1px;
+
+	border-radius:25px;	
+	margin-bottom:10px;
+}
+
+div.scoreArea, div.worldNameBlock {
+	position:absolute;
+	left:0px; right:0px;
+	margin:auto;
+}								
+
+div.worldNameBlock input {
+	width:100%;
+	text-align:center;
+	color:white;
+	background-color:rgba(0,0,0,0);
+}
+
+div.worldNameBlock input:hover {
+	cursor: pointer;
+}

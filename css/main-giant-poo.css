@@ -1,32 +1,33 @@
 /* ======================================== */
-	/*  GIANT POO - THEME                       */
-	/* ======================================== */
-	.cursorOpen     { cursor:url("../img/handOpen32x32.png"), auto;	}
-	.cursorGrabbing { cursor:url("../img/handClose32x32.png"), auto; }
+/*  GIANT POO - THEME                       */
+/* ======================================== */
+.cursorOpen     { cursor:url("../img/handOpen32x32.png"), auto;	}
+.cursorGrabbing { cursor:url("../img/handClose32x32.png"), auto; }
 
-	div.pooBlock {
-		/* Center is [120x105]*/
-		position:absolute;
-		top:80%; bottom:20%; left:0px; right:0px;
-		margin:auto;
 
-		height:210px;
-		width:240px;
-	}
+div.pooBlock {
+	/* Center is [120x105]*/
+	position:absolute;
+	bottom:12%; left:0px; right:0px;
+	margin:auto;
 
-	div.pooBlock img {
-		height:200px;
-	}
+	height:200px;
+	width:240px;
+}
 
-	div.pooClicked {
-		position:absolute;
-		top:0px; bottom:0px; left:0px; right:0px;
+div.pooBlock img {
+	height:200px;
+}
 
-		width:200px;
-		height:1px;
+div.pooClicked {
+	position:absolute;
+	top:0px; bottom:0px; left:0px; right:0px;
 
-		font-size:12pt;
-		text-align:center;
-		
-		opacity:1.0;
-	}
+	width:200px;
+	height:1px;
+
+	font-size:12pt;
+	text-align:center;
+	
+	opacity:1.0;
+}
