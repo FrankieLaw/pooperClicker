@@ -96,8 +96,8 @@ div.navBarMobile-menu {
 	position:absolute;
 	top:50px;
 
-	width:100%;	height:100%;
-	
+	width:100%;
+	overflow:hidden;
 
 	z-index:1000;
 	background-color:rgba(5, 5, 5, 0.8);
@@ -115,4 +115,14 @@ div.navBarMobile-menu > div {
 	padding-bottom:30px;
 	height:70px;
 	line-height:70px;
+}
+
+.smoothMenuIn {
+	height:100%;
+	transition:height 0.3s ease;
+}
+
+.smoothMenuOut {
+	height:0px; 
+	transition:height 0.3s ease;
 }

@@ -326,8 +326,10 @@ function initMobileMenu( ) {
     const mobileNavigation = $D.id( "navBarMobile-menu" );
 
     mobileToggle.addEventListener( "click", ( e ) => {
-        const display = mobileNavigation.style.display;
-        mobileNavigation.style.display = ( display === "none" ) ? "block" : "none";
+        const inOrOut   = ( mobileNavigation.className ).includes( "smoothMenuIn" );
+        const d = `navBarMobile-menu`;
+
+        mobileNavigation.className = inOrOut ? `${d} smoothMenuOut` : `${d} smoothMenuIn`;
     });
 }
 
