@@ -9,44 +9,44 @@ function initPooStoreContorl( ) {
     let _100xBtn          = $D.id( "100x" );
 
     //UPGRADE -> QUANTITY CONTROLS
-    buyBtn.addEventListener(  "click", buyBtnPress );
-    sellBtn.addEventListener(  "click", sellBtnPress );
-    _1xBtn.addEventListener(   "click", ( e ) => quantity( e, 1 ) );	
-    _10xBtn.addEventListener(  "click", ( e ) => quantity( e, 10 ) );
-    _100xBtn.addEventListener( "click", ( e ) => quantity( e, 100 ) );
+    buyBtn.addEventListener(   "click", _buyBtnPress );
+    sellBtn.addEventListener(  "click", _sellBtnPress );
+    _1xBtn.addEventListener(   "click", ( e ) => _quantity( e, 1 ) );	
+    _10xBtn.addEventListener(  "click", ( e ) => _quantity( e, 10 ) );
+    _100xBtn.addEventListener( "click", ( e ) => _quantity( e, 100 ) );
 
     // =========================================
     //  PANEL -> POO STORE -> QUANTITY CONTROLS
     // =========================================
-    function buyBtnPress( e ) {
+    function _buyBtnPress( e ) {
         sellBtn.className = "optionBtn";
         buyBtn.className  = "optionBtn active";
         $ST.buyOrSellToggle( true );
-        updateQuantityCost( );
+        _updateQuantityCost( );
     }
     
-    function sellBtnPress( e ) {
+    function _sellBtnPress( e ) {
         buyBtn.className  = "optionBtn";
         sellBtn.className = "optionBtn active";
         $ST.buyOrSellToggle( false );
-        updateQuantityCost( );
+        _updateQuantityCost( );
     }
 
-    function quantity( e, quantity ) {
-        removeAllActiveQuantity( );
+    function _quantity( e, quantity ) {
+        _removeAllActiveQuantity( );
         e.srcElement.className = e.srcElement.className + " active";
         $ST.setBuyOrSellQuantity( quantity );
-        updateQuantityCost( );
+        _updateQuantityCost( );
     }
 
     //Utility Function
-    function removeAllActiveQuantity( ) {
+    function _removeAllActiveQuantity( ) {
         $PC.getQuantity( ).forEach( function(element) {
             $D.id( element ).className = "quantityBtn";
         });
     }
 
-    function updateQuantityCost( ) {
+    function _updateQuantityCost( ) {
         //=====================================================
         // GET ALL THE UPGRADABLE ELEMENTS ON THE UPGRADELIST
         //=====================================================
@@ -244,21 +244,21 @@ function initGameControls( ) {
     giantPoo.addEventListener( "mouseup", (e) => e.srcElement.className = "cursorOpen" );
     giantPoo.addEventListener( "click", poo_onClick );
 
-    worldNameInput.addEventListener( "click", changeInputClicked );
+    worldNameInput.addEventListener( "click", _changeInputClicked );
 
     // =========================================
     //  MAIN SCREEN -> WORLD NAME INPUT
     // =========================================
-    function changeInputClicked( e ) {
+    function _changeInputClicked( e ) {
         let input = $D.id( "nameInput" );
             input.disabled = false;
             input.select( );
 
-        input.addEventListener( "change", nameEntered );
+        input.addEventListener( "change", _nameEntered );
     }
 
-    function nameEntered( e ) {
-        this.removeEventListener( "change", nameEntered );
+    function _nameEntered( e ) {
+        this.removeEventListener( "change", _nameEntered );
         this.disabled = true;
 
         $ST.setWorldName( this.value );
@@ -269,11 +269,11 @@ function initGameControls( ) {
     //  MAIN SCREEN -> GIANT POO
     // =========================================
     function poo_onClick( e ) {
-        let manualPooGenerated = hackMode ? hackClickAmt : $ST.calcPooPerClick( );
+        let manualPooGenerated = bigInt( hackMode ? hackClickAmt : $ST.calcPooPerClick( ) );
 
         //Pop up number after clicking
         //disappears after 1 seconds
-        createPooNumber( );
+        _createFloatingPooNumber( );
         $PC.playPooClickSFX( );
 
         if( hackMode ) {
@@ -288,24 +288,32 @@ function initGameControls( ) {
             $ST.addClick( 1 );
         }
 
+        function _createFloatingPooNumber( ) {
+            const pooArea = $D.id( "pooArea" );
+            
+            const pooHTML = _createFloatingNumberHTML( );
+            pooArea.appendChild( pooHTML );
 
-        function createPooNumber( ) {
-            let pooArea = $D.id( "pooArea" );
-
-            let tempDiv = document.createElement( "div" );
-            let txtNode = document.createTextNode( "+" + $ST.getDisplayNotation( manualPooGenerated ) );
-
-            tempDiv.setAttribute( "class", "pooClicked" );
-            tempDiv.style.left = GameUtility.between(-85, 120) + "px";
-            tempDiv.style.top  = (e.offsetY-50) + "px";
-            tempDiv.style.opacity = 1.0;
-
-            tempDiv.appendChild( txtNode );
-            pooArea.appendChild( tempDiv );
-
-            const selfDestruct = new PooTimer( tempDiv, 3000, 15, "poo" );
+            const selfDestruct = new PooTimer( pooHTML, 3000, 15, "poo" );
             selfDestruct.start( );
+
+            function _createFloatingNumberHTML( ) {
+                console.log( "calling from new function" );
+                let tempDiv = document.createElement( "div" );
+                let txtNode = document.createTextNode( "+" + $ST.getDisplayNotation( manualPooGenerated ) );
+
+                tempDiv.setAttribute( "class", "pooClicked" );
+                tempDiv.style.left = GameUtility.between(-85, 120) + "px";
+                tempDiv.style.top  = (e.offsetY-50) + "px";
+                tempDiv.style.opacity = 1.0;
+
+                tempDiv.appendChild( txtNode );
+
+                return tempDiv;
+            }
         }
+
+        
     }
 }
 
@@ -313,6 +321,12 @@ function initSessionState( ) {
     $PC.getMessageBoardUpdate( ); 	//SET RANDOM MESSAGE BOARD ID 1 & 2
 }
 
+function initMobileMenu( ) {
+    const mobileToggle = $D.id( "mobileMenuToggle" );
+    mobileToggle.addEventListener( "click", ( e ) => {
+        console.log( "click click" );
+    });
+}
 
 
 // =======================================================

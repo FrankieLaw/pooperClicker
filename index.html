@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title id="browserTitle"></title>
+		<link rel="shortcut icon" type="image/png" href="img/favicon.ico" />
 
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -25,12 +26,8 @@
 		<link href="css/container-mainGame-flexLayout.css" rel="stylesheet" />
 
 		<link href="css/gameArea.css" rel="stylesheet" />
+
 		<link href="css/panelArea.css" rel="stylesheet" />
-
-
-
-		<link href="css/main-command-panel.css" rel="stylesheet" />
-
 		<link href="css/menu-pooStore.css" rel="stylesheet" />
 		<link href="css/menu-statistic.css" rel="stylesheet" />
 		<link href="css/menu-setting.css" rel="stylesheet" />
@@ -47,6 +44,7 @@
 
 		<script type="text/javascript" src="js/utils/Dev_Data.js"></script>
 		<script type="text/javascript" src="js/utils/DOM.js"></script>
+		<script type="text/javascript" src="js/utils/BigInteger.js"></script>
 		<script type="text/javascript" src="js/utils/Arithmetic.js"></script>
 
 		<script type="text/javascript" src="js/data/upgradeData.js"></script>
@@ -58,16 +56,19 @@
 		<script type="text/javascript" src="js/data/screenPanel.js"></script>
 		<script type="text/javascript" src="js/data/soundData.js"></script>
 
-		<script type="text/javascript" src="js/App_SaveState.js"></script>
-		<script type="text/javascript" src="js/PC.js"></script>
 		<script type="text/javascript" src="js/PC_Num.js"></script>
 		<script type="text/javascript" src="js/PC_Timer.js"></script>
-		<script type="text/javascript" src="js/PC_AppSessionState.js"></script>
-		<script type="text/javascript" src="js/App_update.js"></script>
-		<script type="text/javascript" src="js/App_init.js"></script>
-		<script type="text/javascript" src="js/PC_App.js"></script>
+		<script type="text/javascript" src="js/App-saveState.js"></script>
+		<script type="text/javascript" src="js/App-gameData.js"></script>
+		<script type="text/javascript" src="js/App-sessionState.js"></script>
+		<script type="text/javascript" src="js/App-update.js"></script>
+		<script type="text/javascript" src="js/App-control-init.js"></script>
+		<script type="text/javascript" src="js/App-main.js"></script>
+
+
+		<!-- Phase below out -->
 		
-		
+		<!-- Phase above out -->
 
 		<script type="text/JavaScript">			
 			window.onload = function( ) {
@@ -84,7 +85,7 @@
 
 		<div class="navBarMobile">
 			<span id="navTitleMobile">PooperClicker &copy; 2020</span>
-			<span><i class="fas fa-cogs"></i></span>
+			<span><i id="mobileMenuToggle" class="fas fa-cogs"></i></span>
         </div>
 
 		<div id="devNote" class="devNote">

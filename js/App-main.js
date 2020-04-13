@@ -8,8 +8,9 @@ const SaveData        = new App_SaveState( );		//ACCESS TO SAVE/LOAD
 const GameUtility 	  = new GameUtilityAPI( );
 const dNote           = new Notes( );
 
+$ST.debug( "[App-main.js] - erase hackMode | hackClickAmt" );
 const hackMode        = false;
-const hackClickAmt    = 25;
+const hackClickAmt    = bigInt( "23" );
 const FPS             = 50;
 
 let	  updateTimer     = null;
@@ -32,7 +33,8 @@ function AppInit( ) {
 	initSettingControl( );	// SETTING
 	initGameControls( );	// MAIN GAME AREA
 	initSessionState( );	// Session State
-
+	initMobileMenu( );
+	
 	enterGame( );
 }
 
@@ -205,5 +207,5 @@ function startGame( ) {
 	runTransition( );
 	$ST.calcPPS( );             //RECALCULATE PPS INCASE IT IS NOT MATCHING.
 
-	$ST.debug( "startGame( )" );
+	$ST.debug( "[App-main.js] - startGame( )" );
 }

@@ -18,7 +18,7 @@ function AppSessionState( ) {
 		"gameName" : "Pooper Clicker",
 		"version"  : "DEMO",
 		"dateFrom" : 2019,
-		"dateTo"   : 2019,
+		"dateTo"   : 2020,
 		"Author"   : "Cowwy"
 	};
 

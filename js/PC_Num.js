@@ -27,11 +27,9 @@ function GameUtilityAPI( ) {
 	//		1.236 MILLION
 	//==================================================
 	function getNotationWord( num ) {
-		if( num > 35 ) {
-			return "POOGOL";
-		}
+		if( num > 35 ) { return "POOGOL"; }
 
-		let notation = {
+		const notation = {
 			3  : "MILLION",
 			4  : "BILLION",
 			5  : "TRILLION",
@@ -66,6 +64,7 @@ function GameUtilityAPI( ) {
 			34 : "DUOTRIGINTILLION",
 			35 : "GOOGOL",
 		};
+		
 		return notation[num];
 	}
 
