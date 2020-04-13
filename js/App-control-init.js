@@ -290,7 +290,7 @@ function initGameControls( ) {
 
         function _createFloatingPooNumber( ) {
             const pooArea = $D.id( "pooArea" );
-            
+
             const pooHTML = _createFloatingNumberHTML( );
             pooArea.appendChild( pooHTML );
 
@@ -322,9 +322,12 @@ function initSessionState( ) {
 }
 
 function initMobileMenu( ) {
-    const mobileToggle = $D.id( "mobileMenuToggle" );
+    const mobileToggle     = $D.id( "mobileMenuToggle" );
+    const mobileNavigation = $D.id( "navBarMobile-menu" );
+
     mobileToggle.addEventListener( "click", ( e ) => {
-        console.log( "click click" );
+        const display = mobileNavigation.style.display;
+        mobileNavigation.style.display = ( display === "none" ) ? "block" : "none";
     });
 }
 
