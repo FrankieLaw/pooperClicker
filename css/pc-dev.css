@@ -47,6 +47,16 @@ div.devNote {
 	padding:40px;
 }
 
+@media (min-width:900px) {
+	div.devMessage {
+		width:50%;
+
+		border-left:6px solid;
+		border-right:6px solid;
+		border-image:var(--gold-border-image) 6 round;
+	}
+}
+
 div.devMessage {
 	position:absolute;
 	left:0px; right:0px;
@@ -56,14 +66,11 @@ div.devMessage {
 
 	min-width:300px;
 	
-	width:35%;
 	height:100%;
 
 	padding:30px;
 
-	border-left:6px solid;
-	border-right:6px solid;
-	border-image:var(--gold-border-image) 6 round;
+
 
 	overflow:scroll;
 	overflow-x: hidden;
