@@ -176,16 +176,18 @@ div.pc-flexLayout #gameArea {
 	div.cls {
 		cursor:pointer;
 
+		float:left;
 		position:sticky;
-		z-index:3000;
-		top:0px; right:0px;
+		z-index:200;
+		top:10px; left:10px;
 
-		width:50px; height:50px;
+		width:40px; line-height:30px;
+		background-color:rgba(20,20,20,0.8);
+		border:5px outset gold;
+		border-radius:25px;
+		font-size:9pt;
 
 		color:white;
-
-		padding:10px;
-		padding-right:8px;
 	}
 
 	div.cls:hover {
@@ -196,7 +198,6 @@ div.pc-flexLayout #gameArea {
 		0px 0px 15px yellow,
 		0px 0px 25px yellow;
 	}
-
 
 
 /* ======================================== */

@@ -34,7 +34,7 @@ function AppInit( ) {
 	initGameControls( );	// MAIN GAME AREA
 	initSessionState( );	// Session State
 	initMobileMenu( );
-	
+
 	enterGame( );
 }
 

@@ -210,15 +210,13 @@ function initSettingControl( ) {
 }
 
 function initPanelControl( ) {
-    let upgradeClsBtn     = $D.id( "upgradeClsBtn" );
-    let statsClsBtn       = $D.id( "statsClsBtn" );
-    let settingClsBtn     = $D.id( "settingClsBtn" );
+    const upgradeClsBtn     = $D.id( "upgradeClsBtn" );
+    const statsClsBtn       = $D.id( "statsClsBtn" );
+    const settingClsBtn     = $D.id( "settingClsBtn" );
 
-    let upgradeBtn        = $D.id( "upgradeBtn" );
-    let statsBtn          = $D.id( "statsBtn" );
-    let settingBtn        = $D.id( "settingBtn" );
-    //let techBtn           = $D.id( "techBtn" );
-
+    const upgradeBtn        = $D.id( "upgradeBtn" );
+    const statsBtn          = $D.id( "statsBtn" );
+    const settingBtn        = $D.id( "settingBtn" );
     
     //PANEL CONTROLS
     upgradeClsBtn.addEventListener( "click", (e) => toggleControl( "upgradeScreen" ) );
@@ -298,7 +296,6 @@ function initGameControls( ) {
             selfDestruct.start( );
 
             function _createFloatingNumberHTML( ) {
-                console.log( "calling from new function" );
                 let tempDiv = document.createElement( "div" );
                 let txtNode = document.createTextNode( "+" + $ST.getDisplayNotation( manualPooGenerated ) );
 
@@ -325,12 +322,39 @@ function initMobileMenu( ) {
     const mobileToggle     = $D.id( "mobileMenuToggle" );
     const mobileNavigation = $D.id( "navBarMobile-menu" );
 
-    mobileToggle.addEventListener( "click", ( e ) => {
+    const mUpgradeBtn       = $D.id( "mPooStoreBtn" );
+    const mStatsBtn         = $D.id( "mStatsBtn" );
+    const mSettingBtn       = $D.id( "mSettingBtn" );
+    const mDevNoteBtn       = $D.id( "mDevNoteBtn" );
+
+    mobileToggle.addEventListener( "click", ( e ) => { _openAndCloseMobileMenu( ); } );
+
+    mUpgradeBtn.addEventListener( "click", (e) => _toggleControl( "upgradeScreen" ) );
+    mStatsBtn.addEventListener(   "click", (e) => _toggleControl( "statsScreen" ) );
+    mSettingBtn.addEventListener( "click", (e) => _toggleControl( "settingScreen" ) );
+    mDevNoteBtn.addEventListener( "click", (e) => _toggleDevControl( ) );
+
+    
+
+    function _openAndCloseMobileMenu( ) {
         const inOrOut   = ( mobileNavigation.className ).includes( "smoothMenuIn" );
         const d = `navBarMobile-menu`;
 
         mobileNavigation.className = inOrOut ? `${d} smoothMenuOut` : `${d} smoothMenuIn`;
-    });
+    }
+
+    function _toggleDevControl( ) {
+        $D.id( "devNote" ).style.display = "block";
+        _openAndCloseMobileMenu( );
+    }
+
+
+    function _toggleControl( id ) {
+        _openAndCloseMobileMenu( );
+
+        $PC.toggleScreen( id );
+        $ST.toggleActiveScreen( id );
+    }
 }
 
 

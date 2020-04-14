@@ -23,6 +23,9 @@ div#statisticTab, div#allUpgradeTab {
     div.pc-stats-flexLayout {
         width:100%;
         padding:0px 20px;
+
+        position:relative;
+        top:-40px;
     }
 }
 
