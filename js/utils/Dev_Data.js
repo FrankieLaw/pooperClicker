@@ -1,6 +1,21 @@
 function Notes( ) {
     const devNotes = [
         `<dl class="note">
+            <dt class="date">April 14, 2020</dt>
+            <dd class="definition story">
+                I took a long break from working on this project to learn more about
+                web development. Now that I have upgraded my skill, I can now return to this game.
+            </dd>
+            <dd class="definition fixed">
+                Fixed: The game is now reponsive, it is able to be played on mobile.
+            </dd>
+            <dd class="definition added">
+                Added: Responsive Design to the game.<br />
+                Added: Mobile Navigation bar, so you can have access to all of the game features on mobile.
+            </dd>
+        </dl>`,
+
+        `<dl class="note">
             <dt class="date">November 19, 2019</dt>
             <dd class="definition story">
                 I can't believe this game is growing so steadily. :D
