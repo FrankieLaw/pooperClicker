@@ -24,9 +24,11 @@ div.chevoClose {
 	background-color:black;
 }
 
-div.chevoBox {
-	width:350px;
+@media (min-width:768) {
+	div.chevoBox { width:350px;	}
+}
 
+div.chevoBox {
 	padding:10px;
 	margin-bottom:20px;
 	background-color:rgba(55,55,55,0.8);

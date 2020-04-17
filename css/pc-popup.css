@@ -16,11 +16,23 @@ div.SaveMsgBox {
 	outline:2px dotted rgba(50,50,50,0.75);
 }
 
+@media (max-width:767px) {
+	div.chevoContainer {
+		bottom:8vh;
+		width:85%;
+	}
+}
+
+@media (min-width:768px) {
+	div.chevoContainer {
+		bottom:20px;
+		width:350px;
+	}
+}
+
 div.chevoContainer {
 	position:absolute;
-	bottom:25px;
 	left:0px; right:0px;
 	margin:auto;
 
-	width:350px;
 }
