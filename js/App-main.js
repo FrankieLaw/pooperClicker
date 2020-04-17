@@ -134,6 +134,7 @@ function enterGame( ) {
 		if( windowIsFocus ) {
 			//POOP PER SECOND ADDED
 			$ST.addPoo( $ST.getPPS( ) / FPS );
+			$ST.addPooSinceStart( $ST.getPPS( ) / FPS );
 			updateMainStats( );
 
 			//UPDATE POO STORE LIST - ONLY IF SOMETHING NEW IS AVAILABLE

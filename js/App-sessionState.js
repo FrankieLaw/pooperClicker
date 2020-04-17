@@ -479,7 +479,8 @@ function AppSessionState( ) {
 
 	function getDisplayNotation( statistic ) {
 		let retValue = "";
-
+		
+	
 		switch( statistic ) {
 			case "totalPoo":
 				retValue = GameUtility.useExpNotation( Math.round( getTotalPoo( ) ) );

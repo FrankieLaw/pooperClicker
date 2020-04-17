@@ -69,7 +69,7 @@ function updateMainStats( ) {
 
 function updateStatistisScreen( ) {
     const totalPooText  = $ST.getDisplayNotation( "totalPoo" );
-    const pooSinceStart = $ST.getDisplayNotation( "pooSinceStart" );
+    const pooSinceStart = $ST.getPooSinceStart( );
 
     const currentTime 	       = $D.id( "currentTime" );		    //STATISTICS TAB
 	const totalPooCol 	       = $D.id( "totalPooCollected" );	    //STATISTICS TAB
