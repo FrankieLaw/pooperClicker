@@ -24,13 +24,17 @@ div.chevoClose {
 	background-color:black;
 }
 
-@media (min-width:768) {
-	div.chevoBox { width:350px;	}
+@media (min-width:568px) and (max-width:768px) {
+	div.chevoBox { 
+		width:350px;
+		margin-bottom:40px !important;
+	}
 }
 
 div.chevoBox {
 	padding:10px;
-	margin-bottom:20px;
+	margin-left:auto; margin-right:auto;
+	margin:0px auto 20px auto;
 	background-color:rgba(55,55,55,0.8);
 	color:white;
 	text-align:left;
@@ -69,8 +73,15 @@ div.chevoLeft {
 	float:left;
 }
 
+@media (max-width:767px) {
+	div.chevoRight { width:calc(100% - 55px); }
+}
+
+@media (min-width:768px) {
+	div.chevoRight { width:255px; }
+}
+
 div.chevoRight {
 	position:relative;
 	left:55px;
-	width:255px;
 }
