@@ -70,7 +70,6 @@ function App_SaveState( ) {
 		}
 	};
 
-
 	//=============================================================
 	// Load Method - Required Game Slot Name
 	//				 Otherwise it will not know which game to load.
@@ -174,7 +173,6 @@ function App_SaveState( ) {
 		}
 	};
 
-
 	function localStorageToSetting( ) {
 		//Filter Local Storage Data
 		//Retrieve all Save Slots, except quickSave
@@ -203,7 +201,6 @@ function App_SaveState( ) {
 			return output;
 		}
 	}
-
 
 	function removeSaveSlotEvents( ) {
 		let saveSlots = document.getElementById( "saveSlotContainer" ).children;
